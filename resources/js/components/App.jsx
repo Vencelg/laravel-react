@@ -19,7 +19,7 @@ const App = () => {
                     <div className="card">
                         <div className="card-header">Examplsd asdasdsddadsd  fsdhgdfhnhasdahoj</div>
                             
-                        <div className="card-body">{kokot}</div>
+                        <div className="card-body">{message}</div>
                     </div>
                 </div>
             </div>

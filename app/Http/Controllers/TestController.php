@@ -19,7 +19,7 @@ class TestController extends Controller
         $testjakpica = new Test;
         return response()->json([
             'status' => 200,
-            'message' => 'Kokot'
+            'message' => 'Ahoj Kokote'
         ]);
     }
 }
