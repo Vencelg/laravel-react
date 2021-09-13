@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-
+import React, {Fragment, useEffect} from 'react';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"; 
+import UserState from '../context/user/userState';
+import PrivateRoute from "./routing/PrivateRoute"
+import Login from './Login/Login';
+import Main from './Main';
+import setAuthToken from '../scripts/setAuthToken';
 
 const App = () => {
-    const [kokot, setKokot] = useState('');
-    useEffect( async () => {
-        const res = await fetch('http://127.0.0.1:8000/api/test');
-        const data = await res.json();
-        setKokot(data.message)
-        
-    }, []);
-
-    
+    useEffect(()=>{
+        if (localStorage.token) {
+          setAuthToken(localStorage.token);
+        }
+       // store.dispatch(loadUser());
+      }, [])
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Examplsd asdasdsddadsd  fsdhgdfhnhasdahoj</div>
-                            
-                        <div className="card-body">{message}</div>
-                    </div>
+        <UserState>
+            <Router>
+                <div className="container">
+                <Fragment>
+                    <Switch>
+                        <Route exact path="/login" component={Login}/>
+                        <PrivateRoute exact path="/" component={Main}/>
+                    </Switch>
+                </Fragment>
                 </div>
-            </div>
-        </div>
+            </Router>
+        </UserState>
     );
 }
 
