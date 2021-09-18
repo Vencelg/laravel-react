@@ -1,20 +1,24 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useContext} from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"; 
-import UserState from '../context/user/userState';
+
+import UserContext from '../context/user/userContext';
 import PrivateRoute from "./routing/PrivateRoute"
 import Login from './Login/Login';
-import Main from './Main';
+import Main from './Main/Main';
 import setAuthToken from '../scripts/setAuthToken';
 
+
 const App = () => {
+    const userContext = useContext(UserContext);
+    const {loadUser} = userContext;
     useEffect(()=>{
         if (localStorage.token) {
           setAuthToken(localStorage.token);
         }
-       // store.dispatch(loadUser());
+        loadUser();
       }, [])
     return (
-        <UserState>
+ 
             <Router>
                 <div className="container">
                 <Fragment>
@@ -25,7 +29,6 @@ const App = () => {
                 </Fragment>
                 </div>
             </Router>
-        </UserState>
     );
 }
 

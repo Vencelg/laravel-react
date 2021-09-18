@@ -1,31 +1,76 @@
-import { useReducer } from "react";
-import axios from "axios";
+import { useReducer, useEffect } from "react";
+import api from "../../scripts/api";
 import UserContext from "./userContext";
 import UserReducer from "./userReducer";
-import { GET_USER, SET_LOADING } from "../types"
+import { SET_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_PROFILE, LOGOUT } from "../types"
+import setAuthToken from "../../scripts/setAuthToken";
 
 const UserState = props => {
     const initalState = {
-        id: null,
-        name: "",
-        email:"",
-        admin: false,
+        user :{
+            id: null,
+            name: "",
+            email:"",
+            admin: false,
+        },
         loading:false,
         error: null,
         isAuthenticated:false,
         token: localStorage.getItem('token'),
-    }
+    }   
 
     const [state, dispatch] = useReducer(UserReducer, initalState);
+     useEffect(()=>{
+        setAuthToken(initalState.token);
+    },[initalState.token]) 
 
+    // načíst uživatele
+    const loadUser = async () => {
+        try {
+            setLoading()
+            const res = await api.get('/user');
 
-    const getUser = async(username) => {
-        setLoading();
-        const res = await axios.get("");
         dispatch({
-            type: GET_USER,
+            type: USER_LOADED,
             payload: res.data
-        })
+        });
+    } catch (error) {
+      
+           
+            dispatch({
+                type: AUTH_ERROR,
+                payload: error.response.data.message
+            });
+        }
+    };
+    // Přihlásit
+    const login = async (email, password) => {
+    const body = { email, password };
+
+    try {
+        setLoading()
+        const res = await api.post('/login', body);
+       
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        });
+
+        loadUser();
+    } catch (error) {
+            const errors = error.response.data.message;
+            console.log(errors);
+            dispatch({
+                type: AUTH_ERROR,
+                payload: errors
+            });
+        }
+    };
+
+    // Odhlásit
+    const logout = () => {
+        dispatch({ type: CLEAR_PROFILE });
+        dispatch({ type: LOGOUT });
     }
 
 
@@ -43,7 +88,8 @@ const UserState = props => {
                 error: state.error,
                 token: state.token,
                 isAuthenticated: state.isAuthenticated,
-                getUser,
+                login,
+                loadUser
             }
         } >
 

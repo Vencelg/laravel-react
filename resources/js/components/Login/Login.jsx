@@ -4,21 +4,21 @@ import UserContext from '../../context/user/userContext';
 
 const Login = () => {
    const userContext = useContext(UserContext);
-   const {isAuthenticated} = userContext;
-   
+   const {isAuthenticated, login, error} = userContext;
+  
    const [formData, setFormData] = useState({
-      username: '',
+      email: '',
       password: ''
     });
   
-    const { username, password } = formData;
+    const { email, password } = formData;
   
     const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
     
     const onSubmit = (e) => {
      e.preventDefault();
-      
+      login(email, password);
     };
   
      if (isAuthenticated) {
@@ -26,15 +26,16 @@ const Login = () => {
     } 
    return (
       <div className="flex">
+        {error && error}
       <div className="form-container">
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
         <i className="fas fa-envelope form-icon"></i>
           <input
-            type="text"
+            type="email"
             placeholder="Username"
-            name="username"
-            value={username}
+            name="email"
+            value={email}
             onChange={onChange}
             required
           />

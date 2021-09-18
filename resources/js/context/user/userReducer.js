@@ -1,16 +1,28 @@
-import { GET_USER, SET_LOADING } from "../types"
+import { SET_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_PROFILE, LOGOUT } from "../types"
 
 const Reducer = (state, action) => {
     switch (action.type) {
         
-        case GET_USER:
+        case USER_LOADED:
+        case LOGIN_SUCCESS:
             return {
                 ...state,
-                user: action.payload,
+                ...action.payload, 
+                isAuthenticated: true,
                 loading: false
-            }
+            };
         case SET_LOADING:
             return {...state, loading: true }
+        case AUTH_ERROR:
+        case LOGOUT:
+            return {
+                ...state,
+                user: null,
+                token: null,
+                isAuthenticated: false,
+                error: action.payload,
+                loading: false,       
+            };
         default:
             return state;
     }
