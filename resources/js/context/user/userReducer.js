@@ -2,12 +2,18 @@ import { SET_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_
 
 const Reducer = (state, action) => {
     switch (action.type) {
-        
         case USER_LOADED:
+            return {
+                ...state,
+                user:payload.user,
+                isAuthenticated: true,
+                loading: false
+            };
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                ...action.payload, 
+                token: payload.access_token,
+                user: payload.user,
                 isAuthenticated: true,
                 loading: false
             };

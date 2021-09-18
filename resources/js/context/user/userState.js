@@ -7,12 +7,7 @@ import setAuthToken from "../../scripts/setAuthToken";
 
 const UserState = props => {
     const initalState = {
-        user :{
-            id: null,
-            name: "",
-            email:"",
-            admin: false,
-        },
+        user:{},
         loading:false,
         error: null,
         isAuthenticated:false,
@@ -33,8 +28,6 @@ const UserState = props => {
             payload: res.data
         });
     } catch (error) {
-      
-           
             dispatch({
                 type: AUTH_ERROR,
                 payload: error.response.data.message
@@ -46,15 +39,15 @@ const UserState = props => {
     const body = { email, password };
 
     try {
-        setLoading()
+        setLoading();
         const res = await api.post('/login', body);
        
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
         });
+        setAuthToken(payload.token);
 
-        loadUser();
     } catch (error) {
             const errors = error.response.data.message;
             console.log(errors);
