@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer } from "react";
 import api from "../../scripts/api";
 import UserContext from "./userContext";
 import UserReducer from "./userReducer";
@@ -20,9 +20,7 @@ const UserState = props => {
     }   
 
     const [state, dispatch] = useReducer(UserReducer, initalState);
-     useEffect(()=>{
-        setAuthToken(initalState.token);
-    },[initalState.token]) 
+     
 
     // načíst uživatele
     const loadUser = async () => {
