@@ -19,8 +19,6 @@ const Reducer = (state, action) => {
                 isAuthenticated: true,
                 loading: false
             };
-        case SET_LOADING:
-            return { ...state, loading: true }
         case AUTH_ERROR:
         case LOGOUT:
             return {

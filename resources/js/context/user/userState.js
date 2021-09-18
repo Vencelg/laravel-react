@@ -8,7 +8,7 @@ import setAuthToken from "../../scripts/setAuthToken";
 const UserState = props => {
     const initalState = {
         user: {},
-        loading: false,
+        loading: true,
         error: null,
         isAuthenticated: false,
         token: localStorage.getItem('token'),
@@ -20,7 +20,7 @@ const UserState = props => {
     // načíst uživatele
     const loadUser = async () => {
         try {
-            setLoading()
+           
             const res = await api.get('/user');
 
             dispatch({
@@ -39,7 +39,7 @@ const UserState = props => {
         const body = { email, password };
 
         try {
-            setLoading();
+         
             const res = await api.post('/login', body);
             //console.log(res.data.access_token);
             setAuthToken(res.data.access_token);
@@ -65,10 +65,6 @@ const UserState = props => {
         dispatch({ type: LOGOUT });
     }
 
-
-
-
-    const setLoading = () => dispatch({ type: SET_LOADING })
 
     return <UserContext.Provider value={
         {
