@@ -2419,8 +2419,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var Reducer = function Reducer(state, action) {
   switch (action.type) {
     case _types__WEBPACK_IMPORTED_MODULE_0__.USER_LOADED:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        user: action.payload.user,
+        isAuthenticated: true,
+        error: null,
+        loading: false
+      });
+
     case _types__WEBPACK_IMPORTED_MODULE_0__.LOGIN_SUCCESS:
-      return _objectSpread(_objectSpread(_objectSpread({}, state), action.payload), {}, {
+      return _objectSpread(_objectSpread({}, state), {}, {
+        token: action.payload.access_token,
+        user: action.payload.user,
+        error: null,
         isAuthenticated: true,
         loading: false
       });
@@ -2497,12 +2507,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var UserState = function UserState(props) {
   var initalState = {
-    user: {
-      id: null,
-      name: "",
-      email: "",
-      admin: false
-    },
+    user: {},
     loading: false,
     error: null,
     isAuthenticated: false,
@@ -2576,11 +2581,12 @@ var UserState = function UserState(props) {
 
             case 5:
               res = _context2.sent;
+              //console.log(res.data.access_token);
+              (0,_scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_6__["default"])(res.data.access_token);
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_5__.LOGIN_SUCCESS,
                 payload: res.data
               });
-              loadUser();
               _context2.next = 15;
               break;
 

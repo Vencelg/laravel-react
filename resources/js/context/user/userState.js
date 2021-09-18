@@ -7,15 +7,15 @@ import setAuthToken from "../../scripts/setAuthToken";
 
 const UserState = props => {
     const initalState = {
-        user:{},
-        loading:false,
+        user: {},
+        loading: false,
         error: null,
-        isAuthenticated:false,
+        isAuthenticated: false,
         token: localStorage.getItem('token'),
-    }   
+    }
 
     const [state, dispatch] = useReducer(UserReducer, initalState);
-     
+
 
     // načíst uživatele
     const loadUser = async () => {
@@ -23,11 +23,11 @@ const UserState = props => {
             setLoading()
             const res = await api.get('/user');
 
-        dispatch({
-            type: USER_LOADED,
-            payload: res.data
-        });
-    } catch (error) {
+            dispatch({
+                type: USER_LOADED,
+                payload: res.data
+            });
+        } catch (error) {
             dispatch({
                 type: AUTH_ERROR,
                 payload: error.response.data.message
@@ -36,19 +36,20 @@ const UserState = props => {
     };
     // Přihlásit
     const login = async (email, password) => {
-    const body = { email, password };
+        const body = { email, password };
 
-    try {
-        setLoading();
-        const res = await api.post('/login', body);
-       
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: res.data
-        });
-        setAuthToken(payload.token);
+        try {
+            setLoading();
+            const res = await api.post('/login', body);
+            //console.log(res.data.access_token);
+            setAuthToken(res.data.access_token);
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data
+            });
 
-    } catch (error) {
+
+        } catch (error) {
             const errors = error.response.data.message;
             console.log(errors);
             dispatch({
@@ -69,23 +70,23 @@ const UserState = props => {
 
     const setLoading = () => dispatch({ type: SET_LOADING })
 
-    return <UserContext.Provider value = {
-            {
-                id: state.id,
-                name: state.name,
-                email: state.email,
-                admin: state.admin,
-                loading: state.loading,
-                error: state.error,
-                token: state.token,
-                isAuthenticated: state.isAuthenticated,
-                login,
-                loadUser
-            }
-        } >
+    return <UserContext.Provider value={
+        {
+            id: state.id,
+            name: state.name,
+            email: state.email,
+            admin: state.admin,
+            loading: state.loading,
+            error: state.error,
+            token: state.token,
+            isAuthenticated: state.isAuthenticated,
+            login,
+            loadUser
+        }
+    } >
 
-        { props.children } 
-        </UserContext.Provider>
+        {props.children}
+    </UserContext.Provider>
 }
 
 export default UserState;

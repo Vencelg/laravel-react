@@ -5,20 +5,22 @@ const Reducer = (state, action) => {
         case USER_LOADED:
             return {
                 ...state,
-                user:payload.user,
+                user: action.payload.user,
                 isAuthenticated: true,
+                error: null,
                 loading: false
             };
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                token: payload.access_token,
-                user: payload.user,
+                token: action.payload.access_token,
+                user: action.payload.user,
+                error: null,
                 isAuthenticated: true,
                 loading: false
             };
         case SET_LOADING:
-            return {...state, loading: true }
+            return { ...state, loading: true }
         case AUTH_ERROR:
         case LOGOUT:
             return {
@@ -27,7 +29,7 @@ const Reducer = (state, action) => {
                 token: null,
                 isAuthenticated: false,
                 error: action.payload,
-                loading: false,       
+                loading: false,
             };
         default:
             return state;
