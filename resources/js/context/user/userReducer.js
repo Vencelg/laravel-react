@@ -5,7 +5,7 @@ const Reducer = (state, action) => {
         case USER_LOADED:
             return {
                 ...state,
-                user: action.payload.user,
+                user: action.payload,
                 isAuthenticated: true,
                 error: null,
                 loading: false

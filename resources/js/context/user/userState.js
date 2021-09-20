@@ -19,9 +19,11 @@ const UserState = props => {
 
     // načíst uživatele
     const loadUser = async () => {
+
         try {
            
             const res = await api.get('/user');
+
 
             dispatch({
                 type: USER_LOADED,

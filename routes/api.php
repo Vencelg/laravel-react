@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProblemController;
+use App\Models\Problem;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,18 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+/*
+
+    */
+Route::group(['middleware'=>['auth:sanctum']], function() {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('/problems', [ProblemController::class, 'show']);
+
+    Route::post('/problems', [ProblemController::class, 'store']);
 });
 
-Route::get('/test', [TestController::class, 'index']);
 Route::post('/login', [LoginController::class, 'store']);

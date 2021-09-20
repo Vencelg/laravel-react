@@ -2420,7 +2420,7 @@ var Reducer = function Reducer(state, action) {
   switch (action.type) {
     case _types__WEBPACK_IMPORTED_MODULE_0__.USER_LOADED:
       return _objectSpread(_objectSpread({}, state), {}, {
-        user: action.payload.user,
+        user: action.payload,
         isAuthenticated: true,
         error: null,
         loading: false
@@ -2433,11 +2433,6 @@ var Reducer = function Reducer(state, action) {
         error: null,
         isAuthenticated: true,
         loading: false
-      });
-
-    case _types__WEBPACK_IMPORTED_MODULE_0__.SET_LOADING:
-      return _objectSpread(_objectSpread({}, state), {}, {
-        loading: true
       });
 
     case _types__WEBPACK_IMPORTED_MODULE_0__.AUTH_ERROR:
@@ -2508,7 +2503,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var UserState = function UserState(props) {
   var initalState = {
     user: {},
-    loading: false,
+    loading: true,
     error: null,
     isAuthenticated: false,
     token: localStorage.getItem('token')
@@ -2528,33 +2523,32 @@ var UserState = function UserState(props) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              setLoading();
-              _context.next = 4;
+              _context.next = 3;
               return _scripts_api__WEBPACK_IMPORTED_MODULE_2__["default"].get('/user');
 
-            case 4:
+            case 3:
               res = _context.sent;
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_5__.USER_LOADED,
                 payload: res.data
               });
-              _context.next = 11;
+              _context.next = 10;
               break;
 
-            case 8:
-              _context.prev = 8;
+            case 7:
+              _context.prev = 7;
               _context.t0 = _context["catch"](0);
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_5__.AUTH_ERROR,
                 payload: _context.t0.response.data.message
               });
 
-            case 11:
+            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 7]]);
     }));
 
     return function loadUser() {
@@ -2575,11 +2569,10 @@ var UserState = function UserState(props) {
                 password: password
               };
               _context2.prev = 1;
-              setLoading();
-              _context2.next = 5;
+              _context2.next = 4;
               return _scripts_api__WEBPACK_IMPORTED_MODULE_2__["default"].post('/login', body);
 
-            case 5:
+            case 4:
               res = _context2.sent;
               //console.log(res.data.access_token);
               (0,_scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_6__["default"])(res.data.access_token);
@@ -2587,11 +2580,11 @@ var UserState = function UserState(props) {
                 type: _types__WEBPACK_IMPORTED_MODULE_5__.LOGIN_SUCCESS,
                 payload: res.data
               });
-              _context2.next = 15;
+              _context2.next = 14;
               break;
 
-            case 10:
-              _context2.prev = 10;
+            case 9:
+              _context2.prev = 9;
               _context2.t0 = _context2["catch"](1);
               errors = _context2.t0.response.data.message;
               console.log(errors);
@@ -2600,12 +2593,12 @@ var UserState = function UserState(props) {
                 payload: errors
               });
 
-            case 15:
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 10]]);
+      }, _callee2, null, [[1, 9]]);
     }));
 
     return function login(_x, _x2) {
@@ -2620,12 +2613,6 @@ var UserState = function UserState(props) {
     });
     dispatch({
       type: _types__WEBPACK_IMPORTED_MODULE_5__.LOGOUT
-    });
-  };
-
-  var setLoading = function setLoading() {
-    return dispatch({
-      type: _types__WEBPACK_IMPORTED_MODULE_5__.SET_LOADING
     });
   };
 
