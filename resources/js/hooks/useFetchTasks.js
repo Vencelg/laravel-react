@@ -9,6 +9,6 @@ const getTasks = async () => {
 
 
 export const useFetchTasks = () => {
-   const { data } = useQuery('tasks', getTasks);
-   console.log(data);
+   const { data, isError, error, isLoading } = useQuery('tasks', getTasks);
+   console.log(data, isError, error, isLoading);
 }

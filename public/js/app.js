@@ -2703,9 +2703,12 @@ var getTasks = /*#__PURE__*/function () {
 
 var useFetchTasks = function useFetchTasks() {
   var _useQuery = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useQuery)('tasks', getTasks),
-      data = _useQuery.data;
+      data = _useQuery.data,
+      isError = _useQuery.isError,
+      error = _useQuery.error,
+      isLoading = _useQuery.isLoading;
 
-  console.log(data);
+  console.log(data, isError, error, isLoading);
 };
 
 /***/ }),
