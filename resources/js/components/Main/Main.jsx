@@ -1,10 +1,11 @@
 import React from 'react'
 import { useFetchTasks } from '../../hooks/useFetchTasks'
 const Main = () => {
-   useFetchTasks();
+   const { data, isError, error, isLoading } = useFetchTasks();
+   console.log({ data, isError, error, isLoading });
    return (
       <div>
-         Kokot
+         pičus
       </div>
    )
 }
