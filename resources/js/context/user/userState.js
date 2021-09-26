@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import api from "../../scripts/api";
 import UserContext from "./userContext";
 import UserReducer from "./userReducer";
-import { SET_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_PROFILE, LOGOUT } from "../types"
+import { USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, CLEAR_PROFILE, LOGOUT } from "../types"
 import setAuthToken from "../../scripts/setAuthToken";
 
 const UserState = props => {
