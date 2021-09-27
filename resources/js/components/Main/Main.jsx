@@ -15,11 +15,11 @@ const Main = () => {
    const [addError, setAddError] = useState(false);
 
    const userContext = useContext(UserContext);
-   const {user} = userContext;
-   console.log(user);
+   const {error} = userContext;
+   console.log(error);
 
-   const { data:problems, isError, error, isLoading, refetch } = useFetchTasks();
-   console.log({ data, isError, error, isLoading });
+   //const { data:problems, isError, error, isLoading, refetch } = useFetchTasks();
+   //console.log({ data, isError, error, isLoading });
 
    const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,20 +34,20 @@ const Main = () => {
    return (
       <main>
          <section>
-            {user.id}
+           {/* {user.id}
             {user.name}
-            {user.email}
+            {user.email} */}
          </section>
          <hr />
          <section>
-            {isError && error}
+            {/* {isError && error}
             {addError && addError}
             {isLoading || isAdding ?(<span>Loading...</span>):(
                   problems.map((problem)=>(
                      <div>{problem.room} {problem.description} {problem.name}</div>
                      )
                   )
-            )}
+            )} */}
          </section>
          <hr />
          <section>
@@ -60,7 +60,7 @@ const Main = () => {
             type="text"
             placeholder="room"
             name="room"
-            value={room}
+            value={formData.room}
             onChange={onChange}
             required
           />
@@ -71,7 +71,7 @@ const Main = () => {
             type="text"
             placeholder="description"
             name="description"
-            value={description}
+            value={formData.description}
             onChange={onChange}
             required
           />
@@ -79,9 +79,9 @@ const Main = () => {
         <div className="form-group">
           <input
             type="text"
-            placeholder="room"
-            name="room"
-            value={room}
+            placeholder="name"
+            name="name"
+            value={formData.name}
             onChange={onChange}
           />
         </div>
