@@ -33,7 +33,9 @@ const Main = () => {
    return (
       <main>
          <section>
-            {user.username}
+            {user.id}
+            {user.name}
+            {user.email}
          </section>
          <hr />
          <section>
