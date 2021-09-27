@@ -7,8 +7,9 @@ import UserContext from '../../context/user/userContext';
 const Main = () => {
 
    const [formData, setFormData] = useState({
+      name:"",
+      description:"",
       room:"",
-      desc:""
     });
    const [isAdding, setAdding] = useState(false);
    const [addError, setAddError] = useState(false);
@@ -43,7 +44,7 @@ const Main = () => {
             {addError && addError}
             {isLoading || isAdding ?(<span>Loading...</span>):(
                   problems.map((problem)=>(
-                     <div>{problem.room}</div>
+                     <div>{problem.room} {problem.description} {problem.name}</div>
                      )
                   )
             )}
@@ -57,9 +58,20 @@ const Main = () => {
       
           <input
             type="text"
-            placeholder="desc"
-            name="desc"
-            value={desc}
+            placeholder="room"
+            name="room"
+            value={room}
+            onChange={onChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+      
+          <input
+            type="text"
+            placeholder="description"
+            name="description"
+            value={description}
             onChange={onChange}
             required
           />
