@@ -12,14 +12,11 @@ const addTask = async (formData) => {
    
 };
 
-export const useAddTask = async(formData, refetch) =>{
+export const useAddTask = async(formData) =>{
    const {mutateAsync, isLoading: isAdding, error: addError} = useMutation(addTask);
 
-   const data = await mutateAsync({
-      ...formData
-    });
-    console.log(data);
-    refetch();
+  
+    
 
-    return {isAdding,addError};
+    return {isAdding,addError, mutateAsync};
 }

@@ -70,10 +70,7 @@ const UserState = props => {
 
     return <UserContext.Provider value={
         {
-            id: state.id,
-            name: state.name,
-            email: state.email,
-            admin: state.admin,
+            user:state.user,
             loading: state.loading,
             error: state.error,
             token: state.token,

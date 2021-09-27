@@ -2207,6 +2207,7 @@ var Login = function Login() {
   var isAuthenticated = userContext.isAuthenticated,
       login = userContext.login,
       error = userContext.error;
+  console.log(userContext);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     email: '',
@@ -2289,11 +2290,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _hooks_useFetchTasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useFetchTasks */ "./resources/js/hooks/useFetchTasks.js");
-/* harmony import */ var _hooks_useAddTask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useAddTask */ "./resources/js/hooks/useAddTask.js");
-/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _hooks_useFetchTasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useFetchTasks */ "./resources/js/hooks/useFetchTasks.js");
+/* harmony import */ var _hooks_useAddTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useAddTask */ "./resources/js/hooks/useAddTask.js");
+/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2320,7 +2329,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Main = function Main() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useAddTask = (0,_hooks_useAddTask__WEBPACK_IMPORTED_MODULE_3__.useAddTask)(formData, refetch),
+      isAdding = _useAddTask.isAdding,
+      addError = _useAddTask.addError,
+      mutateAsync = _useAddTask.mutateAsync;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     name: "",
     description: "",
     room: ""
@@ -2329,48 +2343,76 @@ var Main = function Main() {
       formData = _useState2[0],
       setFormData = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isAdding = _useState4[0],
-      setAdding = _useState4[1];
+  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  var user = userContext.user;
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      addError = _useState6[0],
-      setAddError = _useState6[1];
+  var _useFetchTasks = (0,_hooks_useFetchTasks__WEBPACK_IMPORTED_MODULE_2__.useFetchTasks)(),
+      problems = _useFetchTasks.data,
+      isError = _useFetchTasks.isError,
+      error = _useFetchTasks.error,
+      isLoading = _useFetchTasks.isLoading,
+      refetch = _useFetchTasks.refetch;
 
-  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_3__["default"]);
-  var error = userContext.error;
-  console.log(error); //const { data:problems, isError, error, isLoading, refetch } = useFetchTasks();
-  //console.log({ data, isError, error, isLoading });
+  console.log({
+    problems: problems,
+    isError: isError,
+    error: error,
+    isLoading: isLoading
+  });
 
   var onChange = function onChange(e) {
     return setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
 
-  var onSubmit = function onSubmit(e) {
-    e.preventDefault();
+  var onSubmit = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              _context.next = 3;
+              return mutateAsync(_objectSpread({}, formData));
 
-    var _useAddTask = (0,_hooks_useAddTask__WEBPACK_IMPORTED_MODULE_2__.useAddTask)(formData, refetch),
-        isAdding = _useAddTask.isAdding,
-        addError = _useAddTask.addError;
+            case 3:
+              data = _context.sent;
 
-    setAdding(isAdding);
-    setAddError(addError);
-  };
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("main", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    return function onSubmit(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      children: [user.id, "|", user.name, "|", user.email]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      children: [isError && error, addError && addError, isLoading || isAdding ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        children: "Loading..."
+      }) : problems.map(function (problem) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [problem.room, " / ", problem.description, " / ", problem.name]
+        }, problem.id);
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "flex",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "form-container",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
             className: "form",
             onSubmit: onSubmit,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "form-group",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
                 type: "text",
                 placeholder: "room",
                 name: "room",
@@ -2378,9 +2420,9 @@ var Main = function Main() {
                 onChange: onChange,
                 required: true
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "form-group",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
                 type: "text",
                 placeholder: "description",
                 name: "description",
@@ -2388,16 +2430,16 @@ var Main = function Main() {
                 onChange: onChange,
                 required: true
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "form-group",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
                 type: "text",
                 placeholder: "name",
                 name: "name",
                 value: formData.name,
                 onChange: onChange
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
               type: "submit",
               className: "btn btn-primary",
               children: "Add"
@@ -2734,10 +2776,7 @@ var UserState = function UserState(props) {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_userContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
-      id: state.id,
-      name: state.name,
-      email: state.email,
-      admin: state.admin,
+      user: state.user,
       loading: state.loading,
       error: state.error,
       token: state.token,
@@ -2769,12 +2808,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scripts/api */ "./resources/js/scripts/api.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2821,27 +2854,21 @@ var addTask = /*#__PURE__*/function () {
 }();
 
 var useAddTask = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(formData, refetch) {
-    var _useMutation, mutateAsync, isAdding, addError, data;
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(formData) {
+    var _useMutation, mutateAsync, isAdding, addError;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _useMutation = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useMutation)(addTask), mutateAsync = _useMutation.mutateAsync, isAdding = _useMutation.isLoading, addError = _useMutation.error;
-            _context2.next = 3;
-            return mutateAsync(_objectSpread({}, formData));
-
-          case 3:
-            data = _context2.sent;
-            console.log(data);
-            refetch();
             return _context2.abrupt("return", {
               isAdding: isAdding,
-              addError: addError
+              addError: addError,
+              mutateAsync: mutateAsync
             });
 
-          case 7:
+          case 2:
           case "end":
             return _context2.stop();
         }
@@ -2849,7 +2876,7 @@ var useAddTask = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function useAddTask(_x2, _x3) {
+  return function useAddTask(_x2) {
     return _ref2.apply(this, arguments);
   };
 }();

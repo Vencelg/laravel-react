@@ -5,49 +5,52 @@ import UserContext from '../../context/user/userContext';
 
 
 const Main = () => {
-
+  const {isAdding, addError, mutateAsync}=useAddTask(formData,refetch);
    const [formData, setFormData] = useState({
       name:"",
       description:"",
       room:"",
     });
-   const [isAdding, setAdding] = useState(false);
-   const [addError, setAddError] = useState(false);
+   
 
    const userContext = useContext(UserContext);
-   const {error} = userContext;
-   console.log(error);
+   const {user} = userContext;
 
-   //const { data:problems, isError, error, isLoading, refetch } = useFetchTasks();
-   //console.log({ data, isError, error, isLoading });
+   const { data:problems, isError, error, isLoading, refetch } = useFetchTasks();
+   console.log({ problems, isError, error, isLoading });
 
    const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
     
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
      e.preventDefault();
-     const {isAdding, addError}=useAddTask(formData,refetch);
-     setAdding(isAdding);
-     setAddError(addError);
+     const data = await mutateAsync({
+      ...formData
+    });
+     
+     /* setAdding(isAdding);
+     setAddError(addError); */
     };
    
    return (
       <main>
          <section>
-           {/* {user.id}
+           {user.id}
+             | 
             {user.name}
-            {user.email} */}
+            |
+            {user.email}
          </section>
          <hr />
          <section>
-            {/* {isError && error}
+            {isError && error}
             {addError && addError}
             {isLoading || isAdding ?(<span>Loading...</span>):(
                   problems.map((problem)=>(
-                     <div>{problem.room} {problem.description} {problem.name}</div>
+                     <div key={problem.id}>{problem.room} / {problem.description} / {problem.name}</div>
                      )
                   )
-            )} */}
+            )}
          </section>
          <hr />
          <section>
