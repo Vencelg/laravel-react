@@ -5,7 +5,7 @@ import UserContext from '../../context/user/userContext';
 const Login = () => {
    const userContext = useContext(UserContext);
    const {isAuthenticated, login, error} = userContext;
-  
+ 
    const [formData, setFormData] = useState({
       email: '',
       password: ''
@@ -33,7 +33,7 @@ const Login = () => {
         <i className="fas fa-envelope form-icon"></i>
           <input
             type="email"
-            placeholder="Username"
+            placeholder="E-mail"
             name="email"
             value={email}
             onChange={onChange}
