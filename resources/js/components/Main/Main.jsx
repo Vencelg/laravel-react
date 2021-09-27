@@ -1,23 +1,39 @@
 import React, {useContext, useState} from 'react'
 import { useFetchTasks } from '../../hooks/useFetchTasks'
-import { useAddTask } from '../../hooks/useAddTask'
+//import { useAddTask } from '../../hooks/useAddTask'
 import UserContext from '../../context/user/userContext';
+import { useMutation } from "react-query";
 
+
+const addProblem = async (formData) => {
+   try {
+      const { data:response } = await api.post('/problems',formData);
+      return response.data;
+   } catch (error) {
+      throw new Error(error)
+   } 
+};
 
 const Main = () => {
-  const {isAdding, addError, mutateAsync}=useAddTask(formData,refetch);
+
    const [formData, setFormData] = useState({
       name:"",
       description:"",
       room:"",
     });
+
+    const {
+      mutate,
+      mutateAsync,
+      isLoading: isAddingProblem,
+      error: addError
+    } = useMutation(addProblem);
    
 
    const userContext = useContext(UserContext);
    const {user} = userContext;
 
    const { data:problems, isError, error, isLoading, refetch } = useFetchTasks();
-   console.log({ problems, isError, error, isLoading });
 
    const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,10 +43,11 @@ const Main = () => {
      const data = await mutateAsync({
       ...formData
     });
-     
-     /* setAdding(isAdding);
-     setAddError(addError); */
+    console.log(data);
+    refetch();
     };
+
+    
    
    return (
       <main>
@@ -45,7 +62,7 @@ const Main = () => {
          <section>
             {isError && error}
             {addError && addError}
-            {isLoading || isAdding ?(<span>Loading...</span>):(
+            {isLoading || isAddingProblem ?(<span>Loading...</span>):(
                   problems.map((problem)=>(
                      <div key={problem.id}>{problem.room} / {problem.description} / {problem.name}</div>
                      )
