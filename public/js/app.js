@@ -2294,15 +2294,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _hooks_useFetchTasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useFetchTasks */ "./resources/js/hooks/useFetchTasks.js");
-/* harmony import */ var _hooks_useAddTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useAddTask */ "./resources/js/hooks/useAddTask.js");
-/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
+/* harmony import */ var _scripts_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scripts/api */ "./resources/js/scripts/api.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2323,17 +2318,55 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+ //import { useAddTask } from '../../hooks/useAddTask'
 
 
 
 
+
+
+
+var addProblem = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(formData) {
+    var _yield$api$post, response;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return _scripts_api__WEBPACK_IMPORTED_MODULE_4__["default"].post('/problems', formData);
+
+          case 3:
+            _yield$api$post = _context.sent;
+            response = _yield$api$post.data;
+            return _context.abrupt("return", response.data);
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            throw new Error(_context.t0);
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function addProblem(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 var Main = function Main() {
-  var _useAddTask = (0,_hooks_useAddTask__WEBPACK_IMPORTED_MODULE_3__.useAddTask)(formData, refetch),
-      isAdding = _useAddTask.isAdding,
-      addError = _useAddTask.addError,
-      mutateAsync = _useAddTask.mutateAsync;
-
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     name: "",
     description: "",
@@ -2343,7 +2376,13 @@ var Main = function Main() {
       formData = _useState2[0],
       setFormData = _useState2[1];
 
-  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  var _useMutation = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(addProblem),
+      mutate = _useMutation.mutate,
+      mutateAsync = _useMutation.mutateAsync,
+      isAddingProblem = _useMutation.isLoading,
+      addError = _useMutation.error;
+
+  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_3__["default"]);
   var user = userContext.user;
 
   var _useFetchTasks = (0,_hooks_useFetchTasks__WEBPACK_IMPORTED_MODULE_2__.useFetchTasks)(),
@@ -2353,41 +2392,36 @@ var Main = function Main() {
       isLoading = _useFetchTasks.isLoading,
       refetch = _useFetchTasks.refetch;
 
-  console.log({
-    problems: problems,
-    isError: isError,
-    error: error,
-    isLoading: isLoading
-  });
-
   var onChange = function onChange(e) {
     return setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
 
   var onSubmit = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
       var data;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               e.preventDefault();
-              _context.next = 3;
+              _context2.next = 3;
               return mutateAsync(_objectSpread({}, formData));
 
             case 3:
-              data = _context.sent;
+              data = _context2.sent;
+              console.log(data);
+              refetch();
 
-            case 4:
+            case 6:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
 
-    return function onSubmit(_x) {
-      return _ref.apply(this, arguments);
+    return function onSubmit(_x2) {
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -2395,7 +2429,7 @@ var Main = function Main() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
       children: [user.id, "|", user.name, "|", user.email]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
-      children: [isError && error, addError && addError, isLoading || isAdding ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      children: [isError && error, addError && addError, isLoading || isAddingProblem ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         children: "Loading..."
       }) : problems.map(function (problem) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -2789,97 +2823,6 @@ var UserState = function UserState(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserState);
-
-/***/ }),
-
-/***/ "./resources/js/hooks/useAddTask.js":
-/*!******************************************!*\
-  !*** ./resources/js/hooks/useAddTask.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useAddTask": () => (/* binding */ useAddTask)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _scripts_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scripts/api */ "./resources/js/scripts/api.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-var addTask = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(formData) {
-    var _yield$api$post, response;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return _scripts_api__WEBPACK_IMPORTED_MODULE_1__["default"].post('/problems', formData);
-
-          case 3:
-            _yield$api$post = _context.sent;
-            response = _yield$api$post.data;
-            return _context.abrupt("return", response.data);
-
-          case 8:
-            _context.prev = 8;
-            _context.t0 = _context["catch"](0);
-            throw new Error(_context.t0);
-
-          case 11:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 8]]);
-  }));
-
-  return function addTask(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var useAddTask = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(formData) {
-    var _useMutation, mutateAsync, isAdding, addError;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _useMutation = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useMutation)(addTask), mutateAsync = _useMutation.mutateAsync, isAdding = _useMutation.isLoading, addError = _useMutation.error;
-            return _context2.abrupt("return", {
-              isAdding: isAdding,
-              addError: addError,
-              mutateAsync: mutateAsync
-            });
-
-          case 2:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-
-  return function useAddTask(_x2) {
-    return _ref2.apply(this, arguments);
-  };
-}();
 
 /***/ }),
 

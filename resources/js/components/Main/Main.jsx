@@ -3,6 +3,7 @@ import { useFetchTasks } from '../../hooks/useFetchTasks'
 //import { useAddTask } from '../../hooks/useAddTask'
 import UserContext from '../../context/user/userContext';
 import { useMutation } from "react-query";
+import api from '../../scripts/api';
 
 
 const addProblem = async (formData) => {
