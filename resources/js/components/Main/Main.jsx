@@ -16,9 +16,9 @@ const Main = () => {
 
    const problemQuery = useProblems()
    const createProblemQuery = useCreateProblem()
-   
-   
 
+
+   console.log(problemQuery);
 
    return (
       <main>

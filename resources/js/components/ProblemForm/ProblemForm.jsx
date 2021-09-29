@@ -5,7 +5,6 @@ const defaultFormValues = {
   description: '',
   name: '',
 }
-
 const ProblemForm = ({
   onSubmit,
   initialValues = defaultFormValues,
@@ -24,8 +23,8 @@ const ProblemForm = ({
       setValues(defaultFormValues)
     }
     e.preventDefault()
-    onSubmit(values)
-    refetch();
+    onSubmit(values).then(() => refetch());
+
   }
 
   React.useEffect(() => {
@@ -42,7 +41,7 @@ const ProblemForm = ({
             type="text"
             placeholder="room"
             name="room"
-            value={values.title}
+            value={values.room}
             onChange={e => setValue("room", e.target.value)}
             required
           />
