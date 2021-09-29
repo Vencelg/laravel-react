@@ -3,7 +3,7 @@ import { useQuery, queryCache } from 'react-query';
 
 export default function useProblems() {
   return useQuery(
-    'problems', 
+    'problems',
     () => api.get('/problems').then((res) => res.data),
   )
 }

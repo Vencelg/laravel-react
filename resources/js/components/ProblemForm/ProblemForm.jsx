@@ -1,19 +1,19 @@
 import React from 'react'
 
 const defaultFormValues = {
-   room: '',
-   description: '',
-   name: '',
- }
+  room: '',
+  description: '',
+  name: '',
+}
 
 const ProblemForm = ({
-   onSubmit,
-   initialValues = defaultFormValues,
-   submitText,
-   clearOnSubmit,
- }) => {
+  onSubmit,
+  initialValues = defaultFormValues,
+  submitText,
+  clearOnSubmit,
+}) => {
 
-   const [values, setValues] = React.useState(initialValues)
+  const [values, setValues] = React.useState(initialValues)
 
   const setValue = (field, value) =>
     setValues((old) => ({ ...old, [field]: value }))
@@ -30,29 +30,29 @@ const ProblemForm = ({
     setValues(initialValues)
   }, [initialValues])
 
-   return (
-      <div>
+  return (
+    <div>
       <form className="form" onSubmit={handleSubmit}>
-         <label htmlFor="title">Add Problem</label>
+        <label htmlFor="title">Add Problem</label>
         <div className="form-group">
-      
+
           <input
             type="text"
             placeholder="room"
             name="room"
             value={values.title}
-            onChange={e=> setValue("room", e.target.value)}
+            onChange={e => setValue("room", e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-      
+
           <input
             type="text"
             placeholder="description"
             name="description"
             value={values.description}
-            onChange={e=> setValue("description", e.target.value)}
+            onChange={e => setValue("description", e.target.value)}
             required
           />
         </div>
@@ -62,13 +62,13 @@ const ProblemForm = ({
             placeholder="name"
             name="name"
             value={values.name}
-            onChange={e=> setValue("name", e.target.value)}
+            onChange={e => setValue("name", e.target.value)}
           />
         </div>
         <button type="submit" className="btn btn-primary">{submitText}</button>
       </form>
-      </div>
-   )
+    </div>
+  )
 }
 
 export default ProblemForm;
