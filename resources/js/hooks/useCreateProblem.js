@@ -6,9 +6,9 @@ export default function useCreateProblem() {
     (values) => api.post('/problems', values).then((res) => res.data),
     {
       onMutate: (newProblem) => {
-        const oldProblems = queryCache.getQueryData('problems')
+        const oldProblems = queryCache.find('problems')
 
-        if (queryCache.getQueryData('problems')) {
+        if (queryCache.find('problems')) {
           queryCache.setQueryData('problems', old => [...old, newProblem])
         }
 

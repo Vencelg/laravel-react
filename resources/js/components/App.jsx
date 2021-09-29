@@ -1,5 +1,5 @@
-import React, {Fragment, useEffect, useContext} from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"; 
+import React, { Fragment, useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import UserContext from '../context/user/userContext';
 import PrivateRoute from "./routing/PrivateRoute"
@@ -10,25 +10,25 @@ import setAuthToken from '../scripts/setAuthToken';
 
 const App = () => {
     const userContext = useContext(UserContext);
-    const {loadUser} = userContext;
-    useEffect(()=>{
+    const { loadUser } = userContext;
+    useEffect(() => {
         if (localStorage.token) {
-          setAuthToken(localStorage.token);
+            setAuthToken(localStorage.token);
         }
         loadUser();
-      }, [])
+    }, [])
     return (
- 
-            <Router>
-                <div className="container">
+
+        <Router>
+            <div className="container">
                 <Fragment>
                     <Switch>
-                        <Route exact path="/login" component={Login}/>
-                        <PrivateRoute exact path="/" component={Main}/>
+                        <Route exact path="/login" component={Login} />
+                        <PrivateRoute exact path="/" component={Main} />
                     </Switch>
                 </Fragment>
-                </div>
-            </Router>
+            </div>
+        </Router>
     );
 }
 
