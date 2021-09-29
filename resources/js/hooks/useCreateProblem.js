@@ -8,9 +8,6 @@ export default function useCreateProblem() {
       onError: (error, _newProblem, rollback) => {
         console.error(error);
         if (rollback) rollback()
-      },
-      onSettled: () => {
-        queryCache.invalidateQueries('problems');
       }
     }
   )
