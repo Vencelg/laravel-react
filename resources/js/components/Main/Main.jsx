@@ -16,16 +16,8 @@ const Main = () => {
 
    const problemQuery = useProblems()
    const createProblemQuery = useCreateProblem()
-   console.log(createProblemQuery);
-   const onChange = (e) =>
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-
-   const onSubmit = async (e) => {
-      e.preventDefault();
-
-
-   };
-
+   
+   
 
 
    return (
@@ -54,6 +46,7 @@ const Main = () => {
                   <ProblemForm
                      onSubmit={createProblemQuery.mutateAsync}
                      clearOnSubmit
+                     refetch={problemQuery.refetch}
                      submitText={
                         createProblemQuery.isLoading
                            ? 'Saving...'
