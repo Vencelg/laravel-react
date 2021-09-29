@@ -9,11 +9,6 @@ import ProblemForm from '../ProblemForm/ProblemForm';
 
 const Main = () => {
 
-   const [formData, setFormData] = useState({
-      name: "",
-      description: "",
-      room: "",
-   });
 
 
    const userContext = useContext(UserContext);
