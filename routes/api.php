@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\RefreshController;
 use App\Models\Problem;
@@ -28,10 +29,12 @@ Route::group(['middleware'=>['auth:sanctum']], function() {
     });
 
     Route::get('/problems', [ProblemController::class, 'show']);
-
     Route::post('/problems', [ProblemController::class, 'store']);
 
     Route::get('/refresh', [RefreshController::class, 'index']);
+
+    Route::post('/logout', [LogoutController::class, 'index']);
+
 });
 
 Route::post('/login', [LoginController::class, 'store']);
