@@ -13,9 +13,11 @@ class Problem extends Model
         'name',
         'description',
         'room',
-        'user_id'
+        'user_id',
+        'fixed',
+        'fix_time'
     ];
-
+    
     public function user() {
         return $this->belongsTo(User::class);
     }

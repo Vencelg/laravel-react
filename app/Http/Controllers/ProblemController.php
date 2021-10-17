@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Problem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class ProblemController extends Controller
 {
@@ -43,5 +44,36 @@ class ProblemController extends Controller
         }
 
         return response(problemsLoop());
+    }
+    //One problem things
+    public function showOne($id)
+    {
+
+        $problem = Problem::find($id);
+        $problemAuthor = $problem->user;
+
+        return response()->json([
+            'problem' => $problem
+        ]);
+    }
+    public function storeOne(Request $request, $id)
+    {
+        $problem = Problem::find($id);
+        $problem->update($request->all());
+        $problem->save();
+
+        return response()->json([
+            $problem,
+            $request->user()
+        ]);
+    }
+    public function deleteOne(Request $request, $id)
+    {
+        $problem = Problem::find($id);
+        $problem->delete();
+
+        return response()->json([
+            'message' => 'Deleted'
+        ]);
     }
 }

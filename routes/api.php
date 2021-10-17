@@ -23,18 +23,20 @@ use App\Models\Problem;
 /*
 
     */
-Route::group(['middleware'=>['auth:sanctum']], function() {
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
     Route::get('/problems', [ProblemController::class, 'show']);
+    Route::get('/problems/{id}', [ProblemController::class, 'showOne']);
     Route::post('/problems', [ProblemController::class, 'store']);
-
+    Route::post('/problems/{id}', [ProblemController::class, 'storeOne'])->middleware(['isAdmin']);
+    Route::delete('/problems/{id}', [ProblemController::class, 'deleteOne'])->middleware(['isCreator']);
     Route::get('/refresh', [RefreshController::class, 'index']);
-
     Route::post('/logout', [LogoutController::class, 'index']);
-
 });
+
 
 Route::post('/login', [LoginController::class, 'store']);
