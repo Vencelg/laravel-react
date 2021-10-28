@@ -16,7 +16,7 @@ const AdminRoute = ({
       render={props =>
         loading ? (
           <span>"Loading"</span>
-        ) : isAuthenticated && user.isAdmin ? (
+        ) : isAuthenticated && user.admin ? (
           <Component {...props} />
         ) : (
           <Redirect to="/login" />

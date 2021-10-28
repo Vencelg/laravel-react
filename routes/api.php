@@ -30,10 +30,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     Route::get('/problems', [ProblemController::class, 'show']);
-    Route::get('/problems/{id}', [ProblemController::class, 'showOne']);
+    Route::get('/problem/{id}', [ProblemController::class, 'showOne']);
     Route::post('/problems', [ProblemController::class, 'store']);
-    Route::post('/problems/{id}', [ProblemController::class, 'storeOne'])->middleware(['isAdmin']);
-    Route::delete('/problems/{id}', [ProblemController::class, 'deleteOne'])->middleware(['isCreator']);
+    Route::post('/problem/{id}', [ProblemController::class, 'storeOne'])->middleware(['isAdmin']);
+    Route::delete('/problem/{id}', [ProblemController::class, 'deleteOne'])->middleware(['isCreator']);
     Route::get('/refresh', [RefreshController::class, 'index']);
     Route::post('/logout', [LogoutController::class, 'index']);
 });

@@ -35,7 +35,7 @@ const Main = () => {
             {problemQuery.isError && problemQuery.error}
             {problemQuery.isLoading ? (<span>Loading...</span>) : (
                problemQuery.data.map((problem) => (
-                  <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name}</div>
+                  <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
                )
                )
             )}

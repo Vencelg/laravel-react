@@ -9,9 +9,6 @@ export default function useProblem(problemId) {
   return useQuery(
     ['problems', problemId],
     () => fetchProblem(problemId), {
-      initialData: () => { 
-        return queryCache.getQueryData('problems')?.find(d => d.id == problemId)
-      },
       initialStale: true
     }
   )

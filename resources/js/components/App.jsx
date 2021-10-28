@@ -27,6 +27,7 @@ const App = () => {
                     <Switch>
                         <Route exact path="/login" component={Login} />
                         <PrivateRoute exact path="/" component={Main} />
+                        {/* <PrivateRoute exact path="/problem/:id" component={ProblemItem} /> */}
                         <AdminRoute exact path="/problem/:id" component={ProblemItem}/>
                     </Switch>
                 </Fragment>
