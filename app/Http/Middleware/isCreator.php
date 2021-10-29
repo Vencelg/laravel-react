@@ -21,7 +21,7 @@ class isCreator
         $problem = Problem::find($problemId);
         if (auth()->user()->admin == 0 && auth()->user()->id != $problem->user_id) {
             return response()->json([
-                'message' => 'Unauthorized debile'
+                'message' => 'Unauthorized isCreatorMiddleware'
             ]);
         }
         return $next($request);

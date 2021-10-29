@@ -19,7 +19,7 @@ class isAdmin
     {
         if(!auth()->user()->admin == 1) {
             return response()->json([
-                'message' => 'Unauthorized kokote'
+                'message' => 'Unauthorized isAdminMiddleware'
             ]);
         }
         return $next($request);
