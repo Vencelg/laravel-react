@@ -40,3 +40,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 Route::post('/login', [LoginController::class, 'store']);
+Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
