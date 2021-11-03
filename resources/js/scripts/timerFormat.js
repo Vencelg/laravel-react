@@ -1,8 +1,9 @@
-export const formatTime = (timer) => {
-   const getSeconds = `0${(timer % 60)}`.slice(-2)
-   const minutes = `${Math.floor(timer / 60)}`
-   const getMinutes = `0${minutes % 60}`.slice(-2)
-   const getHours = `0${Math.floor(timer / 3600)}`.slice(-2)
+export const formatTime = (s, m, h) => {
+
+  var hDisplay = h > 0 ? (h < 10 ? "0" + h : h) : "00";
+var mDisplay = m > 0 ? (m < 10 ? "0" + m : m ) : "00";
+var sDisplay = s > 0 ? (s < 10 ? "0" + s : s) : "00";
+  
  
-   return `${getHours} : ${getMinutes} : ${getSeconds}`
+   return `${hDisplay} : ${mDisplay} : ${sDisplay}`
  }

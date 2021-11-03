@@ -2699,7 +2699,7 @@ var SingleProblem = function SingleProblem(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     setValues(_objectSpread(_objectSpread({}, values), {}, {
-      fix_time: "".concat(hours, ":").concat(minutes, ":").concat(seconds)
+      fix_time: (0,_scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__.formatTime)(seconds, minutes, hours)
     }));
     console.log(values);
   }, [seconds, minutes, hours]);
@@ -2721,17 +2721,13 @@ var SingleProblem = function SingleProblem(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
         onSubmit: handleSubmit,
         className: "form",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           style: {
             fontSize: "100px"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            children: hours
-          }), ":", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            children: minutes
-          }), ":", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            children: seconds
-          })]
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            children: values.fix_time
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
           type: "button",
           onClick: start,
@@ -3461,12 +3457,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "formatTime": () => (/* binding */ formatTime)
 /* harmony export */ });
-var formatTime = function formatTime(timer) {
-  var getSeconds = "0".concat(timer % 60).slice(-2);
-  var minutes = "".concat(Math.floor(timer / 60));
-  var getMinutes = "0".concat(minutes % 60).slice(-2);
-  var getHours = "0".concat(Math.floor(timer / 3600)).slice(-2);
-  return "".concat(getHours, " : ").concat(getMinutes, " : ").concat(getSeconds);
+var formatTime = function formatTime(s, m, h) {
+  var hDisplay = h > 0 ? h < 10 ? "0" + h : h : "00";
+  var mDisplay = m > 0 ? m < 10 ? "0" + m : m : "00";
+  var sDisplay = s > 0 ? s < 10 ? "0" + s : s : "00";
+  return "".concat(hDisplay, " : ").concat(mDisplay, " : ").concat(sDisplay);
 };
 
 /***/ }),

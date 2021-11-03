@@ -39,7 +39,7 @@ const SingleProblem = ({ match }) => {
     };
 
     useEffect(() => {
-        setValues({ ...values, fix_time: `${hours}:${minutes}:${seconds}` });
+        setValues({ ...values, fix_time: formatTime(seconds,minutes,hours) });
         console.log(values);
     }, [seconds,minutes,hours]);
 
@@ -67,8 +67,7 @@ const SingleProblem = ({ match }) => {
                     <form onSubmit={handleSubmit} className="form">
                         
                         <div style={{ fontSize: "100px" }}>
-                            <span>{hours}</span>:
-                            <span>{minutes}</span>:<span>{seconds}</span>
+                            <span>{values.fix_time}</span>
                         </div>
                         
                         
