@@ -2571,7 +2571,7 @@ var ProblemItem = function ProblemItem(_ref) {
       children: [problem.room, " / ", problem.description, "/ ", problem.name, " / ", problem.id, "/", user.admin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "problem/".concat(problem.id),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-          children: "Fix"
+          children: "Fixx"
         })
       }), user.admin || user.id == problem.user.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
         onClick: onDelete,

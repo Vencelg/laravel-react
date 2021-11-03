@@ -20,7 +20,7 @@ const ProblemItem = ({problem}) => {
       <div>
       
          <div>{problem.room} / {problem.description}/ {problem.name} / {problem.id}/
-         {user.admin &&<Link to={`problem/${problem.id}`}><button>Fix</button></Link>}
+         {user.admin &&<Link to={`problem/${problem.id}`}><button>Fixx</button></Link>}
          {user.admin || user.id==problem.user.id ?<button onClick={onDelete}>Delete</button>: <></>}
          </div>
 
