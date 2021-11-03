@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import useProblem from "../../hooks/useProblem";
 import useFixProblem from "../../hooks/useFixProblem";
-import useTimer from "../../hooks/useTimer";
+import { useStopwatch } from "react-timer-hook";
 import { formatTime } from "../../scripts/timerFormat";
-import { Link,useHistory } from 'react-router-dom'
+import { Link, useHistory } from "react-router-dom";
 //import { } from "@reach/router"
-import useDeleteProblem from "../../hooks/useDeleteProblem.js"
+import useDeleteProblem from "../../hooks/useDeleteProblem.js";
 
 const defaultFormValues = {
     fix_time: "0",
@@ -16,27 +16,21 @@ const SingleProblem = ({ match }) => {
     const problemQuery = useProblem(match.params.id);
     const { problem } = { ...problemQuery.data };
 
+
     const createFixQuery = useFixProblem(match.params.id);
     const [values, setValues] = React.useState(defaultFormValues);
 
-    const history =  useHistory()
-    const [deleteProblem, deleteProblemInfo] = useDeleteProblem()
-  
-   const onDelete = async () => {
-      await deleteProblem(match.params.id);
+    const history = useHistory();
+    const [deleteProblem, deleteProblemInfo] = useDeleteProblem();
 
-      history.push("/");
-    }
+    const onDelete = async () => {
+        await deleteProblem(match.params.id);
 
-    const {
-        timer,
-        isActive,
-        isPaused,
-        handleStart,
-        handlePause,
-        handleResume,
-        handleReset,
-    } = useTimer(0);
+        history.push("/");
+    };
+
+    const { seconds, minutes, hours, isRunning, start, pause, reset } =
+        useStopwatch({ autoStart: false });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,10 +38,10 @@ const SingleProblem = ({ match }) => {
         createFixQuery.mutateAsync(values).then(() => problemQuery.refetch());
     };
 
-     useEffect(() => {
-     setValues({...values,fix_time:formatTime(timer)});
-      console.log(values);
-    }, [timer]); 
+    useEffect(() => {
+        setValues({ ...values, fix_time: `${hours}:${minutes}:${seconds}` });
+        console.log(values);
+    }, [seconds,minutes,hours]);
 
     return (
         <div>
@@ -56,7 +50,7 @@ const SingleProblem = ({ match }) => {
                 <span>Loading...</span>
             ) : (
                 <div>
-                   <Link to="/">Back</Link>
+                    <Link to="/">Back</Link>
                     <div>
                         <div>
                             {problem.name} | {problem.description} |{" "}
@@ -71,7 +65,28 @@ const SingleProblem = ({ match }) => {
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="form">
-                        <h3>React Stopwatch</h3>
+                        
+                        <div style={{ fontSize: "100px" }}>
+                            <span>{hours}</span>:
+                            <span>{minutes}</span>:<span>{seconds}</span>
+                        </div>
+                        
+                        
+                        <button type="button" onClick={start}>Start</button>
+                        <button type="button" onClick={pause}>Pause</button>
+                        <button type="button" onClick={reset}>Reset</button>
+                        <button type="submit">Fix</button>
+                    </form>
+                    <button onClick={onDelete}>Delete</button>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default SingleProblem;
+
+/*  <h3>React Stopwatch</h3>
                         <div className="stopwatch-card">
                             <p>{formatTime(timer)}</p>
                             <div className="buttons">
@@ -94,14 +109,4 @@ const SingleProblem = ({ match }) => {
                                        Fix
                                  </button>
                             </div>
-                        </div>
-                        
-                    </form>
-                    <button onClick={onDelete}>Delete</button>
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default SingleProblem;
+                        </div> */

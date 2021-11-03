@@ -2586,7 +2586,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _hooks_useProblem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useProblem */ "./resources/js/hooks/useProblem.js");
 /* harmony import */ var _hooks_useFixProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useFixProblem */ "./resources/js/hooks/useFixProblem.js");
-/* harmony import */ var _hooks_useTimer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useTimer */ "./resources/js/hooks/useTimer.js");
+/* harmony import */ var react_timer_hook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-timer-hook */ "./node_modules/react-timer-hook/dist/index.js");
+/* harmony import */ var react_timer_hook__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_timer_hook__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../scripts/timerFormat */ "./resources/js/scripts/timerFormat.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -2677,14 +2678,16 @@ var SingleProblem = function SingleProblem(_ref) {
     };
   }();
 
-  var _useTimer = (0,_hooks_useTimer__WEBPACK_IMPORTED_MODULE_4__["default"])(0),
-      timer = _useTimer.timer,
-      isActive = _useTimer.isActive,
-      isPaused = _useTimer.isPaused,
-      handleStart = _useTimer.handleStart,
-      handlePause = _useTimer.handlePause,
-      handleResume = _useTimer.handleResume,
-      handleReset = _useTimer.handleReset;
+  var _useStopwatch = (0,react_timer_hook__WEBPACK_IMPORTED_MODULE_4__.useStopwatch)({
+    autoStart: false
+  }),
+      seconds = _useStopwatch.seconds,
+      minutes = _useStopwatch.minutes,
+      hours = _useStopwatch.hours,
+      isRunning = _useStopwatch.isRunning,
+      start = _useStopwatch.start,
+      pause = _useStopwatch.pause,
+      reset = _useStopwatch.reset;
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -2696,10 +2699,10 @@ var SingleProblem = function SingleProblem(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     setValues(_objectSpread(_objectSpread({}, values), {}, {
-      fix_time: (0,_scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__.formatTime)(timer)
+      fix_time: "".concat(hours, ":").concat(minutes, ":").concat(seconds)
     }));
     console.log(values);
-  }, [timer]);
+  }, [seconds, minutes, hours]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
       children: "Loading..."
@@ -2718,37 +2721,32 @@ var SingleProblem = function SingleProblem(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
         onSubmit: handleSubmit,
         className: "form",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
-          children: "React Stopwatch"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "stopwatch-card",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
-            children: (0,_scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__.formatTime)(timer)
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "buttons",
-            children: [!isActive && !isPaused ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-              type: "button",
-              onClick: handleStart,
-              children: "Start"
-            }) : isPaused ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-              type: "button",
-              onClick: handlePause,
-              children: "Pause"
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-              type: "button",
-              onClick: handleResume,
-              children: "Start"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-              onClick: handleReset,
-              disabled: !isActive,
-              children: "Reset"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-              type: "submit",
-              onClick: handlePause,
-              disabled: !isActive,
-              children: "Fix"
-            })]
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          style: {
+            fontSize: "100px"
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            children: hours
+          }), ":", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            children: minutes
+          }), ":", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            children: seconds
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          type: "button",
+          onClick: start,
+          children: "Start"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          type: "button",
+          onClick: pause,
+          children: "Pause"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          type: "button",
+          onClick: reset,
+          children: "Reset"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          type: "submit",
+          children: "Fix"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
         onClick: onDelete,
@@ -2759,6 +2757,30 @@ var SingleProblem = function SingleProblem(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SingleProblem);
+/*  <h3>React Stopwatch</h3>
+                        <div className="stopwatch-card">
+                            <p>{formatTime(timer)}</p>
+                            <div className="buttons">
+                                {!isActive && !isPaused ? (
+                                    <button type="button" onClick={handleStart}>Start</button>
+                                ) : isPaused ? (
+                                    <button type="button"  onClick={handlePause}>Pause</button>
+                                ) : (
+                                    <button type="button"  onClick={handleResume}>
+                                        Start
+                                    </button>
+                                )}
+                                <button
+                                    onClick={handleReset}
+                                    disabled={!isActive}
+                                >
+                                    Reset
+                                </button>
+                                <button type="submit" onClick={handlePause}  disabled={!isActive}>
+                                       Fix
+                                 </button>
+                            </div>
+                        </div> */
 
 /***/ }),
 
@@ -3363,98 +3385,6 @@ function useProblems() {
     });
   });
 }
-
-/***/ }),
-
-/***/ "./resources/js/hooks/useTimer.js":
-/*!****************************************!*\
-  !*** ./resources/js/hooks/useTimer.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-var useTimer = function useTimer() {
-  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialState),
-      _useState2 = _slicedToArray(_useState, 2),
-      timer = _useState2[0],
-      setTimer = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isActive = _useState4[0],
-      setIsActive = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isPaused = _useState6[0],
-      setIsPaused = _useState6[1];
-
-  var countRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-
-  var handleStart = function handleStart() {
-    setIsActive(true);
-    setIsPaused(true);
-    countRef.current = setInterval(function () {
-      setTimer(function (timer) {
-        return timer + 1;
-      });
-    }, 1000);
-  };
-
-  var handlePause = function handlePause() {
-    clearInterval(countRef.current);
-    setIsPaused(false);
-  };
-
-  var handleResume = function handleResume() {
-    setIsPaused(true);
-    countRef.current = setInterval(function () {
-      setTimer(function (timer) {
-        return timer + 1;
-      });
-    }, 1000);
-  };
-
-  var handleReset = function handleReset() {
-    clearInterval(countRef.current);
-    setIsActive(false);
-    setIsPaused(false);
-    setTimer(0);
-  };
-
-  return {
-    timer: timer,
-    isActive: isActive,
-    isPaused: isPaused,
-    handleStart: handleStart,
-    handlePause: handlePause,
-    handleResume: handleResume,
-    handleReset: handleReset
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useTimer);
 
 /***/ }),
 
@@ -38409,6 +38339,16 @@ function pathToRegexp (path, keys, options) {
 
 /***/ }),
 
+/***/ "./node_modules/react-timer-hook/dist/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-timer-hook/dist/index.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react/index.js")):0}("undefined"!=typeof self?self:this,function(e){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=3)}([function(t,r){t.exports=e},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Validate=t.Time=void 0;var n=u(r(5)),o=u(r(6));function u(e){return e&&e.__esModule?e:{default:e}}t.Time=n.default,t.Validate=o.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useInterval=void 0;var n=function(e){return e&&e.__esModule?e:{default:e}}(r(7));t.useInterval=n.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.useTime=t.useStopwatch=t.useTimer=void 0;var n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e};t.default=function(e){if((0,o.useEffect)(function(){console.warn("react-timer-hook: default export useTimer is deprecated, use named exports { useTimer, useStopwatch, useTime } instead")},[]),e.expiryTimestamp){var t=(0,u.default)(e);return n({},t,{startTimer:t.start,stopTimer:t.pause,resetTimer:function(){}})}var r=(0,i.default)(e);return n({},r,{startTimer:r.start,stopTimer:r.pause,resetTimer:r.reset})};var o=r(0),u=c(r(4)),i=c(r(8)),a=c(r(9));function c(e){return e&&e.__esModule?e:{default:e}}t.useTimer=u.default,t.useStopwatch=i.default,t.useTime=a.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},o=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var r=[],n=!0,o=!1,u=void 0;try{for(var i,a=e[Symbol.iterator]();!(n=(i=a.next()).done)&&(r.push(i.value),!t||r.length!==t);n=!0);}catch(e){o=!0,u=e}finally{try{!n&&a.return&&a.return()}finally{if(o)throw u}}return r}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}();t.default=function(e){var t=e.expiryTimestamp,r=e.onExpire,s=e.autoStart,l=void 0===s||s,d=(0,u.useState)(t),m=o(d,2),v=m[0],p=m[1],y=(0,u.useState)(i.Time.getSecondsFromExpiry(v)),T=o(y,2),g=T[0],b=T[1],h=(0,u.useState)(l),S=o(h,2),w=S[0],O=S[1],j=(0,u.useState)(l),x=o(j,2),_=x[0],M=x[1],P=(0,u.useState)(f(v)),F=o(P,2),E=F[0],k=F[1];function I(e){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];k(f(e)),M(t),O(t),p(e),b(i.Time.getSecondsFromExpiry(e))}function D(){var e=new Date;e.setMilliseconds(e.getMilliseconds()+1e3*g),I(e)}return(0,a.useInterval)(function(){E!==c&&k(c);var e=i.Time.getSecondsFromExpiry(v);b(e),e<=0&&(i.Validate.onExpire(r)&&r(),O(!1),k(null))},w?E:null),n({},i.Time.getTimeFromSeconds(g),{start:function(){_?(b(i.Time.getSecondsFromExpiry(v)),O(!0)):D()},pause:function(){O(!1)},resume:D,restart:I,isRunning:w})};var u=r(0),i=r(1),a=r(2),c=1e3;function f(e){if(!i.Validate.expiryTimestamp(e))return null;var t=i.Time.getSecondsFromExpiry(e),r=Math.floor(1e3*(t-Math.floor(t)));return r>0?r:c}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}();var o=function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e)}return n(e,null,[{key:"getTimeFromSeconds",value:function(e){var t=Math.ceil(e),r=Math.floor(t/86400),n=Math.floor(t%86400/3600),o=Math.floor(t%3600/60);return{seconds:Math.floor(t%60),minutes:o,hours:n,days:r}}},{key:"getSecondsFromExpiry",value:function(e,t){var r=e-(new Date).getTime();if(r>0){var n=r/1e3;return t?Math.round(n):n}return 0}},{key:"getSecondsFromPrevTime",value:function(e,t){var r=(new Date).getTime()-e;if(r>0){var n=r/1e3;return t?Math.round(n):n}return 0}},{key:"getSecondsFromTimeNow",value:function(){var e=new Date;return e.getTime()/1e3-60*e.getTimezoneOffset()}},{key:"getFormattedTimeFromSeconds",value:function(t,r){var n=e.getTimeFromSeconds(t),o=n.seconds,u=n.minutes,i=n.hours,a="",c=i;return"12-hour"===r&&(a=i>=12?"pm":"am",c=i%12),{seconds:o,minutes:u,hours:c,ampm:a}}}]),e}();t.default=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}();var o=function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e)}return n(e,null,[{key:"expiryTimestamp",value:function(e){var t=new Date(e).getTime()>0;return t||console.warn("react-timer-hook: { useTimer } Invalid expiryTimestamp settings",e),t}},{key:"onExpire",value:function(e){var t=e&&"function"==typeof e;return e&&!t&&console.warn("react-timer-hook: { useTimer } Invalid onExpire settings function",e),t}}]),e}();t.default=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=(0,n.useRef)();(0,n.useEffect)(function(){r.current=e}),(0,n.useEffect)(function(){if(!t)return function(){};var e=setInterval(function(){r.current&&r.current()},t);return function(){return clearInterval(e)}},[t])};var n=r(0)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},o=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var r=[],n=!0,o=!1,u=void 0;try{for(var i,a=e[Symbol.iterator]();!(n=(i=a.next()).done)&&(r.push(i.value),!t||r.length!==t);n=!0);}catch(e){o=!0,u=e}finally{try{!n&&a.return&&a.return()}finally{if(o)throw u}}return r}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}();t.default=function(e){var t=e.autoStart,r=e.offsetTimestamp,c=(0,u.useState)(i.Time.getSecondsFromExpiry(r,!0)||0),f=o(c,2),s=f[0],l=f[1],d=(0,u.useState)(new Date),m=o(d,2),v=m[0],p=m[1],y=(0,u.useState)(s+i.Time.getSecondsFromPrevTime(v||0,!0)),T=o(y,2),g=T[0],b=T[1],h=(0,u.useState)(t),S=o(h,2),w=S[0],O=S[1];return(0,a.useInterval)(function(){b(s+i.Time.getSecondsFromPrevTime(v,!0))},w?1e3:null),n({},i.Time.getTimeFromSeconds(g),{start:function(){var e=new Date;p(e),O(!0),b(s+i.Time.getSecondsFromPrevTime(e,!0))},pause:function(){l(g),O(!1)},reset:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1],r=i.Time.getSecondsFromExpiry(e,!0)||0,n=new Date;p(n),l(r),O(t),b(r+i.Time.getSecondsFromPrevTime(n,!0))},isRunning:w})};var u=r(0),i=r(1),a=r(2)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},o=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var r=[],n=!0,o=!1,u=void 0;try{for(var i,a=e[Symbol.iterator]();!(n=(i=a.next()).done)&&(r.push(i.value),!t||r.length!==t);n=!0);}catch(e){o=!0,u=e}finally{try{!n&&a.return&&a.return()}finally{if(o)throw u}}return r}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}();t.default=function(e){var t=e.format,r=(0,u.useState)(i.Time.getSecondsFromTimeNow()),c=o(r,2),f=c[0],s=c[1];return(0,a.useInterval)(function(){s(i.Time.getSecondsFromTimeNow())},1e3),n({},i.Time.getFormattedTimeFromSeconds(f,t))};var u=r(0),i=r(1),a=r(2)}])});
+
+/***/ }),
+
 /***/ "./node_modules/react/cjs/react-jsx-runtime.development.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/react/cjs/react-jsx-runtime.development.js ***!
@@ -44165,7 +44105,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
