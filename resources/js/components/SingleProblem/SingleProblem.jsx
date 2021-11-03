@@ -29,7 +29,7 @@ const SingleProblem = ({ match }) => {
         history.push("/");
     };
 
-    const { seconds, minutes, hours, isRunning, start, pause, reset } =
+    const { seconds, minutes, hours, start, pause, reset } =
         useStopwatch({ autoStart: false });
 
     const handleSubmit = (e) => {
@@ -66,14 +66,14 @@ const SingleProblem = ({ match }) => {
                     </div>
                     <form onSubmit={handleSubmit} className="form">
                         
-                        <div style={{ fontSize: "100px" }}>
+                        <div style={{ fontSize: "30px" }}>
                             <span>{values.fix_time}</span>
                         </div>
                         
                         
                         <button type="button" onClick={start}>Start</button>
                         <button type="button" onClick={pause}>Pause</button>
-                        <button type="button" onClick={reset}>Reset</button>
+                        <button type="button" onClick={()=>reset(0,false)}>Reset</button>
                         <button type="submit">Fix</button>
                     </form>
                     <button onClick={onDelete}>Delete</button>

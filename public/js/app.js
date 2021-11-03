@@ -2684,7 +2684,6 @@ var SingleProblem = function SingleProblem(_ref) {
       seconds = _useStopwatch.seconds,
       minutes = _useStopwatch.minutes,
       hours = _useStopwatch.hours,
-      isRunning = _useStopwatch.isRunning,
       start = _useStopwatch.start,
       pause = _useStopwatch.pause,
       reset = _useStopwatch.reset;
@@ -2723,7 +2722,7 @@ var SingleProblem = function SingleProblem(_ref) {
         className: "form",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           style: {
-            fontSize: "100px"
+            fontSize: "30px"
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
             children: values.fix_time
@@ -2738,7 +2737,9 @@ var SingleProblem = function SingleProblem(_ref) {
           children: "Pause"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
           type: "button",
-          onClick: reset,
+          onClick: function onClick() {
+            return reset(0, false);
+          },
           children: "Reset"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
           type: "submit",
