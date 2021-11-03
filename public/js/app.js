@@ -2114,7 +2114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context/user/userContext */ "./resources/js/context/user/userContext.js");
 /* harmony import */ var _routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routing/PrivateRoute */ "./resources/js/components/routing/PrivateRoute.jsx");
-/* harmony import */ var _ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProblemItem/ProblemItem */ "./resources/js/components/ProblemItem/ProblemItem.jsx");
+/* harmony import */ var _SingleProblem_SingleProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleProblem/SingleProblem */ "./resources/js/components/SingleProblem/SingleProblem.jsx");
 /* harmony import */ var _Login_Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Login/Login */ "./resources/js/components/Login/Login.jsx");
 /* harmony import */ var _Main_Main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Main/Main */ "./resources/js/components/Main/Main.jsx");
 /* harmony import */ var _scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../scripts/setAuthToken */ "./resources/js/scripts/setAuthToken.js");
@@ -2158,7 +2158,7 @@ var App = function App() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_routing_AdminRoute__WEBPACK_IMPORTED_MODULE_7__["default"], {
             exact: true,
             path: "/problem/:id",
-            component: _ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_3__["default"]
+            component: _SingleProblem_SingleProblem__WEBPACK_IMPORTED_MODULE_3__["default"]
           })]
         })
       })
@@ -2304,8 +2304,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _scripts_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../scripts/api */ "./resources/js/scripts/api.js");
 /* harmony import */ var _ProblemForm_ProblemForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ProblemForm/ProblemForm */ "./resources/js/components/ProblemForm/ProblemForm.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ProblemItem/ProblemItem */ "./resources/js/components/ProblemItem/ProblemItem.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -2323,26 +2324,27 @@ var Main = function Main() {
   var problemQuery = (0,_hooks_useProblems__WEBPACK_IMPORTED_MODULE_1__["default"])();
   var createProblemQuery = (0,_hooks_useCreateProblem__WEBPACK_IMPORTED_MODULE_2__["default"])();
   console.log(problemQuery);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("main", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("section", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("main", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
       children: [user.id, "|", user.name, "|", user.email]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("section", {
-      children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
+      children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
         children: "Loading..."
       }) : problemQuery.data.map(function (problem) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          children: [problem.room, " / ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-            to: "problem/".concat(problem.id),
-            children: problem.description
-          }), " / ", problem.name, " / ", problem.id]
-        }, problem.id);
+        return (
+          /*#__PURE__*/
+          // <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            problem: problem
+          }, problem.id)
+        );
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("section", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("section", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "flex",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "form-container",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ProblemForm_ProblemForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ProblemForm_ProblemForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
             onSubmit: createProblemQuery.mutateAsync,
             clearOnSubmit: true,
             refetch: problemQuery.refetch,
@@ -2490,6 +2492,103 @@ var ProblemForm = function ProblemForm(_ref) {
 /*!*************************************************************!*\
   !*** ./resources/js/components/ProblemItem/ProblemItem.jsx ***!
   \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var _hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useDeleteProblem */ "./resources/js/hooks/useDeleteProblem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var ProblemItem = function ProblemItem(_ref) {
+  var problem = _ref.problem;
+  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  var user = userContext.user;
+
+  var _useDeleteProblem = (0,_hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+      _useDeleteProblem2 = _slicedToArray(_useDeleteProblem, 2),
+      deleteProblem = _useDeleteProblem2[0],
+      deleteProblemInfo = _useDeleteProblem2[1];
+
+  var onDelete = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return deleteProblem(problem.id);
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function onDelete() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  console.log(problem);
+  console.log(user);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: [problem.room, " / ", problem.description, "/ ", problem.name, " / ", problem.id, "/", user.admin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+        to: "problem/".concat(problem.id),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: "Fixx"
+        })
+      }), user.admin || user.id == problem.user.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        onClick: onDelete,
+        children: "Delete"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {})]
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProblemItem);
+
+/***/ }),
+
+/***/ "./resources/js/components/SingleProblem/SingleProblem.jsx":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/SingleProblem/SingleProblem.jsx ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

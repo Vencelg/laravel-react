@@ -6,7 +6,7 @@ import { useMutation } from "react-query";
 import api from '../../scripts/api';
 import ProblemForm from '../ProblemForm/ProblemForm';
 import { Link } from 'react-router-dom';
-
+import ProblemItem from '../ProblemItem/ProblemItem';
 
 const Main = () => {
 
@@ -35,7 +35,8 @@ const Main = () => {
             {problemQuery.isError && problemQuery.error}
             {problemQuery.isLoading ? (<span>Loading...</span>) : (
                problemQuery.data.map((problem) => (
-                  <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
+                  // <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
+                  <ProblemItem key={problem.id} problem={problem} />
                )
                )
             )}

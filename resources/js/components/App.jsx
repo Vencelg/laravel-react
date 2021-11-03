@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import UserContext from '../context/user/userContext';
 import PrivateRoute from "./routing/PrivateRoute"
-import ProblemItem from './ProblemItem/ProblemItem';
+import SingleProblem from './SingleProblem/SingleProblem';
 import Login from './Login/Login';
 import Main from './Main/Main';
 import setAuthToken from '../scripts/setAuthToken';
@@ -28,7 +28,7 @@ const App = () => {
                         <Route exact path="/login" component={Login} />
                         <PrivateRoute exact path="/" component={Main} />
                         {/* <PrivateRoute exact path="/problem/:id" component={ProblemItem} /> */}
-                        <AdminRoute exact path="/problem/:id" component={ProblemItem}/>
+                        <AdminRoute exact path="/problem/:id" component={SingleProblem}/>
                     </Switch>
                 </Fragment>
             </div>
