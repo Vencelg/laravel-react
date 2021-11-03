@@ -2305,7 +2305,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../scripts/api */ "./resources/js/scripts/api.js");
 /* harmony import */ var _ProblemForm_ProblemForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ProblemForm/ProblemForm */ "./resources/js/components/ProblemForm/ProblemForm.jsx");
 /* harmony import */ var _ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ProblemItem/ProblemItem */ "./resources/js/components/ProblemItem/ProblemItem.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _hooks_useFixProblem__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../hooks/useFixProblem */ "./resources/js/hooks/useFixProblem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -2320,31 +2322,35 @@ __webpack_require__.r(__webpack_exports__);
 
 var Main = function Main() {
   var userContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_3__["default"]);
-  var user = userContext.user;
+  var user = userContext.user,
+      logout = userContext.logout;
   var problemQuery = (0,_hooks_useProblems__WEBPACK_IMPORTED_MODULE_1__["default"])();
   var createProblemQuery = (0,_hooks_useCreateProblem__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  var createFixQuery = (0,_hooks_useFixProblem__WEBPACK_IMPORTED_MODULE_8__["default"])();
   console.log(problemQuery);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("main", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("main", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("section", {
       children: [user.id, "|", user.name, "|", user.email]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
-      children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("section", {
+      children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
         children: "Loading..."
       }) : problemQuery.data.map(function (problem) {
         return (
           /*#__PURE__*/
           // <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
-          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            problem: problem
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ProblemItem_ProblemItem__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            problem: problem,
+            refetch: problemQuery.refetch,
+            onSubmit: createFixQuery.mutateAsync
           }, problem.id)
         );
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("section", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("section", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
         className: "flex",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
           className: "form-container",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ProblemForm_ProblemForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ProblemForm_ProblemForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
             onSubmit: createProblemQuery.mutateAsync,
             clearOnSubmit: true,
             refetch: problemQuery.refetch,
@@ -2352,6 +2358,9 @@ var Main = function Main() {
           })
         })
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+      onClick: logout,
+      children: "LOGOUT"
     })]
   });
 };
@@ -2499,19 +2508,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
-/* harmony import */ var _hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useDeleteProblem */ "./resources/js/hooks/useDeleteProblem.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var _hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useDeleteProblem */ "./resources/js/hooks/useDeleteProblem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2533,50 +2534,34 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ProblemItem = function ProblemItem(_ref) {
-  var problem = _ref.problem;
-  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  var problem = _ref.problem,
+      refetch = _ref.refetch;
+  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_1__["default"]);
   var user = userContext.user;
 
-  var _useDeleteProblem = (0,_hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+  var _useDeleteProblem = (0,_hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_2__["default"])(),
       _useDeleteProblem2 = _slicedToArray(_useDeleteProblem, 2),
       deleteProblem = _useDeleteProblem2[0],
       deleteProblemInfo = _useDeleteProblem2[1];
 
-  var onDelete = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return deleteProblem(problem.id);
+  var onDelete = function onDelete() {
+    deleteProblem(problem.id).then(function () {
+      return refetch();
+    });
+  };
 
-            case 2:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function onDelete() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  console.log(problem);
-  console.log(user);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      children: [problem.room, " / ", problem.description, "/ ", problem.name, " / ", problem.id, "/", user.admin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  console.log(deleteProblemInfo);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [problem.room, " / ", problem.description, "/ ", problem.name, " / ", problem.id, "/", user.admin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
         to: "problem/".concat(problem.id),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
           children: "Fixx"
         })
-      }), user.admin || user.id == problem.user.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+      }), user.admin || user.id == problem.user.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
         onClick: onDelete,
         children: "Delete"
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {})]
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {})]
     })
   });
 };
@@ -2596,11 +2581,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _hooks_useProblem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useProblem */ "./resources/js/hooks/useProblem.js");
-/* harmony import */ var _hooks_useFixProblem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useFixProblem */ "./resources/js/hooks/useFixProblem.js");
-/* harmony import */ var _hooks_useDeleteProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useDeleteProblem */ "./resources/js/hooks/useDeleteProblem.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _hooks_useProblem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useProblem */ "./resources/js/hooks/useProblem.js");
+/* harmony import */ var _hooks_useFixProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useFixProblem */ "./resources/js/hooks/useFixProblem.js");
+/* harmony import */ var _hooks_useTimer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useTimer */ "./resources/js/hooks/useTimer.js");
+/* harmony import */ var _scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../scripts/timerFormat */ "./resources/js/scripts/timerFormat.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _hooks_useDeleteProblem_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../hooks/useDeleteProblem.js */ "./resources/js/hooks/useDeleteProblem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2612,29 +2621,144 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ //import { } from "@reach/router"
 
 
-var ProblemItem = function ProblemItem(_ref) {
+
+
+var defaultFormValues = {
+  fix_time: "0",
+  fixed: true
+};
+
+var SingleProblem = function SingleProblem(_ref) {
   var match = _ref.match;
-  var problemQuery = (0,_hooks_useProblem__WEBPACK_IMPORTED_MODULE_1__["default"])(match.params.id);
+  var problemQuery = (0,_hooks_useProblem__WEBPACK_IMPORTED_MODULE_2__["default"])(match.params.id);
 
   var _problemQuery$data = _objectSpread({}, problemQuery.data),
       problem = _problemQuery$data.problem;
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+  var createFixQuery = (0,_hooks_useFixProblem__WEBPACK_IMPORTED_MODULE_3__["default"])(match.params.id);
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1__.useState(defaultFormValues),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      values = _React$useState2[0],
+      setValues = _React$useState2[1];
+
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
+
+  var _useDeleteProblem = (0,_hooks_useDeleteProblem_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
+      _useDeleteProblem2 = _slicedToArray(_useDeleteProblem, 2),
+      deleteProblem = _useDeleteProblem2[0],
+      deleteProblemInfo = _useDeleteProblem2[1];
+
+  var onDelete = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return deleteProblem(match.params.id);
+
+            case 2:
+              history.push("/");
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function onDelete() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _useTimer = (0,_hooks_useTimer__WEBPACK_IMPORTED_MODULE_4__["default"])(0),
+      timer = _useTimer.timer,
+      isActive = _useTimer.isActive,
+      isPaused = _useTimer.isPaused,
+      handleStart = _useTimer.handleStart,
+      handlePause = _useTimer.handlePause,
+      handleResume = _useTimer.handleResume,
+      handleReset = _useTimer.handleReset;
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    console.log(match.params.id);
+    createFixQuery.mutateAsync(values).then(function () {
+      return problemQuery.refetch();
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setValues(_objectSpread(_objectSpread({}, values), {}, {
+      fix_time: (0,_scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__.formatTime)(timer)
+    }));
+    console.log(values);
+  }, [timer]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    children: [problemQuery.isError && problemQuery.error, problemQuery.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
       children: "Loading..."
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        children: [problem.name, " | ", problem.description, " | ", problem.id, " | ", problem.created_at, " "]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        children: [problem.user.name, " | ", problem.user.admin, " | ", problem.user.id, " "]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
+        to: "/",
+        children: "Back"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: [problem.name, " | ", problem.description, " |", " ", problem.id, " | ", problem.created_at, " "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: [problem.user.name, " | ", problem.user.admin, " |", " ", problem.user.id, " "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: [problem.fix_time, " | ", problem.fixed]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
+        onSubmit: handleSubmit,
+        className: "form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+          children: "React Stopwatch"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "stopwatch-card",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+            children: (0,_scripts_timerFormat__WEBPACK_IMPORTED_MODULE_5__.formatTime)(timer)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "buttons",
+            children: [!isActive && !isPaused ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+              type: "button",
+              onClick: handleStart,
+              children: "Start"
+            }) : isPaused ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+              type: "button",
+              onClick: handlePause,
+              children: "Pause"
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+              type: "button",
+              onClick: handleResume,
+              children: "Start"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+              onClick: handleReset,
+              disabled: !isActive,
+              children: "Reset"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+              type: "submit",
+              onClick: handlePause,
+              disabled: !isActive,
+              children: "Fix"
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        onClick: onDelete,
+        children: "Delete"
       })]
     })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProblemItem);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SingleProblem);
 
 /***/ }),
 
@@ -3010,6 +3134,7 @@ var UserState = function UserState(props) {
     dispatch({
       type: _types__WEBPACK_IMPORTED_MODULE_5__.LOGOUT
     });
+    (0,_scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_6__["default"])();
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_userContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
@@ -3020,7 +3145,8 @@ var UserState = function UserState(props) {
       token: state.token,
       isAuthenticated: state.isAuthenticated,
       login: login,
-      loadUser: loadUser
+      loadUser: loadUser,
+      logout: logout
     },
     children: props.children
   });
@@ -3167,9 +3293,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scripts/api */ "./resources/js/scripts/api.js");
 
 
-function useFixProblem() {
+function useFixProblem(problemId) {
   return (0,react_query__WEBPACK_IMPORTED_MODULE_0__.useMutation)(function (values) {
-    return _scripts_api__WEBPACK_IMPORTED_MODULE_1__["default"].put('/problems', values).then(function (res) {
+    return _scripts_api__WEBPACK_IMPORTED_MODULE_1__["default"].post("/problem/".concat(problemId), values).then(function (res) {
       return res.data;
     });
   }, {
@@ -3240,6 +3366,98 @@ function useProblems() {
 
 /***/ }),
 
+/***/ "./resources/js/hooks/useTimer.js":
+/*!****************************************!*\
+  !*** ./resources/js/hooks/useTimer.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var useTimer = function useTimer() {
+  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialState),
+      _useState2 = _slicedToArray(_useState, 2),
+      timer = _useState2[0],
+      setTimer = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isActive = _useState4[0],
+      setIsActive = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isPaused = _useState6[0],
+      setIsPaused = _useState6[1];
+
+  var countRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+
+  var handleStart = function handleStart() {
+    setIsActive(true);
+    setIsPaused(true);
+    countRef.current = setInterval(function () {
+      setTimer(function (timer) {
+        return timer + 1;
+      });
+    }, 1000);
+  };
+
+  var handlePause = function handlePause() {
+    clearInterval(countRef.current);
+    setIsPaused(false);
+  };
+
+  var handleResume = function handleResume() {
+    setIsPaused(true);
+    countRef.current = setInterval(function () {
+      setTimer(function (timer) {
+        return timer + 1;
+      });
+    }, 1000);
+  };
+
+  var handleReset = function handleReset() {
+    clearInterval(countRef.current);
+    setIsActive(false);
+    setIsPaused(false);
+    setTimer(0);
+  };
+
+  return {
+    timer: timer,
+    isActive: isActive,
+    isPaused: isPaused,
+    handleStart: handleStart,
+    handlePause: handlePause,
+    handleResume: handleResume,
+    handleReset: handleReset
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useTimer);
+
+/***/ }),
+
 /***/ "./resources/js/scripts/api.js":
 /*!*************************************!*\
   !*** ./resources/js/scripts/api.js ***!
@@ -3299,6 +3517,27 @@ var setAuthToken = function setAuthToken(token) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setAuthToken);
+
+/***/ }),
+
+/***/ "./resources/js/scripts/timerFormat.js":
+/*!*********************************************!*\
+  !*** ./resources/js/scripts/timerFormat.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatTime": () => (/* binding */ formatTime)
+/* harmony export */ });
+var formatTime = function formatTime(timer) {
+  var getSeconds = "0".concat(timer % 60).slice(-2);
+  var minutes = "".concat(Math.floor(timer / 60));
+  var getMinutes = "0".concat(minutes % 60).slice(-2);
+  var getHours = "0".concat(Math.floor(timer / 3600)).slice(-2);
+  return "".concat(getHours, " : ").concat(getMinutes, " : ").concat(getSeconds);
+};
 
 /***/ }),
 

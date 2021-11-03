@@ -3,18 +3,17 @@ import { Link } from 'react-router-dom'
 import UserContext from '../../context/user/userContext';
 import useDeleteProblem from '../../hooks/useDeleteProblem';
 
-const ProblemItem = ({problem}) => {
+const ProblemItem = ({problem, refetch}) => {
    const userContext = useContext(UserContext);
    const { user } = userContext;
    const [deleteProblem, deleteProblemInfo] = useDeleteProblem()
   
 
-   const onDelete = async () => {
-      await deleteProblem(problem.id);
+   const onDelete =  () => {
+      deleteProblem(problem.id).then(()=>refetch());
+     
     }
-   console.log(problem);
-   console.log(user);
-
+   console.log(deleteProblemInfo);
    return (
       
       <div>
@@ -23,7 +22,7 @@ const ProblemItem = ({problem}) => {
          {user.admin &&<Link to={`problem/${problem.id}`}><button>Fixx</button></Link>}
          {user.admin || user.id==problem.user.id ?<button onClick={onDelete}>Delete</button>: <></>}
          </div>
-
+        
       </div>
    )
 }

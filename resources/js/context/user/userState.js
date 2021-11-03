@@ -36,6 +36,7 @@ const UserState = props => {
             });
         }
     };
+     
     // Přihlásit
     const login = async (email, password) => {
         const body = { email, password };
@@ -65,6 +66,7 @@ const UserState = props => {
     const logout = () => {
         dispatch({ type: CLEAR_PROFILE });
         dispatch({ type: LOGOUT });
+        setAuthToken();
     }
 
 
@@ -76,7 +78,8 @@ const UserState = props => {
             token: state.token,
             isAuthenticated: state.isAuthenticated,
             login,
-            loadUser
+            loadUser,
+            logout
         }
     } >
 
