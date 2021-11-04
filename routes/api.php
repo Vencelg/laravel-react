@@ -42,7 +42,6 @@ use App\Http\Controllers\VerificationController;
     
 });
 
-    /*Route::get('email/verify/{id}', [VerificationController::class, 'verify']);
-    Route::get('email/resend', [VerificationController::class, 'resend']);*/
-    Route::post('/login', [LoginController::class, 'store']);
-
+    Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');
+    Route::post('email/resend', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
+    Route::post('/login', [LoginController::class, 'store'])->name('login');

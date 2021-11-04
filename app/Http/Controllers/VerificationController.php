@@ -7,18 +7,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class VerificationController extends Controller
 {
-    public function verify($user_id, Request $request) {
-        if(!$request->hasValidSignature()) {
-            return response()->json(["message" => "Váš odkaz je neplatný nebo vypršel."], 401);
+    public function verify(EmailVerificationRequest $request) {
+
+        
+
+        if ($request->user()->hasVerifiedEmail()) {
+            return [
+                'message' => 'Email je již ověřen'
+            ];
         }
 
-        $user = User::findOrFail($user_id);
-
-        if(!$user->hasVerifiedEmail()) {
-            $user->markEmailAsVerified();
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
         }
 
         return response()->json([
@@ -29,7 +33,9 @@ class VerificationController extends Controller
     public function resend(Request $request) {
         $user = $request->user();
 
-        if(!$user->hasVerifiedEmail()) {
+        
+
+        if($user->hasVerifiedEmail()) {
             return response()->json([
                 'message'=>'Váš email je již ověřen'
             ]);
