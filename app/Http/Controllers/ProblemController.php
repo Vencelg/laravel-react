@@ -6,15 +6,19 @@ use App\Models\Problem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\ProblemCreatedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ProblemController extends Controller
 {
     public function store(Request $request)
     {
 
-        $allAdmins = User::where('admin', 1);
+        $allAdmins = User::where('admin', true)->get();
 
-        dd($allAdmins);
+        /* return response()->json([
+            "lmao"=>$allAdmins
+        ]); */
 
         $this->validate($request, [
             'name' => 'string|required',
@@ -30,6 +34,11 @@ class ProblemController extends Controller
             'room' => $request->room,
         ]);
 
+        Notification::send($allAdmins, new ProblemCreatedNotification());
+
+        /* foreach ($allAdmins as $admin) {
+            $admin->notify(new ProblemCreatedNotification());
+        } */
 
         return response()->json([
             $problem,

@@ -42,7 +42,7 @@ class ProblemCreatedNotification extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->action('Notification Action', url('/'))/*Doplnit kam to povede*/
                     ->line('Thank you for using our application!');
     }
 
