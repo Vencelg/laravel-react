@@ -45,3 +45,4 @@ use App\Http\Controllers\VerificationController;
     /*Route::get('email/verify/{id}', [VerificationController::class, 'verify']);
     Route::get('email/resend', [VerificationController::class, 'resend']);*/
     Route::post('/login', [LoginController::class, 'store']);
+

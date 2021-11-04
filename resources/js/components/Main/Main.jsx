@@ -7,16 +7,18 @@ import api from '../../scripts/api';
 import ProblemForm from '../ProblemForm/ProblemForm';
 import { Link } from 'react-router-dom';
 import ProblemItem from '../ProblemItem/ProblemItem';
+import useFixProblem from '../../hooks/useFixProblem';
 
 const Main = () => {
 
 
 
    const userContext = useContext(UserContext);
-   const { user } = userContext;
+   const { user, logout } = userContext;
 
    const problemQuery = useProblems()
    const createProblemQuery = useCreateProblem()
+   const createFixQuery = useFixProblem();
 
 
    console.log(problemQuery);
@@ -36,7 +38,7 @@ const Main = () => {
             {problemQuery.isLoading ? (<span>Loading...</span>) : (
                problemQuery.data.map((problem) => (
                   // <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
-                  <ProblemItem key={problem.id} problem={problem} />
+                  <ProblemItem key={problem.id} problem={problem} refetch={problemQuery.refetch} onSubmit={createFixQuery.mutateAsync}/>
                )
                )
             )}
@@ -62,6 +64,7 @@ const Main = () => {
                </div>
             </div>
          </section>
+         <button onClick={logout}>LOGOUT</button>
       </main>
    )
 }
