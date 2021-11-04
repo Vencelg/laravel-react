@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Problem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\RefreshController;
-use App\Models\Problem;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,7 @@ use App\Models\Problem;
 
     */
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -36,9 +38,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/problem/{id}', [ProblemController::class, 'deleteOne'])->middleware(['isCreator']);
     Route::get('/refresh', [RefreshController::class, 'index']);
     Route::post('/logout', [LogoutController::class, 'index']);
+
+    
 });
 
-
-Route::post('/login', [LoginController::class, 'store']);
-Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
-Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
+    /*Route::get('email/verify/{id}', [VerificationController::class, 'verify']);
+    Route::get('email/resend', [VerificationController::class, 'resend']);*/
+    Route::post('/login', [LoginController::class, 'store']);

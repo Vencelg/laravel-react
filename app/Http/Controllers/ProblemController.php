@@ -23,6 +23,10 @@ class ProblemController extends Controller
             'room' => $request->room,
         ]);
 
+        $allAdmins = User::where('admin', 1);
+
+        dd($allAdmins);
+
         return response()->json([
             $problem,
             $request->user()
