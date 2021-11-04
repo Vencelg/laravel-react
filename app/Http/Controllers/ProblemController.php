@@ -11,11 +11,18 @@ class ProblemController extends Controller
 {
     public function store(Request $request)
     {
+
+        $allAdmins = User::where('admin', 1);
+
+        dd($allAdmins);
+
         $this->validate($request, [
             'name' => 'string|required',
             'description' => 'string|required',
             'room' => 'string|required'
         ]);
+        
+        
 
         $problem = $request->user()->problems()->create([
             'name' => $request->name,
@@ -23,9 +30,6 @@ class ProblemController extends Controller
             'room' => $request->room,
         ]);
 
-        $allAdmins = User::where('admin', 1);
-
-        dd($allAdmins);
 
         return response()->json([
             $problem,
