@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Models\Problem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,11 @@ use App\Http\Controllers\VerificationController;
     Route::get('/refresh', [RefreshController::class, 'index']);
     Route::post('/logout', [LogoutController::class, 'index']);
 
-    
+    Route::group(['middleware'=> ['isAdmin']], function () {
+        Route::get('/admin/users', [AdminController::class, 'show']);
+        Route::delete('/admin/users/{id}', [AdminController::class, 'delete']);
+        Route::post('/admin/users', [AdminController::class, 'store']);
+    });  
 });
 
     Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');

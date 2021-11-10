@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\ProblemCreatedNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
 
 class ProblemController extends Controller
 {
@@ -16,16 +17,13 @@ class ProblemController extends Controller
 
         $allAdmins = User::where('admin', true)->get();
 
-        /* return response()->json([
-            "lmao"=>$allAdmins
-        ]); */
+        
 
         $this->validate($request, [
             'name' => 'string|required',
             'description' => 'string|required',
             'room' => 'string|required'
         ]);
-        
         
 
         $problem = $request->user()->problems()->create([
@@ -36,9 +34,6 @@ class ProblemController extends Controller
 
         Notification::send($allAdmins, new ProblemCreatedNotification());
 
-        /* foreach ($allAdmins as $admin) {
-            $admin->notify(new ProblemCreatedNotification());
-        } */
 
         return response()->json([
             $problem,
@@ -87,6 +82,13 @@ class ProblemController extends Controller
     public function deleteOne(Request $request, $id)
     {
         $problem = Problem::find($id);
+
+        if(!$problem) {
+            return response()->json([
+                'message' => 'problem neexistuje'
+            ]);
+        }
+
         $problem->delete();
 
         return response()->json([
