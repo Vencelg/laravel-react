@@ -32,21 +32,24 @@ use App\Http\Controllers\VerificationController;
         return $request->user();
     });
 
-    Route::get('/problems', [ProblemController::class, 'show']);
+    Route::group(['middleware'=> ['isAdmin']], function () {
+        Route::get('/admin/users', [AdminController::class, 'show']);
+        Route::delete('/admin/users/{id}', [AdminController::class, 'delete']);
+        Route::post('/admin/users', [AdminController::class, 'store']);
+    });
+
+    Route::group(['middleware'=> ['pswdSet']], function () {
+        Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');
+        Route::post('email/resend', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
+        Route::get('/problems', [ProblemController::class, 'show']);
     Route::get('/problem/{id}', [ProblemController::class, 'showOne']);
     Route::post('/problems', [ProblemController::class, 'store']);
     Route::post('/problem/{id}', [ProblemController::class, 'storeOne'])->middleware(['isAdmin']);
     Route::delete('/problem/{id}', [ProblemController::class, 'deleteOne'])->middleware(['isCreator']);
     Route::get('/refresh', [RefreshController::class, 'index']);
     Route::post('/logout', [LogoutController::class, 'index']);
-
-    Route::group(['middleware'=> ['isAdmin']], function () {
-        Route::get('/admin/users', [AdminController::class, 'show']);
-        Route::delete('/admin/users/{id}', [AdminController::class, 'delete']);
-        Route::post('/admin/users', [AdminController::class, 'store']);
     });  
 });
 
-    Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');
-    Route::post('email/resend', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
+    
     Route::post('/login', [LoginController::class, 'store'])->name('login');

@@ -69,9 +69,8 @@ class AdminController extends Controller
             'password' => Hash::make($pswdDefault),
             'admin' => $request->admin
         ]);
-        $userCreated = User::find($user->email);
 
-        Notification::send($userCreated, new UserRegistered());
+        Notification::send($user, new UserRegistered($user->email, $pswdDefault));
 
         return response()->json([
             'message' => 'user vytvořen',

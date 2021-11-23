@@ -2,8 +2,9 @@
 
 namespace App\Http;
 
-use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\pswdSet;
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
@@ -58,6 +59,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'isCreator' => \App\Http\Middleware\isCreator::class,
         'isAdmin' => \App\Http\Middleware\isAdmin::class,
+        'pswdSet' => \App\Http\Middleware\pswdSet::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

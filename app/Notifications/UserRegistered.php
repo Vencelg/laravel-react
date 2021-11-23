@@ -10,15 +10,20 @@ use Illuminate\Notifications\Notification;
 class UserRegistered extends Notification
 {
     use Queueable;
+    
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+
+    protected $email;
+    protected $password;
+    public function __construct( $email, $password)
     {
-        //
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -43,8 +48,8 @@ class UserRegistered extends Notification
         return (new MailMessage)
                     ->line('Byl jste zaregistrován adminem')
                     ->line('Vaše údaje jsou')
-                    ->line('Email: ')
-                    ->line('Heslo: ')
+                    ->line('Email: '.$this->email)
+                    ->line('Heslo: '.$this->password)
                     ->action('Přihlásit se můžete zde', url('/'))
                     ->line('Po přihlášení budete moci své heslo změnit');
     }
