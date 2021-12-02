@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProblemController;
+use App\Http\Controllers\PswdController;
 use App\Http\Controllers\RefreshController;
 use App\Http\Controllers\VerificationController;
 
@@ -31,6 +32,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('password/change/{id}', [PswdController::class, 'store']);
 
     Route::group(['middleware' => ['pswdSet']], function () {
         Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
