@@ -11,9 +11,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class VerificationController extends Controller
 {
-    public function verify(EmailVerificationRequest $request) {
+    public function verify(EmailVerificationRequest $request)
+    {
 
-        
 
         if ($request->user()->hasVerifiedEmail()) {
             return [
@@ -26,25 +26,25 @@ class VerificationController extends Controller
         }
 
         return response()->json([
-            'message'=>'Váš email byl ověřen'
+            'message' => 'Váš email byl ověřen'
         ]);
     }
 
-    public function resend(Request $request) {
+    public function resend(Request $request)
+    {
         $user = $request->user();
 
-        
 
-        if($user->hasVerifiedEmail()) {
+        if ($user->hasVerifiedEmail()) {
             return response()->json([
-                'message'=>'Váš email je již ověřen'
+                'message' => 'Váš email je již ověřen'
             ]);
         }
-        
+
 
         $request->user()->sendEmailVerificationNotification();
 
         return response()->json(["message" => "váš odkaz byl zaslán"]);
-    
+
     }
 }

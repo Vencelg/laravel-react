@@ -27,6 +27,7 @@ use App\Http\Controllers\VerificationController;
 /*
 
     */
+//Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {
@@ -36,8 +37,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('password/change', [PswdController::class, 'store']);
 
     Route::group(['middleware' => ['pswdSet']], function () {
-        Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
-        Route::post('email/resend', [VerificationController::class, 'resend']);
+        //Route::post('email/resend', [VerificationController::class, 'resend']);
         Route::get('/problems', [ProblemController::class, 'show']);
         Route::get('/problem/{id}', [ProblemController::class, 'showOne']);
         Route::post('/problems', [ProblemController::class, 'store']);
