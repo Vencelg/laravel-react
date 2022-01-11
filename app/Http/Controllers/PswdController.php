@@ -16,10 +16,6 @@ class PswdController extends Controller
 
         $user = $request->user();
 
-        return response()->json([
-            'user' => $user
-        ]);
-
         $user->password = Hash::make($request->password);
         $user->pswdChanged = true;
         $user->save();
