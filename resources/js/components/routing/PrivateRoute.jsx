@@ -14,12 +14,12 @@ const PrivateRoute = ({
 
   const location = useLocation()
 
-
-  console.log(location.pathname)
-
-  if(!user.pswdChanged && location.pathname != "/password-change" ){
-   return <Redirect to="/password-change" />
-  } 
+if(isAuthenticated){
+  if( !user.pswdChanged && location.pathname != "/password-change"){
+    return <Redirect to="/password-change" />
+   } 
+}
+  
 
   return (
     <Route

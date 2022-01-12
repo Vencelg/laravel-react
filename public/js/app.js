@@ -2570,6 +2570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -2600,12 +2601,17 @@ var PasswordChange = function PasswordChange() {
   var changePassword = userContext.changePassword,
       error = userContext.error;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      paswChanged = _useState2[0],
+      setpaws = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     password: ''
   }),
-      _useState2 = _slicedToArray(_useState, 2),
-      formData = _useState2[0],
-      setFormData = _useState2[1];
+      _useState4 = _slicedToArray(_useState3, 2),
+      formData = _useState4[0],
+      setFormData = _useState4[1];
 
   var onChange = function onChange(e) {
     return setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
@@ -2614,8 +2620,16 @@ var PasswordChange = function PasswordChange() {
   var onSubmit = function onSubmit(e) {
     e.preventDefault();
     changePassword(password);
+    setpaws(true);
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (paswChanged) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
+        to: "/"
+      });
+    }
+  }, [paswChanged]);
   var password = formData.password;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "flex",
@@ -3254,12 +3268,13 @@ var PrivateRoute = function PrivateRoute(_ref) {
       isAuthenticated = userContext.isAuthenticated,
       user = userContext.user;
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
-  console.log(location.pathname);
 
-  if (!user.pswdChanged && location.pathname != "/password-change") {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
-      to: "/password-change"
-    });
+  if (isAuthenticated) {
+    if (!user.pswdChanged && location.pathname != "/password-change") {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
+        to: "/password-change"
+      });
+    }
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, _objectSpread(_objectSpread({}, rest), {}, {
@@ -3292,7 +3307,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LOGIN_SUCCESS": () => (/* binding */ LOGIN_SUCCESS),
 /* harmony export */   "LOGIN_FAIL": () => (/* binding */ LOGIN_FAIL),
 /* harmony export */   "LOGOUT": () => (/* binding */ LOGOUT),
-/* harmony export */   "CLEAR_PROFILE": () => (/* binding */ CLEAR_PROFILE)
+/* harmony export */   "CLEAR_PROFILE": () => (/* binding */ CLEAR_PROFILE),
+/* harmony export */   "PASSWORD_CHANGE": () => (/* binding */ PASSWORD_CHANGE)
 /* harmony export */ });
 var SET_LOADING = "SET_LOADING";
 var USER_LOADED = 'USER_LOADED';
@@ -3301,6 +3317,7 @@ var LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 var LOGIN_FAIL = 'LOGIN_FAIL';
 var LOGOUT = 'LOGOUT';
 var CLEAR_PROFILE = 'CLEAR_PROFILE';
+var PASSWORD_CHANGE = 'PASSWORD_CHANGE';
 
 /***/ }),
 
@@ -3361,8 +3378,13 @@ var Reducer = function Reducer(state, action) {
         loading: false
       });
 
-    case _types__WEBPACK_IMPORTED_MODULE_0__.SUCCESS:
-      return _objectSpread({}, state);
+    case _types__WEBPACK_IMPORTED_MODULE_0__.PASSWORD_CHANGE:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        user: _objectSpread(_objectSpread({}, user), {}, {
+          pswdChanged: 1
+        }),
+        error: action.payload
+      });
 
     case _types__WEBPACK_IMPORTED_MODULE_0__.AUTH_ERROR:
     case _types__WEBPACK_IMPORTED_MODULE_0__.LOGOUT:
@@ -3546,21 +3568,24 @@ var UserState = function UserState(props) {
               body = {
                 password: password
               };
-              _context3.prev = 1;
-              _context3.next = 4;
+              console.log(body);
+              _context3.prev = 2;
+              _context3.next = 5;
               return _scripts_api__WEBPACK_IMPORTED_MODULE_2__["default"].post('/password/change', body);
 
-            case 4:
+            case 5:
               res = _context3.sent;
+              console.log(res.data);
               dispatch({
-                type: SUCCESS
+                type: PASSWORD_CHANGE,
+                payload: res.data
               });
-              _context3.next = 13;
+              _context3.next = 15;
               break;
 
-            case 8:
-              _context3.prev = 8;
-              _context3.t0 = _context3["catch"](1);
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](2);
               errors = _context3.t0.response.data.message;
               console.log(errors);
               dispatch({
@@ -3568,12 +3593,12 @@ var UserState = function UserState(props) {
                 payload: errors
               });
 
-            case 13:
+            case 15:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[2, 10]]);
     }));
 
     return function changePassword(_x3) {

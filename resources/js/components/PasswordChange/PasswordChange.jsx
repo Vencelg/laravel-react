@@ -1,10 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import UserContext from '../../context/user/userContext';
 import { Redirect } from 'react-router-dom';
 
 const PasswordChange = () => {
    const userContext = useContext(UserContext);
    const { changePassword, error } = userContext;
+
+   const [paswChanged, setpaws] = useState(false);
 
    const [formData, setFormData] = useState({
       password: ''
@@ -16,7 +18,16 @@ const PasswordChange = () => {
    const onSubmit = (e) => {
      e.preventDefault();
      changePassword(password);
+      setpaws(true);
    };
+
+   useEffect(() => {
+      if(paswChanged){
+         return <Redirect to="/" />
+      }
+   }, [paswChanged])
+  
+  
 
 
     const { password } = formData;
@@ -26,6 +37,7 @@ const PasswordChange = () => {
       {error && error}
       <div className="form-container">
         <form className="form" onSubmit={onSubmit}>
+         
           <div className="form-group">
             <i className="fas fa-key form-icon"></i>
             <input

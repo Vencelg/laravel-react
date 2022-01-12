@@ -1,4 +1,4 @@
-import { SET_LOADING,SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_PROFILE, LOGOUT } from "../types"
+import { SET_LOADING,PASSWORD_CHANGE, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_PROFILE, LOGOUT } from "../types"
 
 const Reducer = (state, action) => {
     switch (action.type) {
@@ -19,10 +19,12 @@ const Reducer = (state, action) => {
                 isAuthenticated: true,
                 loading: false
             };
-        case SUCCESS:
+        case PASSWORD_CHANGE:
             return {
-                ...state
-            };
+                ...state,
+                user: {...user, pswdChanged: 1},
+                error: action.payload
+            }
         case AUTH_ERROR:
         case LOGOUT:
             return {

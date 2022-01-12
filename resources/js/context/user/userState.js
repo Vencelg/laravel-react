@@ -64,12 +64,15 @@ const UserState = props => {
     // změna hesla
     const changePassword = async (password) => {
         const body = { password };
-
+        console.log(body);
         try {
          
             const res = await api.post('/password/change', body);
+            console.log(res.data);
+            
             dispatch({
-                type: SUCCESS
+                type: PASSWORD_CHANGE,
+                payload: res.data
             });
 
 
