@@ -61,6 +61,27 @@ const UserState = props => {
             });
         }
     };
+    // změna hesla
+    const changePassword = async (password) => {
+        const body = { password };
+
+        try {
+         
+            const res = await api.post('/password/change', body);
+            dispatch({
+                type: SUCCESS
+            });
+
+
+        } catch (error) {
+            const errors = error.response.data.message;
+            console.log(errors);
+            dispatch({
+                type: AUTH_ERROR,
+                payload: errors
+            });
+        }
+    };
 
     // Odhlásit
     const logout = () => {
@@ -79,7 +100,8 @@ const UserState = props => {
             isAuthenticated: state.isAuthenticated,
             login,
             loadUser,
-            logout
+            logout,
+            changePassword
         }
     } >
 

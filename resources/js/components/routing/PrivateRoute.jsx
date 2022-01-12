@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, useLocation } from 'react-router-dom';
 import UserContext from '../../context/user/userContext';
+
+
 
 
 const PrivateRoute = ({
@@ -8,9 +10,16 @@ const PrivateRoute = ({
   ...rest
 }) => {
   const userContext = useContext(UserContext);
-  const { loading, isAuthenticated } = userContext;
+  const { loading, isAuthenticated, user } = userContext;
 
-  
+  const location = useLocation()
+
+
+  console.log(location.pathname)
+
+  if(!user.pswdChanged && location.pathname != "/password-change" ){
+   return <Redirect to="/password-change" />
+  } 
 
   return (
     <Route

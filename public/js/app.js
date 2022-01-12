@@ -2278,18 +2278,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context/user/userContext */ "./resources/js/context/user/userContext.js");
 /* harmony import */ var _routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routing/PrivateRoute */ "./resources/js/components/routing/PrivateRoute.jsx");
 /* harmony import */ var _SingleProblem_SingleProblem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleProblem/SingleProblem */ "./resources/js/components/SingleProblem/SingleProblem.jsx");
-/* harmony import */ var _Login_Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Login/Login */ "./resources/js/components/Login/Login.jsx");
-/* harmony import */ var _Main_Main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Main/Main */ "./resources/js/components/Main/Main.jsx");
-/* harmony import */ var _Profile_Profile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Profile/Profile */ "./resources/js/components/Profile/Profile.jsx");
-/* harmony import */ var _Admin_Admin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Admin/Admin */ "./resources/js/components/Admin/Admin.jsx");
-/* harmony import */ var _scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../scripts/setAuthToken */ "./resources/js/scripts/setAuthToken.js");
-/* harmony import */ var _routing_AdminRoute__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./routing/AdminRoute */ "./resources/js/components/routing/AdminRoute.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _PasswordChange_PasswordChange__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PasswordChange/PasswordChange */ "./resources/js/components/PasswordChange/PasswordChange.jsx");
+/* harmony import */ var _Login_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login/Login */ "./resources/js/components/Login/Login.jsx");
+/* harmony import */ var _Main_Main__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Main/Main */ "./resources/js/components/Main/Main.jsx");
+/* harmony import */ var _Profile_Profile__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Profile/Profile */ "./resources/js/components/Profile/Profile.jsx");
+/* harmony import */ var _Admin_Admin__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Admin/Admin */ "./resources/js/components/Admin/Admin.jsx");
+/* harmony import */ var _scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../scripts/setAuthToken */ "./resources/js/scripts/setAuthToken.js");
+/* harmony import */ var _routing_AdminRoute__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./routing/AdminRoute */ "./resources/js/components/routing/AdminRoute.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -2309,36 +2311,40 @@ var App = function App() {
   var loadUser = userContext.loadUser;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (localStorage.token) {
-      (0,_scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_8__["default"])(localStorage.token);
+      (0,_scripts_setAuthToken__WEBPACK_IMPORTED_MODULE_9__["default"])(localStorage.token);
     }
 
     loadUser();
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
       className: "container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
             exact: true,
             path: "/login",
-            component: _Login_Login__WEBPACK_IMPORTED_MODULE_4__["default"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            component: _Login_Login__WEBPACK_IMPORTED_MODULE_5__["default"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__["default"], {
             exact: true,
             path: "/",
-            component: _Main_Main__WEBPACK_IMPORTED_MODULE_5__["default"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            component: _Main_Main__WEBPACK_IMPORTED_MODULE_6__["default"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            exact: true,
+            path: "/password-change",
+            component: _PasswordChange_PasswordChange__WEBPACK_IMPORTED_MODULE_4__["default"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_routing_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__["default"], {
             exact: true,
             path: "/profile",
-            component: _Profile_Profile__WEBPACK_IMPORTED_MODULE_6__["default"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_routing_AdminRoute__WEBPACK_IMPORTED_MODULE_9__["default"], {
+            component: _Profile_Profile__WEBPACK_IMPORTED_MODULE_7__["default"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_routing_AdminRoute__WEBPACK_IMPORTED_MODULE_10__["default"], {
             exact: true,
             path: "/problem/:id",
             component: _SingleProblem_SingleProblem__WEBPACK_IMPORTED_MODULE_3__["default"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_routing_AdminRoute__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_routing_AdminRoute__WEBPACK_IMPORTED_MODULE_10__["default"], {
             exact: true,
             path: "/admin-users",
-            component: _Admin_Admin__WEBPACK_IMPORTED_MODULE_7__["default"]
+            component: _Admin_Admin__WEBPACK_IMPORTED_MODULE_8__["default"]
           })]
         })
       })
@@ -2548,6 +2554,151 @@ var Main = function Main() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Main);
+
+/***/ }),
+
+/***/ "./resources/js/components/PasswordChange/PasswordChange.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/PasswordChange/PasswordChange.jsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _context_user_userContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/user/userContext */ "./resources/js/context/user/userContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var PasswordChange = function PasswordChange() {
+  var userContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_1__["default"]);
+  var changePassword = userContext.changePassword,
+      error = userContext.error;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    password: ''
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      formData = _useState2[0],
+      setFormData = _useState2[1];
+
+  var onChange = function onChange(e) {
+    return setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
+  };
+
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    changePassword(password);
+  };
+
+  var password = formData.password;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "flex",
+    children: [error && error, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "form-container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+        className: "form",
+        onSubmit: onSubmit,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+            className: "fas fa-key form-icon"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "password",
+            placeholder: "Password",
+            name: "password",
+            value: password,
+            onChange: onChange
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          type: "submit",
+          className: "btn btn-primary",
+          children: "Login"
+        })]
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PasswordChange);
+/* import React, { useContext, useState } from 'react';
+
+
+
+const Login = () => {
+
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login(email, password);
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />
+  }
+  return (
+    <div className="flex">
+      {error && error}
+      <div className="form-container">
+        <form className="form" onSubmit={onSubmit}>
+          <div className="form-group">
+            <i className="fas fa-envelope form-icon"></i>
+            <input
+              type="email"
+              placeholder="E-mail"
+              name="email"
+              value={email}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <i className="fas fa-key form-icon"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={onChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default Login;
+ */
 
 /***/ }),
 
@@ -3100,7 +3251,17 @@ var PrivateRoute = function PrivateRoute(_ref) {
 
   var userContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_userContext__WEBPACK_IMPORTED_MODULE_1__["default"]);
   var loading = userContext.loading,
-      isAuthenticated = userContext.isAuthenticated;
+      isAuthenticated = userContext.isAuthenticated,
+      user = userContext.user;
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
+  console.log(location.pathname);
+
+  if (!user.pswdChanged && location.pathname != "/password-change") {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
+      to: "/password-change"
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, _objectSpread(_objectSpread({}, rest), {}, {
     render: function render(props) {
       return loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
@@ -3199,6 +3360,9 @@ var Reducer = function Reducer(state, action) {
         isAuthenticated: true,
         loading: false
       });
+
+    case _types__WEBPACK_IMPORTED_MODULE_0__.SUCCESS:
+      return _objectSpread({}, state);
 
     case _types__WEBPACK_IMPORTED_MODULE_0__.AUTH_ERROR:
     case _types__WEBPACK_IMPORTED_MODULE_0__.LOGOUT:
@@ -3369,6 +3533,52 @@ var UserState = function UserState(props) {
     return function login(_x, _x2) {
       return _ref2.apply(this, arguments);
     };
+  }(); // změna hesla
+
+
+  var changePassword = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(password) {
+      var body, res, errors;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              body = {
+                password: password
+              };
+              _context3.prev = 1;
+              _context3.next = 4;
+              return _scripts_api__WEBPACK_IMPORTED_MODULE_2__["default"].post('/password/change', body);
+
+            case 4:
+              res = _context3.sent;
+              dispatch({
+                type: SUCCESS
+              });
+              _context3.next = 13;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              errors = _context3.t0.response.data.message;
+              console.log(errors);
+              dispatch({
+                type: _types__WEBPACK_IMPORTED_MODULE_5__.AUTH_ERROR,
+                payload: errors
+              });
+
+            case 13:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function changePassword(_x3) {
+      return _ref3.apply(this, arguments);
+    };
   }(); // Odhlásit
 
 
@@ -3391,7 +3601,8 @@ var UserState = function UserState(props) {
       isAuthenticated: state.isAuthenticated,
       login: login,
       loadUser: loadUser,
-      logout: logout
+      logout: logout,
+      changePassword: changePassword
     },
     children: props.children
   });
