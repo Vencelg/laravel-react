@@ -10,6 +10,8 @@ const PrivateRoute = ({
   const userContext = useContext(UserContext);
   const { loading, isAuthenticated } = userContext;
 
+  
+
   return (
     <Route
       {...rest}

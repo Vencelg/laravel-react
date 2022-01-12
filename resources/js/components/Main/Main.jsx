@@ -25,13 +25,7 @@ const Main = () => {
 
    return (
       <main>
-         <section>
-            {user.id}
-            |
-            {user.name}
-            |
-            {user.email}
-         </section>
+         
          <hr />
          <section>
             {problemQuery.isError && problemQuery.error}
@@ -64,7 +58,9 @@ const Main = () => {
                </div>
             </div>
          </section>
+         <Link to={`profile`}>Profile</Link>
          <button onClick={logout}>LOGOUT</button>
+         
       </main>
    )
 }
