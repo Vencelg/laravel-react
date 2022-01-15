@@ -76,7 +76,6 @@ class ProblemController extends Controller
 
         return response()->json([
             $problem,
-            $request->user()
         ], 200);
     }
     public function deleteOne(Request $request, $id)
