@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ProblemCreatedNotification extends Notification
+class ProblemCreatedNotification extends Notification implements shouldQueue
 {
     use Queueable;
 
@@ -41,7 +41,8 @@ class ProblemCreatedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Byl vytvořen přidán nový problém')
+                    ->subject('Byl přidán nový problém')
+                    ->line('Byl přidán nový problém')
                     ->action('Seznam problémů najdete zde', url('/'))/*Doplnit kam to povede*/
                     ->line('Tento mail byl zaslán všem adminům');
     }

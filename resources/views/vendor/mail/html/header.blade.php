@@ -1,11 +1,11 @@
 <tr>
-<td class="header">
-<a href="{{ $url }}" style="display: inline-block;">
-@if (trim($slot) === 'Laravel')
-<img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
-@else
-{{ $slot }}
-@endif
-</a>
-</td>
+    <td class="header">
+        <a href="{{ $url }}" style="display: inline-block;">
+            @if (trim($slot) === 'Creative Hill College')
+                <img src="images/chcLogo.png" class="logo" alt="CHC Logo">
+            @else
+                {{ $slot }}
+            @endif
+        </a>
+    </td>
 </tr>

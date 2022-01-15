@@ -18,7 +18,6 @@ class ProblemController extends Controller
         $allAdmins = User::where('admin', true)->get();
 
 
-
         $this->validate($request, [
             'name' => 'string|required',
             'description' => 'string|required',
@@ -32,7 +31,9 @@ class ProblemController extends Controller
             'room' => $request->room,
         ]);
 
-        Notification::send($allAdmins, new ProblemCreatedNotification());
+
+            Notification::send($allAdmins, new ProblemCreatedNotification());
+
 
 
         return response()->json([
@@ -57,6 +58,7 @@ class ProblemController extends Controller
 
         return response(problemsLoop(), 200);
     }
+
     //One problem things
     public function showOne($id)
     {
@@ -68,6 +70,7 @@ class ProblemController extends Controller
             'problem' => $problem
         ], 200);
     }
+
     public function storeOne(Request $request, $id)
     {
         $problem = Problem::find($id);
@@ -78,11 +81,12 @@ class ProblemController extends Controller
             $problem,
         ], 200);
     }
+
     public function deleteOne(Request $request, $id)
     {
         $problem = Problem::find($id);
 
-        if(!$problem) {
+        if (!$problem) {
             return response()->json([
                 'message' => 'problem neexistuje'
             ], 200);

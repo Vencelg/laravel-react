@@ -1,13 +1,13 @@
-import { LOAD_PROBLEMS, 
-    LOAD_PROBLEM, 
-    CREATE_PROBLEM, 
-    DELETE_PROBLEM, 
+import { LOAD_PROBLEMS,
+    LOAD_PROBLEM,
+    CREATE_PROBLEM,
+    DELETE_PROBLEM,
     FIX_PROBLEM,
     PROBLEM_ERROR } from "../types"
 
 const Reducer = (state, action) => {
     switch (action.type) {
-        case LOAD_PROBLEMS: 
+        case LOAD_PROBLEMS:
             return {
                 ...state,
                 problem:{},
@@ -24,7 +24,7 @@ const Reducer = (state, action) => {
             }
         case CREATE_PROBLEM:
             return {
-                ...state,   
+                ...state,
                 problems: [action.payload[0], ...state.problems],
                 error:null,
                 loading: false
@@ -37,20 +37,20 @@ const Reducer = (state, action) => {
                 error:null,
                 loading: false
             }
-        case FIX_PROBLEM: 
+        case FIX_PROBLEM:
             return {
                 ...state,
                 problem: action.payload,
                 error:null,
                 loading: false
             }
-        case PROBLEM_ERROR: 
+        case PROBLEM_ERROR:
             return {
                 ...state,
                 error: action.payload,
                 loading: false
             }
-      
+
         default:
             return state;
     }
