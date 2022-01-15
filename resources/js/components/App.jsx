@@ -11,7 +11,8 @@ import Admin from './Admin/Admin'
 import setAuthToken from '../scripts/setAuthToken';
 import AdminRoute from './routing/AdminRoute';
 import "../../css/app.css"
-import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+
+
 
 
 const App = () => {
