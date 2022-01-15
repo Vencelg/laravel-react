@@ -22,8 +22,9 @@ const Reducer = (state, action) => {
         case PASSWORD_CHANGE:
             return {
                 ...state,
-                user: {...user, pswdChanged: 1},
-                error: action.payload
+                user: action.payload,
+                error: null,
+                loading: false
             }
         case AUTH_ERROR:
         case LOGOUT:
@@ -40,4 +41,4 @@ const Reducer = (state, action) => {
     }
 }
 
-export default Reducer
+export default Reducer 

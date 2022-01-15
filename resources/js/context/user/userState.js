@@ -13,7 +13,7 @@ const UserState = props => {
         isAuthenticated: false,
         token: localStorage.getItem('token'),
     }
-
+ 
     const [state, dispatch] = useReducer(UserReducer, initalState);
 
 

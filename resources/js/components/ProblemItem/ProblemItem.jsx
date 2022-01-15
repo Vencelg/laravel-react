@@ -1,20 +1,26 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import UserContext from '../../context/user/userContext';
-import useDeleteProblem from '../../hooks/useDeleteProblem';
+import ProblemContext from "../../context/problems/problemsContext"
+import UserContext from "../../context/user/userContext"
+import { useHistory } from "react-router-dom";
+import userContext from '../../context/user/userContext';
 
-const ProblemItem = ({problem, refetch}) => {
+const ProblemItem = ({problem}) => {
+
+   const problemContext = useContext(ProblemContext);
+   const { deleteProblem  } = problemContext;
+
    const userContext = useContext(UserContext);
-   const { user } = userContext;
-   const [deleteProblem, deleteProblemInfo] = useDeleteProblem()
+   const { user  } = userContext;
 
 
+   const history = useHistory();
 
    const onDelete =  () => {
-      deleteProblem(problem.id).then(()=>refetch());
+      deleteProblem(problem.id).then(()=> history.push("/"));
      
     }
-   console.log(deleteProblemInfo);
+ 
    return (
       
       <div>

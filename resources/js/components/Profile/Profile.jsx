@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Profile = () => {
 
    const userContext = useContext(UserContext);
-   const { user, logout } = userContext;
+   const { user } = userContext;
 
 
    return (

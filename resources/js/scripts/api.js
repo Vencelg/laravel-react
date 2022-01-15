@@ -2,7 +2,7 @@ import axios from 'axios';
 import { LOGOUT } from '../context/types';
 
 const api = axios.create({
-    baseURL: 'https://kolesooriginal.herokuapp.com/api',
+    baseURL: 'http://82.208.16.123:8080/api',
     headers: {
         'Content-Type': 'application/json'
     }

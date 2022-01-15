@@ -1,57 +1,61 @@
-import React, { useContext, useState } from 'react'
-import useProblems from '../../hooks/useProblems'
-import useCreateProblem from '../../hooks/useCreateProblem'
+import React, { useContext, useEffect } from 'react'
 import UserContext from '../../context/user/userContext';
-import { useMutation } from "react-query";
-import api from '../../scripts/api';
+import ProblemsContext from "../../context/problems/problemsContext"
 import ProblemForm from '../ProblemForm/ProblemForm';
 import { Link } from 'react-router-dom';
 import ProblemItem from '../ProblemItem/ProblemItem';
-import useFixProblem from '../../hooks/useFixProblem';
+
 
 const Main = () => {
 
-
+   const problemsContext = useContext(ProblemsContext);
+   const {
+      error,
+      loading,
+      problems,
+      getProblems,
+      createProblem } = problemsContext;
 
    const userContext = useContext(UserContext);
-   const { user, logout } = userContext;
+   const { logout } = userContext;
 
-   const problemQuery = useProblems()
-   const createProblemQuery = useCreateProblem()
-   const createFixQuery = useFixProblem();
+   useEffect(()=>{
 
+      getProblems();
+    
+   }, [])
 
-   console.log(problemQuery);
 
    return (
       <main>
          
          <hr />
          <section>
-            {problemQuery.isError && problemQuery.error}
-            {problemQuery.isLoading ? (<span>Loading...</span>) : (
-               problemQuery.data.map((problem) => (
-                  // <div key={problem.id}>{problem.room} / <Link to={`problem/${problem.id}`}>{problem.description}</Link> / {problem.name} / {problem.id}</div>
-                  <ProblemItem key={problem.id} problem={problem} refetch={problemQuery.refetch} onSubmit={createFixQuery.mutateAsync}/>
+            {!error ? (
+               loading ? (<span>Loading...</span>) : (
+                  problems && (
+                     problems.map((problem) => (
+                        <ProblemItem key={problem.id} problem={problem} />
+                     )
+                     )
+                  )
+                 
                )
-               )
-            )}
+            ) : "Chyba!!"}
+     
          </section>
          <hr />
          <section>
             <div className="flex">
                <div className="form-container">
                   <ProblemForm
-                     onSubmit={createProblemQuery.mutateAsync}
+                     onSubmit={createProblem}
                      clearOnSubmit
-                     refetch={problemQuery.refetch}
                      submitText={
-                        createProblemQuery.isLoading
+                        loading
                            ? 'Saving...'
-                           : createProblemQuery.isError
+                           : error
                               ? 'Error!'
-                              : createProblemQuery.isSuccess
-                                 ? 'Saved!'
                                  : 'Create Problem'
                      }
                   />

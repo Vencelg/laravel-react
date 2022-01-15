@@ -1,10 +1,10 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const defaultFormValues = {
    email: '',
    name:'',
-   admin: 1
+   admin: 0
 }
 const RegisterUserForm = ({
   onSubmit,
@@ -12,6 +12,8 @@ const RegisterUserForm = ({
   submitText,
   clearOnSubmit
 }) => {
+
+  const history = useHistory();
 
   const [values, setValues] = React.useState(initialValues)
 
@@ -23,7 +25,7 @@ const RegisterUserForm = ({
       setValues(defaultFormValues)
     }
     e.preventDefault()
-    onSubmit(values).then(() => console.log("created"));
+    onSubmit(values)
 
   }
 
@@ -60,12 +62,12 @@ const RegisterUserForm = ({
         <div className="form-group">
         <i className="fas fa-user-shield form-icon"></i>
           <label htmlFor="admin">is admin</label>
-          {/* <input
+           <input
             type="checkbox"
             name="admin"
             value={values.admin}
             onChange={e => setValue("admin", e.target.value)}
-          /> */}
+          /> 
         </div>
         <button type="submit" className="btn btn-primary">{submitText}</button>
       </form>

@@ -10,7 +10,6 @@ const ProblemForm = ({
   initialValues = defaultFormValues,
   submitText,
   clearOnSubmit,
-  refetch
 }) => {
 
   const [values, setValues] = React.useState(initialValues)
@@ -23,7 +22,7 @@ const ProblemForm = ({
       setValues(defaultFormValues)
     }
     e.preventDefault()
-    onSubmit(values).then(() => refetch());
+    onSubmit(values);
 
   }
 

@@ -1,28 +1,26 @@
-import React, {useState} from 'react'
-import useRegisterUser from '../../hooks/useRegisterUser'
+import React, {useContext} from 'react'
+import UsersContext from '../../context/users/usersContext';
 import RegisterUserForm from './RegisterUserForm';
 
 const Admin = () => {
 
+   const userContext = useContext(UsersContext);
+   const { loading, error, createUser } = userContext;
 
-
-    const registerUserQuery = useRegisterUser()
 
     return (
    
       <div className="flex">
          <div className="form-container">
                      <RegisterUserForm
-                        onSubmit={registerUserQuery.mutateAsync}
+                        onSubmit={createUser}
                         clearOnSubmit
                        
                         submitText={
-                           registerUserQuery.isLoading
+                           loading
                               ? 'Saving...'
-                              : registerUserQuery.isError
+                              : error
                                  ? 'Error!'
-                                 : registerUserQuery.isSuccess
-                                    ? 'Saved!'
                                     : 'Register User'
                         }
                      />
