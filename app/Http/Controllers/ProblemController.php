@@ -32,7 +32,9 @@ class ProblemController extends Controller
         ]);
 
 
-            Notification::send($allAdmins, new ProblemCreatedNotification());
+            foreach ($allAdmins as $admin) {
+                $admin->notify(new ProblemCreatedNotification());
+            }
 
 
 
