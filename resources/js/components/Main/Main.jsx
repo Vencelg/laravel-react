@@ -36,6 +36,7 @@ const Main = () => {
                   problems && (
                      problems.map((problem) => (
                         <ProblemItem key={problem.id} problem={problem} />
+                        
                      )
                      )
                   )
@@ -64,6 +65,8 @@ const Main = () => {
          </section>
          <Link to={`profile`}>Profile</Link>
          <button onClick={logout}>LOGOUT</button>
+         
+
          
       </main>
    )

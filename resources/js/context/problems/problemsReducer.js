@@ -25,7 +25,7 @@ const Reducer = (state, action) => {
         case CREATE_PROBLEM:
             return {
                 ...state,   
-                problems: [action.payload.problem, ...state.problems],
+                problems: [action.payload[0], ...state.problems],
                 error:null,
                 loading: false
             }

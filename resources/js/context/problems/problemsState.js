@@ -61,7 +61,7 @@ const ProblemsState = props => {
       try {
            
          const res = await api.post('/problems', values);
-
+        console.log(res);
          dispatch({
              type: CREATE_PROBLEM,
              payload: res.data

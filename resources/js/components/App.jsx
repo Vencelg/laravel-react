@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import UserContext from '../context/user/userContext';
 import PrivateRoute from "./routing/PrivateRoute"
 import SingleProblem from './SingleProblem/SingleProblem';
@@ -11,6 +10,8 @@ import Profile from './Profile/Profile'
 import Admin from './Admin/Admin'
 import setAuthToken from '../scripts/setAuthToken';
 import AdminRoute from './routing/AdminRoute';
+import "../../css/app.css"
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
 
 const App = () => {
