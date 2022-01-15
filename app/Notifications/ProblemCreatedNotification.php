@@ -41,10 +41,11 @@ class ProblemCreatedNotification extends Notification implements shouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->greeting('Admine,')
                     ->subject('Byl přidán nový problém')
                     ->line('Byl přidán nový problém')
-                    ->action('Seznam problémů najdete zde', url('/'))/*Doplnit kam to povede*/
-                    ->line('Tento mail byl zaslán všem adminům');
+                    ->action('Seznam problémů najdete zde', url('http://82.208.16.123:8080/'))
+                    ->line('Tento mail byl zaslán veškerým adminům');
     }
 
     /**
