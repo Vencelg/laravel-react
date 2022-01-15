@@ -31,9 +31,9 @@ class ProblemController extends Controller
             'room' => $request->room,
         ]);
 
-        foreach ($allAdmins as $admin) {
-            Notification::send($admin, new ProblemCreatedNotification());
-        }
+
+            Notification::send($allAdmins, new ProblemCreatedNotification());
+
 
 
         return response()->json([
