@@ -42,10 +42,10 @@ class ProblemCreatedNotification extends Notification implements shouldQueue
     {
         return (new MailMessage)
                     ->greeting('Admine,')
-                    ->subject('Byl přidán nový problém')
+                    ->subject('Byl přidán nový problém.')
                     ->line('Byl přidán nový problém')
                     ->action('Seznam problémů najdete zde', url('http://82.208.16.123:8080/'))
-                    ->line('Tento mail byl zaslán veškerým adminům');
+                    ->line('Tento mail byl zaslán veškerým adminům.');
     }
 
     /**
