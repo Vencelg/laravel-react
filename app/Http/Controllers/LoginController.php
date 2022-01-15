@@ -28,6 +28,6 @@ class LoginController extends Controller
         return response()->json([
             'user' => $user,
             'access_token' => $accessToken
-        ]);
+        ], 200);
     }
 }

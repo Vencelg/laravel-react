@@ -36,7 +36,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('password/change', [PswdController::class, 'store']);
 
-    Route::group(['middleware' => ['pswdSet']], function () {
         //Route::post('email/resend', [VerificationController::class, 'resend']);
         Route::get('/problems', [ProblemController::class, 'show']);
         Route::get('/problem/{id}', [ProblemController::class, 'showOne']);
@@ -54,7 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::group(['middleware' => ['isCreator']], function () {
             Route::delete('/problem/{id}', [ProblemController::class, 'deleteOne']);
         });
-    });
+
 });
 
 

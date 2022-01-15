@@ -27,7 +27,7 @@ class VerificationController extends Controller
 
         return response()->json([
             'message' => 'Váš email byl ověřen'
-        ]);
+        ], 200);
     }
 
     public function resend(Request $request)
@@ -38,13 +38,13 @@ class VerificationController extends Controller
         if ($user->hasVerifiedEmail()) {
             return response()->json([
                 'message' => 'Váš email je již ověřen'
-            ]);
+            ], 400);
         }
 
 
         $request->user()->sendEmailVerificationNotification();
 
-        return response()->json(["message" => "váš odkaz byl zaslán"]);
+        return response()->json(["message" => "váš odkaz byl zaslán"], 200);
 
     }
 }

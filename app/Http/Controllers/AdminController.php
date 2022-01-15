@@ -14,7 +14,7 @@ class AdminController extends Controller
     //get na všechny usery done
     //post tvorba usera done s random heslem done
     //delete user done
-    
+
     //DODĚLAT ARGUMENTY V MAILU NA HESLO A EMAIL
 
     public function show() {
@@ -22,7 +22,7 @@ class AdminController extends Controller
 
         return response()->json([
             'users' => $users
-        ]);
+        ], 200);
     }
 
     public function delete($id) {
@@ -31,14 +31,14 @@ class AdminController extends Controller
         if(!$user) {
             return response()->json([
                 'message' => 'user neexistuje'
-            ]);
+            ], 400);
         }
 
         $user->delete();
 
         return response()->json([
             'message' => 'deleted user'
-        ]);
+        ], 200);
     }
 
     public function store(Request $request) {
@@ -48,7 +48,7 @@ class AdminController extends Controller
             'admin' => 'bool', //v postmanu bere pouze 1/0 a ne true/false
         ]);
 
-        $emailToValidate['email'] = $request->email; 
+        $emailToValidate['email'] = $request->email;
 
         $emailRule = array(
             'email' => 'unique:users,email'
@@ -58,7 +58,7 @@ class AdminController extends Controller
         if($emailValidation->fails()) {
             return response()->json([
                 'error' => 'email je již používán'
-            ]);
+            ], 400);
         }
 
         $pswdDefault = substr(str_replace(['+', '/', '='], '', base64_encode(random_bytes(16))), 0, 16);
@@ -68,7 +68,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => Hash::make($pswdDefault),
             'admin' => $request->admin
-        ]);
+        ], 200);
 
         Notification::send($user, new UserRegistered($user->email, $pswdDefault));
 
@@ -76,6 +76,6 @@ class AdminController extends Controller
             'message' => 'user vytvořen',
             'raw heslo' => $pswdDefault,
             'newUser' => $user
-        ]);
+        ], 200);
     }
 }

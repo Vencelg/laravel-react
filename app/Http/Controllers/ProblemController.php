@@ -17,14 +17,14 @@ class ProblemController extends Controller
 
         $allAdmins = User::where('admin', true)->get();
 
-        
+
 
         $this->validate($request, [
             'name' => 'string|required',
             'description' => 'string|required',
             'room' => 'string|required'
         ]);
-        
+
 
         $problem = $request->user()->problems()->create([
             'name' => $request->name,
@@ -38,7 +38,7 @@ class ProblemController extends Controller
         return response()->json([
             $problem,
             $request->user()
-        ]);
+        ], 200);
     }
 
     public function show()
@@ -55,7 +55,7 @@ class ProblemController extends Controller
             return $problems;
         }
 
-        return response(problemsLoop());
+        return response(problemsLoop(), 200);
     }
     //One problem things
     public function showOne($id)
@@ -66,7 +66,7 @@ class ProblemController extends Controller
 
         return response()->json([
             'problem' => $problem
-        ]);
+        ], 200);
     }
     public function storeOne(Request $request, $id)
     {
@@ -77,7 +77,7 @@ class ProblemController extends Controller
         return response()->json([
             $problem,
             $request->user()
-        ]);
+        ], 200);
     }
     public function deleteOne(Request $request, $id)
     {
@@ -86,13 +86,13 @@ class ProblemController extends Controller
         if(!$problem) {
             return response()->json([
                 'message' => 'problem neexistuje'
-            ]);
+            ], 200);
         }
 
         $problem->delete();
 
         return response()->json([
             'message' => 'Deleted'
-        ]);
+        ], 200);
     }
 }

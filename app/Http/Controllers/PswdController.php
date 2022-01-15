@@ -22,6 +22,6 @@ class PswdController extends Controller
 
         return response()->json([
             'message' => 'Heslo bylo změněno'
-        ]);
+        ], 200);
     }
 }
