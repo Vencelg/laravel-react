@@ -2,7 +2,7 @@
     <td class="header">
         <a href="{{ $url }}" style="display: inline-block;">
             @if (trim($slot) === 'Creative Hill College')
-                <svg enable-background="new 0 0 85.3 57.4" version="1.1" viewBox="0 0 85.3 57.4" xml:space="preserve"
+                {{--<svg enable-background="new 0 0 85.3 57.4" version="1.1" viewBox="0 0 85.3 57.4" xml:space="preserve"
                      xmlns="http://www.w3.org/2000/svg">
 							<path class="p1"
                                   d="M3,3h37.8v16.7h-5.6l-3.5,5.8l-4.1-5.8H3V3z M0,0v22.8h26.1l5.8,8.3l5.1-8.3h6.9V0H0z"></path>
@@ -43,7 +43,8 @@
                         d="m73.1 50.2c1.7 0 2.6 0.9 2.6 0.9l-0.8 1.2s-0.7-0.6-1.6-0.6c-1.4 0-2 0.9-2 1.9 0 1.3 0.9 2.1 1.9 2.1 0.8 0 1.4-0.5 1.4-0.5v-0.5h-1v-1.4h2.4v3.7h-1.4v-0.2-0.3s-0.7 0.6-1.8 0.6c-1.7 0-3.3-1.3-3.3-3.5 0.1-1.9 1.6-3.4 3.6-3.4"></path>
                     <polygon
                         points="77.3 50.3 81.6 50.3 81.6 51.7 79 51.7 79 52.9 81 52.9 81 54.3 79 54.3 79 55.6 81.7 55.6 81.7 57 77.3 57"></polygon>
-							</svg>
+							</svg>--}}
+                kokotos
             @else
                 {{ $slot }}
             @endif
