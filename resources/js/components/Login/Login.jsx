@@ -3,7 +3,15 @@ import { Redirect } from 'react-router-dom';
 import UserContext from '../../context/user/userContext';
 
 
+
+
+
 const Login = () => {
+
+	
+	
+
+	
 
 	const userContext = useContext(UserContext);
   const { isAuthenticated, login, error } = userContext;
@@ -104,6 +112,7 @@ const Login = () => {
 				</form>
 			</div>
 		</div>
+		
 	</div>
   )
 }
