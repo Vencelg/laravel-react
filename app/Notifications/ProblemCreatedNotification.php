@@ -41,9 +41,9 @@ class ProblemCreatedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))/*Doplnit kam to povede*/
-                    ->line('Thank you for using our application!');
+                    ->line('Byl vytvořen přidán nový problém')
+                    ->action('Seznam problémů najdete zde', url('/'))/*Doplnit kam to povede*/
+                    ->line('Tento mail byl zaslán všem adminům');
     }
 
     /**
