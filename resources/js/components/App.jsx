@@ -27,7 +27,7 @@ const App = () => {
     return (
 
         <Router>
-            <div className="container">
+            <div>
                 <Fragment>
                     <Switch>
                         <Route exact path="/login" component={Login} />
