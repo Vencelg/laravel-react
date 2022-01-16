@@ -40,7 +40,7 @@ const Reducer = (state, action) => {
         case FIX_PROBLEM:
             return {
                 ...state,
-                problem: action.payload,
+                problem: action.payload[0],
                 error:null,
                 loading: false
             }

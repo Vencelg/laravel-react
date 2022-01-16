@@ -77,7 +77,7 @@ const ProblemsState = props => {
     const deleteProblem = async (problemId) => {
       try {
            
-         const res = api.delete(`/problem/${problemId}`);
+         const res = await api.delete(`/problem/${problemId}`);
 
          dispatch({
              type: DELETE_PROBLEM,
@@ -94,12 +94,14 @@ const ProblemsState = props => {
     const fixProblem = async (problemId, values) => {
       try {
            
-         const res = api.post(`/problem/${problemId}`, values);
+         const res = await api.post(`/problem/${problemId}`, values);
 
          dispatch({
              type: FIX_PROBLEM,
              payload: res.data
          });
+
+     
      } catch (error) {
          dispatch({
              type: PROBLEM_ERROR,

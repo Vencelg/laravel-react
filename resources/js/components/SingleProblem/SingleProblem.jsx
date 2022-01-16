@@ -30,7 +30,7 @@ const SingleProblem = ({ match }) => {
 
     const history = useHistory();
 
-
+    console.log(problem.name);
     const onDelete = async () => {
         deleteProblem(match.params.id);
         history.push("/");
@@ -50,24 +50,17 @@ const SingleProblem = ({ match }) => {
 
     return (
         <div>
-            {!error && error}
+            {error && error}
             {loading ? (
                 <span>Loading...</span>
             ) : (
-                problem && (  <div>
+             <div>
                     <Link to="/">Back</Link>
                     <div>
-                        <div>
-                            {problem.name} | {problem.description} |{" "}
+                    {problem.name} | {problem.description} |{" "}
                             {problem.id} | {problem.created_at}{" "}
-                        </div>
-                        <div>
-                            {problem.user.name} | {problem.user.admin} |{" "}
-                            {problem.user.id}{" "}
-                        </div>
-                        <div>
-                            {problem.fix_time} | {problem.fixed}
-                        </div>
+                     
+                            {problem.fix_time} | {problem.fixed} 
                     </div>
                     <form onSubmit={handleSubmit} className="form">
                         
@@ -84,7 +77,7 @@ const SingleProblem = ({ match }) => {
                     <button onClick={onDelete}>Delete</button>
                 </div>)
               
-            )}
+            }
         </div>
     );
 };
