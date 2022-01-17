@@ -2,8 +2,8 @@ import React, { useEffect, useContext } from "react";
 import ProblemContext from "../../context/problems/problemsContext"
 import { useStopwatch } from "react-timer-hook";
 import { formatTime } from "../../scripts/timerFormat";
-import { Link, useHistory } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import Header from '../Header/Header';
 
 
 const defaultFormValues = {
@@ -13,30 +13,33 @@ const defaultFormValues = {
 
 const SingleProblem = ({ match }) => {
 
+    
     const problemsContext = useContext(ProblemContext);
     const {
-       error,
-       loading,
-       problem,
-       getProblem,
-       deleteProblem,
+        loading,
+        problem,
+        getProblem,
+        deleteProblem,
         fixProblem } = problemsContext;
 
-        useEffect(()=>{
-            getProblem(match.params.id);
-         }, [])
+
+
+    useEffect(() => {
+        getProblem(match.params.id);
+       
+    }, [])
 
     const [values, setValues] = React.useState(defaultFormValues);
 
     const history = useHistory();
 
-    console.log(problem.name);
+
     const onDelete = async () => {
         deleteProblem(match.params.id);
         history.push("/");
     };
 
-    const { seconds, minutes, hours, start, pause, reset } =
+    const { seconds, minutes, hours, start, pause, reset, isRunning } =
         useStopwatch({ autoStart: false });
 
     const handleSubmit = (e) => {
@@ -44,41 +47,88 @@ const SingleProblem = ({ match }) => {
         fixProblem(match.params.id, values)
     };
 
+    const onChange = (e) =>
+        setValues({ ...values, [e.target.name]: e.target.value });
+
+
+
     useEffect(() => {
-        setValues({ ...values, fix_time: formatTime(seconds,minutes,hours) });
-    }, [seconds,minutes,hours]);
+        setValues({ ...values, fix_time: formatTime(seconds, minutes, hours) });
+    }, [seconds, minutes, hours]);
+
+    console.log(problem);
 
     return (
-        <div>
-            {error && error}
-            {loading ? (
-                <span>Loading...</span>
-            ) : (
-             <div>
-                    <Link to="/">Back</Link>
-                    <div>
-                    {problem.name} | {problem.description} |{" "}
-                            {problem.id} | {problem.created_at}{" "}
-                     
-                            {problem.fix_time} | {problem.fixed} 
-                    </div>
-                    <form onSubmit={handleSubmit} className="form">
-                        
-                        <div style={{ fontSize: "30px" }}>
-                            <span>{values.fix_time}</span>
-                        </div>
-                        
-                        
-                        <button type="button" onClick={start}>Start</button>
-                        <button type="button" onClick={pause}>Pause</button>
-                        <button type="button" onClick={()=>reset(0,false)}>Reset</button>
-                        <button type="submit">Fix</button>
-                    </form>
-                    <button onClick={onDelete}>Delete</button>
-                </div>)
-              
-            }
-        </div>
+        <>
+            <Header />
+            <main>
+
+
+                {loading ? (
+                    <span>Loading...</span>
+                ) : (
+
+                    <div className="main singleProblem">
+                        {problem.name && (
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Autor: </td>
+                                        <td>{problem.user.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Místnost: </td>
+                                        <td>{problem.room}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Co nefunguje?: </td>
+                                        <td>{problem.name}</td>
+                                    </tr>
+                                    <tr><td>Komentář: </td><td>{problem.description}</td></tr>
+                                    <tr><td>Datum vytvoření: </td><td>{problem.created_at.slice(0, 10)}</td></tr>
+                                    <tr><td>Poslední úprava: </td><td>{problem.updated_at.slice(0, 10)}</td></tr>
+                                    <tr><td>Stav: </td><td className={problem.fixed ? "done" : "warn"}>{problem.fixed ? "Opraveno" : "Čekající"}</td></tr>
+                                    <tr><td>Délka opravy: </td><td>{problem.fix_time ? problem.fix_time : "0"}</td></tr>
+                                </tbody>
+                            </table>
+                        )}
+
+                        <form onSubmit={handleSubmit} style={{ width: "30%" }} className="form login100-form validate-form">
+
+                            <div className="wrap-input100 validate-input mg" data-validate="Zadejte čas prosím">
+                                <span className="btn-show-pass">
+                                    <i className="zmdi zmdi-eye"></i>
+                                </span>
+                                <input className={`input100 ${isRunning || values.fix_time != "" ? "has-val":""}`} type="text" name="fix_time"
+
+                                    value={values.fix_time}
+                                    onChange={onChange}
+
+                                />
+                                <span className="focus-input100" data-placeholder="Čas"></span>
+                            </div>
+
+                            <div className="playButtons">
+                                {isRunning ? (
+                                    <button title="Pauza" type="button" className='edit' onClick={pause}><i className="fas fa-pause"></i></button>
+                                ) : (
+                                    <button title="Začít" type="button" className='edit' onClick={start}><i className="fas fa-play"></i></button>
+                                )}
+
+
+                                <button title="Reset" type="button" className='edit' onClick={() => reset(0, false)}><i className="fas fa-redo"></i></button>
+                                <button title="Opravit" type="submit" className='edit'><i className="fas fa-wrench"></i></button>
+                            </div>
+
+                        </form>
+                        <button title="Smazat problém" onClick={onDelete} className='edit single-trash'><i className="fas fa-trash"></i></button>
+
+                    </div>)
+
+                }
+            </main>
+        </>
+
     );
 };
 

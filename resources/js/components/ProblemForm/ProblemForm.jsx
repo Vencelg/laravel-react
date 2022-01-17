@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 const defaultFormValues = {
   room: '',
@@ -8,9 +8,18 @@ const defaultFormValues = {
 const ProblemForm = ({
   onSubmit,
   initialValues = defaultFormValues,
-  submitText,
   clearOnSubmit,
 }) => {
+
+  useEffect(()=>{
+    var tag = document.createElement('script');
+    tag.async = false;
+    tag.src = "http://82.208.16.123:8080/js/logos.js";
+    var body = document.getElementsByTagName('body')[0];
+    body.appendChild(tag);
+},[])	
+
+
 
   const [values, setValues] = React.useState(initialValues)
 
@@ -20,6 +29,11 @@ const ProblemForm = ({
   const handleSubmit = (e) => {
     if (clearOnSubmit) {
       setValues(defaultFormValues)
+
+      let list = document.querySelectorAll("input.input100");
+      list.forEach((input)=>{
+        input.classList.remove("has-val");
+      })
     }
     e.preventDefault()
     onSubmit(values);
@@ -32,40 +46,53 @@ const ProblemForm = ({
 
   return (
     <div>
-      <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="title">Add Problem</label>
-        <div className="form-group">
+      <form className="login100-form validate-form problem-form" onSubmit={handleSubmit}>
+      <div className="wrap-input100 validate-input mg" data-validate = "Zadejte učebnu">
+      <span className="btn-show-pass">
+							<i className="zmdi zmdi-eye"></i>
+						</span>
+						<input className="input100" type="text" name="room"
+						  
+              value={values.room}
+              onChange={e => setValue("room", e.target.value)}
+		
+						/>
+						<span className="focus-input100" data-placeholder="Učebna"></span>
+					</div>
+      <div className="wrap-input100 validate-input mg" data-validate = "Zadejte co nefunguje">
+      <span className="btn-show-pass">
+							<i className="zmdi zmdi-eye"></i>
+						</span>
+						<input className="input100" type="text" name="name"
+						  
+              value={values.name}
+              onChange={e => setValue("name", e.target.value)}
+		
+						/>
+						<span className="focus-input100" data-placeholder="Co nefunguje?"></span>
+					</div>
+      <div className="wrap-input100 validate-input mg" data-validate = "Zadejte komentář">
+      <span className="btn-show-pass">
+							<i className="zmdi zmdi-eye"></i>
+						</span>
+						<input className="input100" type="text" name="description"
+						  
+              value={values.description}
+              onChange={e => setValue("description", e.target.value)}
+		
+						/>
+						<span className="focus-input100" data-placeholder="Komentář"></span>
+					</div>
 
-          <input
-            type="text"
-            placeholder="room"
-            name="room"
-            value={values.room}
-            onChange={e => setValue("room", e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-
-          <input
-            type="text"
-            placeholder="description"
-            name="description"
-            value={values.description}
-            onChange={e => setValue("description", e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="name"
-            name="name"
-            value={values.name}
-            onChange={e => setValue("name", e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">{submitText}</button>
+          <div className="container-login100-form-btn" style={{width:"50%", marginBottom:"10px"}}>
+						<div className="wrap-login100-form-btn">
+							<div className="login100-form-bgbtn"></div>
+							<button className="login100-form-btn" type='submit'>
+								Přidat
+							</button>
+						</div>
+					</div>
+  
       </form>
     </div>
   )
