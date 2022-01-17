@@ -34,10 +34,15 @@ class ProblemController extends Controller
 
         Notification::send($allAdmins, new ProblemCreatedNotification());
 
+        function problemWithUser($problem)
+        {
+            $user = $problem->user;
+
+            return $problem;
+        }
 
         return response()->json([
-            $problem,
-            $request->user()
+            problemWithUser($problem),
         ], 200);
     }
 
