@@ -32,13 +32,17 @@ class ProblemController extends Controller
         ]);
 
 
-            Notification::send($allAdmins, new ProblemCreatedNotification());
+        Notification::send($allAdmins, new ProblemCreatedNotification());
 
+        function problemWithUser($problem)
+        {
+            $user = $problem->user;
 
+            return $problem;
+        }
 
         return response()->json([
-            $problem,
-            $request->user()
+            problemWithUser($problem),
         ], 200);
     }
 
@@ -77,8 +81,17 @@ class ProblemController extends Controller
         $problem->update($request->all());
         $problem->save();
 
+        function problemWithUser($problemId)
+        {
+            $problem = Problem::find($problemId);
+
+            $user = $problem->user;
+
+            return $problem;
+        }
+
         return response()->json([
-            $problem,
+            problemWithUser($id),
         ], 200);
     }
 
