@@ -62,10 +62,10 @@ a:focus {
 a:hover {
 	text-decoration: none;
   color: #6a7dfe;
-  color: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
-  color: -o-linear-gradient(to left, #21d4fd, #b721ff);
-  color: -moz-linear-gradient(to left, #21d4fd, #b721ff);
-  color: linear-gradient(to left, #21d4fd, #b721ff);
+  color: -webkit-linear-gradient(to left, 	#eec226, #ff9966);
+  color: -o-linear-gradient(to left, 	#eec226, #ff9966);
+  color: -moz-linear-gradient(to left, 	#eec226, #ff9966);
+  color: linear-gradient(to left, 	#eec226, #ff9966);
 }
 
 /*---------------------------------------------*/
@@ -260,10 +260,10 @@ iframe {
   transition: all 0.4s;
 
   background: #6a7dfe;
-  background: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
-  background: -o-linear-gradient(to left, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(to left, #21d4fd, #b721ff);
-  background: linear-gradient(to left, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(to left, 	#eec226, #ff9966);
+  background: -o-linear-gradient(to left, 	#eec226, #ff9966);
+  background: -moz-linear-gradient(to left, 	#eec226, #ff9966);
+  background: linear-gradient(to left, 	#eec226, #ff9966);
 }
 
 .focus-input100::after {
@@ -327,18 +327,18 @@ iframe {
 
 .btn-show-pass:hover {
   color: #6a7dfe;
-  color: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
-  color: -o-linear-gradient(to left, #21d4fd, #b721ff);
-  color: -moz-linear-gradient(to left, #21d4fd, #b721ff);
-  color: linear-gradient(to left, #21d4fd, #b721ff);
+  color: -webkit-linear-gradient(to left, 	#eec226, #ff9966);
+  color: -o-linear-gradient(to left, 	#eec226, #ff9966);
+  color: -moz-linear-gradient(to left, 	#eec226, #ff9966);
+  color: linear-gradient(to left, 	#eec226, #ff9966);
 }
 
 .btn-show-pass.active {
   color: #6a7dfe;
-  color: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
-  color: -o-linear-gradient(to left, #21d4fd, #b721ff);
-  color: -moz-linear-gradient(to left, #21d4fd, #b721ff);
-  color: linear-gradient(to left, #21d4fd, #b721ff);
+  color: -webkit-linear-gradient(to left, 	#eec226, #ff9966);
+  color: -o-linear-gradient(to left, 	#eec226, #ff9966);
+  color: -moz-linear-gradient(to left, 	#eec226, #ff9966);
+  color: linear-gradient(to left, 	#eec226, #ff9966);
 }
 
 
@@ -372,10 +372,10 @@ iframe {
   width: 300%;
   height: 100%;
   background: #a64bf4;
-  background: -webkit-linear-gradient(to left, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: -o-linear-gradient(to left, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(to left, #21d4fd, #b721ff, #21d4fd, #b721ff);
-  background: linear-gradient(to left, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(to left, 	#eec226, #ff9966, 	#eec226, #ff9966);
+  background: -o-linear-gradient(to left, 	#eec226, #ff9966, 	#eec226, #ff9966);
+  background: -moz-linear-gradient(to left, 	#eec226, #ff9966, 	#eec226, #ff9966);
+  background: linear-gradient(to left, 	#eec226, #ff9966, 	#eec226, #ff9966);
   top: 0;
   left: -100%;
 
@@ -3477,10 +3477,154 @@ iframe {
 }
 
 
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	background: white;
+	
+	box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+   -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+   -webkit-box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+   -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90vw;
+	border-radius: 10px;
+	flex-direction: column;
+	padding: 20px;
+	background: white;
+	
+	box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+   -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+   -webkit-box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+   -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
 
 
+	min-width: 100px;
+}
+
+.problem-form {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	
+}
+section {
+	width: 100%;
+}
+.mg {
+	margin: 10px 15px 10px 0;
+
+}
+
+body{
+	background-color: #f2f2f2;
+}
+
+.btn.btn-primary {
+	width: 50%;
+}
 
 
+table.problemTable  {
+	border-collapse:separate; 
+	border-spacing:2em;
+
+	margin:20px auto;
+	width: 100%;
+	font-size: 1rem;
+}
+.problemTable thead {
+	font-size: 1.1rem;
+	font-family:Poppins-Bold;
+
+}
+
+.warn {
+	color: #ff9966;
+
+}
+
+.done {
+	color: #339900;
+}
+.edit:hover .fa-wrench {
+	color: #339900;
+}
+
+.edit:hover .fa-trash:hover {
+	color: #cc3300;
+}
 
 
+.nav ul {
+	display: flex;
+}
 
+i.nav-icon {
+	font-size: 1.6rem;
+	padding: 0 20px;
+}
+
+.nav ul li:hover .fa-sign-out-alt {
+	color: #cc3300;
+}
+
+.nav ul li:hover .fa-id-badge {
+	color: #339900;
+}
+
+.singleProblem {
+	width: 60vw;
+}
+.singleProblem form {
+	margin-top: 50px;
+}
+
+div.playButtons {
+
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	font-size: 1.2rem;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.single-trash {
+	font-size: 1.2rem;
+	margin: 20px 0 10px 0;
+}
+
+button.edit:hover .fa-play {
+	color: #339900;
+}
+
+button.edit:hover .fa-pause {
+	color: #ff9966;
+}
+button.edit:hover .fa-redo{
+	color: #ff9966;
+}
+
+.singleProblem table{
+	border-collapse:separate; 
+	border-spacing:0.5em;
+}

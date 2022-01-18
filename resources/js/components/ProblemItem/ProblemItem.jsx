@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ProblemContext from "../../context/problems/problemsContext"
 import UserContext from "../../context/user/userContext"
 import { useHistory } from "react-router-dom";
-import userContext from '../../context/user/userContext';
+
 
 const ProblemItem = ({problem}) => {
 
@@ -11,9 +11,9 @@ const ProblemItem = ({problem}) => {
    const { deleteProblem  } = problemContext;
 
    const userContext = useContext(UserContext);
-   const { user  } = userContext;
+   const { user } = userContext;
 
-
+   console.log(problem)
    const history = useHistory();
 
    const onDelete =  () => {
@@ -23,14 +23,20 @@ const ProblemItem = ({problem}) => {
  
    return (
       
-      <div>
+      <tr>
+          <td>{problem.user.name}</td>
+         <td>{problem.room} </td>
+         <td>{problem.name}</td>
+         <td>{problem.created_at.slice(0,10)}</td>
+         <td className={problem.fixed ? "done" : "warn"}>{problem.fixed ? "Opraveno" : "Čekající"}</td>
+         <td>{problem.fix_time ? problem.fix_time : "0"}</td>
+         <td>{user.admin &&<Link to={`problem/${problem.id}`}><button title="Upravit" className='edit'><i className="fas fa-wrench"></i></button></Link>}</td>
+         <td>{user.admin || user.id==problem.user.id ?<button title="Smazat" onClick={onDelete} className='edit'><i className="fas fa-trash"></i></button>: <></>}</td>
+         
+         
       
-         <div>{problem.room} / {problem.description}/ {problem.name} / {problem.id}/
-         {user.admin &&<Link to={`problem/${problem.id}`}><button>Fixx</button></Link>}
-         {user.admin || user.id==problem.user.id ?<button onClick={onDelete}>Delete</button>: <></>}
-         </div>
         
-      </div>
+      </tr>
    )
 }
 

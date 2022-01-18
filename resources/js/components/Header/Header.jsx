@@ -1,54 +1,18 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, {useContext} from 'react'
+import { Link } from 'react-router-dom'
 import UserContext from '../../context/user/userContext';
 
 
+const Header = () => {
 
-
-const Login = () => {
-
-	useEffect(()=>{
-	
-
-			  var tag = document.createElement('script');
-			  tag.async = false;
-			  tag.src = "http://82.208.16.123:8080/js/logos.js";
-			  var body = document.getElementsByTagName('body')[0];
-			  body.appendChild(tag);
-	},[])	
-	
-
-	const userContext = useContext(UserContext);
-  const { isAuthenticated, login, error } = userContext;
-
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-
-  const { email, password } = formData;
-
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    login(email, password);
-  };
-
-  if (isAuthenticated) {
-    return <Redirect to="/" />
-  } 
-
-  
-
-  return (
-    <div className="limiter">
-		<div className="container-login100">
-			<div className="wrap-login100">
-				<form className="login100-form validate-form" onSubmit={onSubmit}>
-					
-					<span className="login100-form-title p-b-48" style={{maxWidth: "150px", maxHeight: "150px", margin: "0px auto 30px auto"}}>
+   const userContext = useContext(UserContext);
+   const { logout } = userContext;
+   return (
+      <nav>
+         <Link to="/">
+         <div className='logo'>
+            
+         <span>
 						<svg enableBackground="new 0 0 85.3 57.4" version="1.1" viewBox="0 0 85.3 57.4" xmlns="http://www.w3.org/2000/svg">
 							<path className="p1" d="M3,3h37.8v16.7h-5.6l-3.5,5.8l-4.1-5.8H3V3z M0,0v22.8h26.1l5.8,8.3l5.1-8.3h6.9V0H0z"></path>
 							<path className="p1" d="m11.2 6c2.6 0 3.9 1.5 3.9 1.5l-1.2 1.9s-1.2-1.1-2.6-1.1c-2 0-2.9 1.5-2.9 3s1 3.1 2.9 3.1c1.6 0 2.7-1.3 2.7-1.3l1.3 1.9s-1.5 1.7-4.2 1.7c-3.2 0-5.4-2.3-5.4-5.4 0.1-3 2.4-5.3 5.5-5.3"></path>
@@ -75,53 +39,17 @@ const Login = () => {
 								<polygon points="77.3 50.3 81.6 50.3 81.6 51.7 79 51.7 79 52.9 81 52.9 81 54.3 79 54.3 79 55.6 81.7 55.6 81.7 57 77.3 57"></polygon>
 							</svg>
 					</span>
-					<span className="login100-form-title p-b-26" style={{marginBottom:"20px"}}>
-						Vítejte
-					</span>
-					<div className="wrap-input100 validate-input" data-validate = "Zadejte email">
-						<input className="input100" type="email" name="email"
-						  
-				
-						  value={email}
-						  onChange={onChange}
-		
-						/>
-						<span className="focus-input100" data-placeholder="Email"></span>
-					</div>
-
-					<div className="wrap-input100 validate-input" data-validate="Zadejte heslo">
-						<span className="btn-show-pass">
-							<i className="zmdi zmdi-eye"></i>
-						</span>
-						<input className="input100" type="password" 
-						 type="password"
-					
-						 name="password"
-						 value={password}
-						 onChange={onChange}
-						/>
-						<span className="focus-input100" data-placeholder="Password"></span>
-					</div>
-     					<div style={{color:"red", textAlign:"center", margin:"auto", marginBottom:10}}>
-						  <span > {error && error}</span>
-						  </div>
-					
-					<div className="container-login100-form-btn"  style={{marginBottom: "50px"}}>
-						<div className="wrap-login100-form-btn">
-							<div className="login100-form-bgbtn"></div>
-							<button className="login100-form-btn" type='submit'>
-								Přihlásit se
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		
-	</div>
-  )
+         </div>
+         </Link>
+       
+         <div className='nav'>
+            <ul>
+               <li><Link to="/profile"><i className="fas fa-id-badge nav-icon"></i></Link></li>
+               <li> <button onClick={logout}><i className="fas fa-sign-out-alt nav-icon"></i></button></li>
+            </ul>
+         </div>
+      </nav>
+   )
 }
 
-export default Login;
-
-
+export default Header
