@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function Symfony\Component\String\b;
 
 class LoginController extends Controller
 {
@@ -30,4 +31,5 @@ class LoginController extends Controller
             'access_token' => $accessToken
         ], 200);
     }
+
 }
