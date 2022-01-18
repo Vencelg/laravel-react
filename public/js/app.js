@@ -3267,7 +3267,12 @@ var ProblemForm = function ProblemForm(_ref) {
       _ref$initialValues = _ref.initialValues,
       initialValues = _ref$initialValues === void 0 ? defaultFormValues : _ref$initialValues,
       clearOnSubmit = _ref.clearOnSubmit;
-  var rooms = ["Theta", "Ró", "Fí", "Gamma", "Eta", "Alpha"];
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(initialValues),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      values = _React$useState2[0],
+      setValues = _React$useState2[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var tag = document.createElement('script');
     tag.async = false;
@@ -3275,11 +3280,6 @@ var ProblemForm = function ProblemForm(_ref) {
     var body = document.getElementsByTagName('body')[0];
     body.appendChild(tag);
   }, []);
-
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(initialValues),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      values = _React$useState2[0],
-      setValues = _React$useState2[1];
 
   var setValue = function setValue(field, value) {
     return setValues(function (old) {
