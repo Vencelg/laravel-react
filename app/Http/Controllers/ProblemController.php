@@ -52,15 +52,13 @@ class ProblemController extends Controller
         function problemsLoop() :array
         {
             $problems = Problem::all();
-            $sortedProblems = array_reverse($problems);
-            foreach ($problems as $problem) {
+            $sortedProblems = array_reverse($problems->toArray());
+            foreach ($sortedProblems as $problem) {
                 $username = $problem->user->name;
             }
 
-            return $problems;
+            return $sortedProblems;
         }
-
-        $newProblems = [problemsLoop()];
 
         return response(problemsLoop(), 200);
     }
