@@ -57,12 +57,12 @@ class ProblemController extends Controller
                 $username = $problem->user->name;
             }
 
-            return array_reverse($problems, false);
+            return $problems;
         }
 
-        $newProblems = problemsLoop();
+        $newProblems = [problemsLoop()];
 
-        return response(problemsLoop(), 200);
+        return response($newProblems, 200);
     }
 
     //One problem things
