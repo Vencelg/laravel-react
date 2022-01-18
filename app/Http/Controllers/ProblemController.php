@@ -49,18 +49,17 @@ class ProblemController extends Controller
     public function show()
     {
 
-        function problemsLoop()
+        function problemsLoop() :array
         {
             $problems = Problem::all();
-
             foreach ($problems as $problem) {
                 $username = $problem->user->name;
             }
 
-            return $problems;
+            return $problems->toArray();
         }
 
-        return response(problemsLoop(), 200);
+        return response(array_reverse(problemsLoop()), 200);
     }
 
     //One problem things

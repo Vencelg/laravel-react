@@ -17,7 +17,13 @@ class Problem extends Model
         'fixed',
         'fix_time'
     ];
-    
+
+    //protected $dateFormat = 'd/m/Y';
+
+    protected $casts = [
+        'created_at'  => 'date:d/m/Y',
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }

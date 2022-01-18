@@ -24,4 +24,18 @@ class PswdController extends Controller
             'message' => 'Heslo bylo změněno'
         ], 200);
     }
+
+    public function check(Request $request) {
+        $password = $request->user()->password;
+
+        if (!Hash::check($request->password, $password)) {
+            return response()->json([
+                'result' => false
+            ], 200);
+        }
+
+        return response()->json([
+            'result' => true
+        ], 200);
+    }
 }

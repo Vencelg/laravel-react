@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     Route::post('password/change', [PswdController::class, 'store']);
+    Route::post('password/check', [PswdController::class, 'check']);
 
         //Route::post('email/resend', [VerificationController::class, 'resend']);
         Route::get('/problems', [ProblemController::class, 'show']);
