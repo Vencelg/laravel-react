@@ -62,7 +62,7 @@ class ProblemController extends Controller
 
         $newProblems = problemsLoop();
 
-        return response(array_reverse($newProblems), 200);
+        return response(problemsLoop(), 200);
     }
 
     //One problem things
