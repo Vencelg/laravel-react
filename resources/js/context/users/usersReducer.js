@@ -1,11 +1,11 @@
-import { USERS_LOADED, USER_DELETE, USERS_ERROR, CREATE_USER, USER_CREATE } from "../types"
+import { USERS_LOADED, USER_DELETE, USERS_ERROR, USER_CREATE } from "../types"
 
 const Reducer = (state, action) => {
     switch (action.type) {
        case USERS_LOADED:
           return {
             ...state,
-            users: action.payload,
+            users: action.payload.users,
             error: null,
             loading: false
           }
@@ -19,7 +19,7 @@ const Reducer = (state, action) => {
       case USER_CREATE: 
          return {
             ...state,
-            users: [action.payload, ...state.users],
+            users: [action.payload.newUser, ...state.users],
             error: null,
             loading: false
          }

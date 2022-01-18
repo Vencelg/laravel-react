@@ -13,6 +13,7 @@ const ProblemTable = () => {
       } = problemsContext;
 
 
+
    useEffect(()=>{
 
       getProblems();
@@ -36,7 +37,7 @@ const ProblemTable = () => {
          <tbody>
 
          
-          {!error && (
+            {!error && (
                !loading && (
                   problems && (
                      problems.map((problem) => (

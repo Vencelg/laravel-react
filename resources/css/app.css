@@ -3557,6 +3557,10 @@ table.problemTable  {
 
 }
 
+.problemTable i {
+	font-size: 1.2rem;
+}
+
 .warn {
 	color: #ff9966;
 
@@ -3627,4 +3631,27 @@ button.edit:hover .fa-redo{
 .singleProblem table{
 	border-collapse:separate; 
 	border-spacing:0.5em;
+}
+
+div.main.profile-card {
+	width: 60vw;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: row;
+}
+
+.adminBox {
+	margin-top: 40px;
+	width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.adminBox div {
+	margin: 0 10px;
+}
+
+.adminBox label {
+	margin: 0;
 }

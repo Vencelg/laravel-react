@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 
 const defaultFormValues = {
-  room: '',
+  room: '', 
   description: '',
   name: '',
 }
@@ -10,6 +10,8 @@ const ProblemForm = ({
   initialValues = defaultFormValues,
   clearOnSubmit,
 }) => {
+
+  const rooms = ["Theta","Ró", "Fí", "Gamma", "Eta", "Alpha"]
 
   useEffect(()=>{
     var tag = document.createElement('script');
@@ -42,7 +44,7 @@ const ProblemForm = ({
 
   React.useEffect(() => {
     setValues(initialValues)
-  }, [initialValues])
+  }, [initialValues])   
 
   return (
     <div>

@@ -1,39 +1,43 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import UsersContext from '../../context/users/usersContext';
 import RegisterUserForm from './RegisterUserForm';
+import Header from '../Header/Header';
+import UsersTable from './UsersTable';
 
 const Admin = () => {
 
-   const userContext = useContext(UsersContext);
-   const { loading, error, createUser } = userContext;
+   const usersContext = useContext(UsersContext);
+   const { loading, error, createUser } = usersContext;
 
 
-    return (
-   
-      <div className="flex">
-         <div className="form-container">
-                     <RegisterUserForm
-                        onSubmit={createUser}
-                        clearOnSubmit
-                       
-                        submitText={
-                           loading
-                              ? 'Saving...'
-                              : error
-                                 ? 'Error!'
-                                    : 'Register User'
-                        }
-                     />
-                  </div>
-       </div>
-         
-      )
-  
-      
+   return (
+      <>
+         <Header />
+         <main>
+            <div className="main">
+               <section>
+               <RegisterUserForm
+                     onSubmit={createUser}
+                     clearOnSubmit
+                  />
+               </section>
+               <section> <UsersTable/></section>
+              
+
+                  
+               </div>
+        
+         </main>
+      </>
+
+
+   )
+
+
 };
 
 
-   
+
 
 
 export default Admin

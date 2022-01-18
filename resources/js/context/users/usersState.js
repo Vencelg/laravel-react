@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import api from "../../scripts/api";
-import UsersContext from "./usersContext";
-import UsersReducer from "./usersReducer";
-import { USERS_LOADED, USER_DELETE, USERS_ERROR, CREATE_USER } from "../types"
+import UsersContext from "./usersContext"
+import UsersReducer from "./usersReducer"
+import { USERS_LOADED, USER_DELETE, USERS_ERROR, USER_CREATE } from "../types"
 
 
 const UsersState = props => {
@@ -21,6 +21,7 @@ const UsersState = props => {
            
             const res = await api.get('/admin/users');
 
+          
             dispatch({
                 type: USERS_LOADED,
                 payload: res.data
@@ -38,9 +39,9 @@ const UsersState = props => {
       try {
          
           const res = await api.post('/admin/users', values);
-
+            console.log(res.data.newUser)
           dispatch({
-              type: CREATE_USER,
+              type: USER_CREATE,
               payload: res.data
           });
       } catch (error) {

@@ -5,8 +5,12 @@ import UserContext from '../../context/user/userContext';
 
 const Header = () => {
 
+
+
    const userContext = useContext(UserContext);
-   const { logout } = userContext;
+   const { logout, user:{admin} } = userContext;
+
+
    return (
       <nav>
          <Link to="/">
@@ -44,8 +48,9 @@ const Header = () => {
        
          <div className='nav'>
             <ul>
-               <li><Link to="/profile"><i className="fas fa-id-badge nav-icon"></i></Link></li>
-               <li> <button onClick={logout}><i className="fas fa-sign-out-alt nav-icon"></i></button></li>
+					{admin && (<Link title='Správa uživatelů' to={`/admin-users`}><i className="fas fa-users-cog nav-icon"></i></Link>)} 
+               <li><Link title='Profil' to="/profile"><i className="fas fa-id-badge nav-icon"></i></Link></li>
+               <li> <button title='Odhlásit se' onClick={logout}><i className="fas fa-sign-out-alt nav-icon"></i></button></li>
             </ul>
          </div>
       </nav>

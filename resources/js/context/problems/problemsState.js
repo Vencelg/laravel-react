@@ -78,7 +78,7 @@ const ProblemsState = props => {
       try {
            
          const res = await api.delete(`/problem/${problemId}`);
-
+        
          dispatch({
              type: DELETE_PROBLEM,
              payload: problemId
