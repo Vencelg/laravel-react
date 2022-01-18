@@ -51,7 +51,7 @@ class ProblemController extends Controller
 
         function problemsLoop()
         {
-            $problems = array_reverse(Problem::all());
+            $problems = Problem::all();
 
             foreach ($problems as $problem) {
                 $username = $problem->user->name;
@@ -60,7 +60,7 @@ class ProblemController extends Controller
             return $problems;
         }
 
-        return response(problemsLoop(), 200);
+        return response(array_reverse(problemsLoop()), 200);
     }
 
     //One problem things
