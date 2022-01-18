@@ -51,12 +51,12 @@ class ProblemController extends Controller
 
         function problemsLoop()
         {
-            $problems = Problem::all()->sortBy('created_at');
+            $problems = Problem::all();
 
             foreach ($problems as $problem) {
                 $username = $problem->user->name;
             }
-            
+
             return $problems;
         }
 
