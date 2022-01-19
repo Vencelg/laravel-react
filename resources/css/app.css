@@ -3694,7 +3694,10 @@ select {
 	width: 50%;
 	margin-bottom: "10px";
 }
-
+.addUser-btn{
+	width:50%; 
+	margin-bottom:10px
+}
 @media only screen and (max-width: 880px) {
 	.sm-none {
 		display: none;
@@ -3720,6 +3723,10 @@ select {
 
 	table.problemTable {
 		border-spacing: 1rem;
+	}
+	.addUser-btn{
+		width:100%; 
+	
 	}
 	
 	div.main.profile-card {
@@ -3748,7 +3755,9 @@ select {
 	.logo {
 			min-width: 70px;
 	}
-
+	.adminBox {
+		width: 100%;
+	}
 	h2 {
 		text-align: center;
 	}

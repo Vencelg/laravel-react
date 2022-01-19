@@ -27,6 +27,7 @@ const ProblemForm = ({
     setValues((old) => ({ ...old, [field]: value }))
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     if (clearOnSubmit) {
       setValues(defaultFormValues)
 
@@ -35,8 +36,8 @@ const ProblemForm = ({
         input.classList.remove("has-val");
       })
     }
-    e.preventDefault()
-    onSubmit(values);
+
+    //onSubmit(values);
 
   }
 
@@ -53,7 +54,7 @@ const ProblemForm = ({
           </span>
 
             <select defaultValue="" className="input100" onChange={(e) => setValue("room", e.target.value)} name="room" id="">
-              <option disabled value="" ></option>
+              <option value="" disabled></option>
               <option value="Alfa">Alfa</option>
               <option value="Ateliér - Zeman">Ateliér - Zeman</option>
               <option value="Ateliér - Zeman A">Ateliér - Zeman A</option>
@@ -74,6 +75,7 @@ const ProblemForm = ({
               <option value="Sigma">Sigma</option>
               <option value="Tau">Tau</option>
               <option value="Theta">Theta</option>     
+              <option value="Jiné">Jiné</option>     
             </select>
 
             
@@ -86,7 +88,7 @@ const ProblemForm = ({
           <span className="btn-show-pass">
             <i className="zmdi zmdi-eye"></i>
           </span>
-          <input className="input100" type="text" name="name"
+          <input className={`input100`} type="text" name="name"
 
             value={values.name}
             onChange={e => setValue("name", e.target.value)}
@@ -98,7 +100,7 @@ const ProblemForm = ({
           <span className="btn-show-pass">
             <i className="zmdi zmdi-eye"></i>
           </span>
-          <input className="input100" type="text" name="description"
+          <input className={`input100`} type="text" name="description"
 
             value={values.description}
             onChange={e => setValue("description", e.target.value)}

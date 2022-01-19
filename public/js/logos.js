@@ -49,7 +49,10 @@
            }
        }
        else {
-           if($(input).val().trim() == ''){
+           if($(input).val() == undefined){
+            return false;
+           }
+           else if($(input).val().trim() == '' ){
                return false;
            }
        }

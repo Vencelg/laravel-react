@@ -100,8 +100,7 @@ const PasswordChange = () => {
                 <i className="zmdi zmdi-eye"></i>
               </span>
               <input className="input100" type="password" 
-               type="password"
-            
+               type="password"            
                name="passwordConf"
                value={formData.passwordConf}
                onChange={onChange}
