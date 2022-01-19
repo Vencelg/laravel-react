@@ -44,7 +44,7 @@ class VerificationController extends Controller
 
         $request->user()->sendEmailVerificationNotification();
 
-        return response()->json(["message" => "váš odkaz byl zaslán"], 200);
+        return response()->json(["message" => "Váš odkaz byl zaslán"], 200);
 
     }
 }

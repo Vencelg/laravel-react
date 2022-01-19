@@ -20,7 +20,7 @@ class LoginController extends Controller
 
         if(!$user || !Hash::check($login['password'], $user->password)) {
             return response()->json([
-                'message' => 'Bad creds',
+                'message' => 'Špatně zadané údaje',
             ], 401);
         }
 
