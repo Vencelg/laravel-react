@@ -37,6 +37,7 @@ class ProblemController extends Controller
         function problemWithUser($problem)
         {
             $user = $problem->user;
+            $fixed = $problem->fixed;
 
             return $problem;
         }
