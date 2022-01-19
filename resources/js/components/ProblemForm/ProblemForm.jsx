@@ -23,9 +23,6 @@ const ProblemForm = ({
   }, [])
 
 
-
-  
-
   const setValue = (field, value) =>
     setValues((old) => ({ ...old, [field]: value }))
 
@@ -33,7 +30,7 @@ const ProblemForm = ({
     if (clearOnSubmit) {
       setValues(defaultFormValues)
 
-      let list = document.querySelectorAll("input.input100");
+      let list = document.querySelectorAll("input100");
       list.forEach((input) => {
         input.classList.remove("has-val");
       })
@@ -55,12 +52,31 @@ const ProblemForm = ({
             <i className="zmdi zmdi-eye"></i>
           </span>
 
-             <input className="input100" type="text" name="room"
+            <select defaultValue="" className="input100" onChange={(e) => setValue("room", e.target.value)} name="room" id="">
+              <option disabled value="" ></option>
+              <option value="Alfa">Alfa</option>
+              <option value="Ateliér - Zeman">Ateliér - Zeman</option>
+              <option value="Ateliér - Zeman A">Ateliér - Zeman A</option>
+              <option value="Ateliér - Zeman B">Ateliér - Zeman B</option>
+              <option value="Delta">Delta</option>
+              <option value="Epsilon">Epsilon</option>
+              <option value="Eta">Eta</option>
+              <option value="Fí">Fí</option>
+              <option value="Fotografický ateliér">Fotografický ateliér</option>
+              <option value="Gama">Gama</option>
+              <option value="Iota">Iota</option>
+              <option value="Kappa">Kappa</option>
+              <option value="Kinosál">Kinosál</option>
+              <option value="Lambda">Lambda</option>
+              <option value="Omicron">Omicron</option>
+              <option value="Ró">Ró</option>
+              <option value="Sborovna">Sborovna</option>
+              <option value="Sigma">Sigma</option>
+              <option value="Tau">Tau</option>
+              <option value="Theta">Theta</option>     
+            </select>
 
-              value={values.room}
-              onChange={e => setValue("room", e.target.value)}
-
-            /> 
+            
         
 
 
@@ -91,7 +107,7 @@ const ProblemForm = ({
           <span className="focus-input100" data-placeholder="Komentář"></span>
         </div>
 
-        <div className="container-login100-form-btn" style={{ width: "50%", marginBottom: "10px" }}>
+        <div className="container-login100-form-btn" >
           <div className="wrap-login100-form-btn">
             <div className="login100-form-bgbtn"></div>
             <button className="login100-form-btn" type='submit'>

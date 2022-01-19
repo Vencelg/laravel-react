@@ -48,7 +48,7 @@ const Header = () => {
        
          <div className='nav'>
             <ul>
-					{admin && (<Link title='Správa uživatelů' to={`/admin-users`}><i className="fas fa-users-cog nav-icon"></i></Link>)} 
+					{admin == 1 && (<Link title='Správa uživatelů' to={`/admin-users`}><i className="fas fa-users-cog nav-icon"></i></Link>)} 
                <li><Link title='Profil' to="/profile"><i className="fas fa-id-badge nav-icon"></i></Link></li>
                <li> <button title='Odhlásit se' onClick={logout}><i className="fas fa-sign-out-alt nav-icon"></i></button></li>
             </ul>

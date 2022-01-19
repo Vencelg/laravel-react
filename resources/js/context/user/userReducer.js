@@ -1,4 +1,4 @@
-import { SET_LOADING,PASSWORD_CHANGE, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_PROFILE, LOGOUT } from "../types"
+import { PASSWORD_CHANGE, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS,  LOGOUT } from "../types"
 
 const Reducer = (state, action) => {
     switch (action.type) {
@@ -22,7 +22,7 @@ const Reducer = (state, action) => {
         case PASSWORD_CHANGE:
             return {
                 ...state,
-                user: action.payload,
+                user: action.payload.user,
                 error: null,
                 loading: false
             }

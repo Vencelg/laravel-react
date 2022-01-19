@@ -7,7 +7,7 @@ import UsersTable from './UsersTable';
 const Admin = () => {
 
    const usersContext = useContext(UsersContext);
-   const { loading, error, createUser } = usersContext;
+   const {createUser } = usersContext;
 
 
    return (

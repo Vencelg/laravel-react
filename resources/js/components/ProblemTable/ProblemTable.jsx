@@ -24,13 +24,13 @@ const ProblemTable = () => {
       <table className='problemTable'>
          <thead>
             <tr>
-               <td>Autor</td>
-               <td>Místnost</td>
+               <td className='sm-none'>Autor</td>
+               <td className='sm-none'>Místnost</td>
                <td>Co nefunguje?</td>
-               <td>Datum</td>
+               <td className='sm-none'>Datum</td>
                <td>Stav</td>
-               <td>Délka opravy</td>
-               <td></td>
+               <td className='sm-none'>Délka opravy</td>
+               <td className='sm-none'></td>
                <td></td>
             </tr>
          </thead>

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import ProblemsContext from "../../context/problems/problemsContext"
 
 import ProblemForm from '../ProblemForm/ProblemForm';
 import ProblemTable from '../ProblemTable/ProblemTable';
-
+import AlertBox from '../AlertBox/AlertBox';
 import Header from '../Header/Header';
 
 const Main = () => {
@@ -19,6 +19,7 @@ const Main = () => {
    return (
       <>
          <Header/>
+         <AlertBox/>
            <main>
               <div className="main">
               <section>

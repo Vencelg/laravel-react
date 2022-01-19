@@ -3599,7 +3599,7 @@ i.nav-icon {
 	width: 60vw;
 }
 .singleProblem form {
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 div.playButtons {
@@ -3655,3 +3655,101 @@ div.main.profile-card {
 .adminBox label {
 	margin: 0;
 }
+
+select {
+	outline: none;
+	border:none
+}
+
+.alert {
+	padding: 0.75rem 5rem;
+	background: #ffcc00;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+.alert i {
+	margin-right: 10px;
+}
+.alert i:hover {
+	margin-right: 10px;
+	color: red;
+}
+
+
+.alertLink {
+	color: blue;
+}
+.alertLink:hover{
+	text-decoration: underline;
+}
+
+.singleProblem form {
+
+	width: 30%;
+}
+
+.problem-form .container-login100-form-btn {
+	width: 50%;
+	margin-bottom: "10px";
+}
+
+@media only screen and (max-width: 880px) {
+	.sm-none {
+		display: none;
+	}
+
+	.problem-form {
+		flex-direction: column;
+	}
+	.problem-form .container-login100-form-btn {
+		width: 100%;
+		
+	}
+	.main {
+		width: 95vw;
+		padding: 10px;
+	}
+	main {
+		padding: 20px 10px;
+	}
+	thead td {
+		font-size: 0.8rem;
+	}
+
+	table.problemTable {
+		border-spacing: 1rem;
+	}
+	
+	div.main.profile-card {
+		flex-direction: column;
+		width: 90vw;
+		
+	}
+	div.main.profile-card .wrap-login100-form-btn {
+		margin-bottom: 20px;
+
+	}
+
+	.profileData {
+		margin-top: 20px;
+	}
+
+	.singleProblem table {
+		text-align: left;
+	}
+	.singleProblem form {
+	
+		
+		width: 100%;
+	}
+
+	.logo {
+			min-width: 70px;
+	}
+
+	h2 {
+		text-align: center;
+	}
+ }

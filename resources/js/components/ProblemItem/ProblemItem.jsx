@@ -13,7 +13,7 @@ const ProblemItem = ({problem}) => {
    const userContext = useContext(UserContext);
    const { user } = userContext;
 
-   console.log(problem)
+ 
    const history = useHistory();
 
    const onDelete =  () => {
@@ -24,14 +24,14 @@ const ProblemItem = ({problem}) => {
    return (
       
       <tr>
-          <td>{problem.user.name}</td>
-         <td>{problem.room} </td>
+         <td className='sm-none'>{problem.user.name}</td>
+         <td className='sm-none'>{problem.room} </td>
          <td>{problem.name}</td>
-         <td>{problem.created_at.slice(0,10)}</td>
-         <td className={problem.fixed ? "done" : "warn"}>{problem.fixed ? "Opraveno" : "Čekající"}</td>
-         <td>{problem.fix_time ? problem.fix_time : "0"}</td>
-         <td>{user.admin &&<Link to={`problem/${problem.id}`}><button title="Upravit" className='edit'><i className="fas fa-wrench"></i></button></Link>}</td>
-         <td>{user.admin || user.id==problem.user.id ?<button title="Smazat" onClick={onDelete} className='edit'><i className="fas fa-trash"></i></button>: <></>}</td>
+         <td className='sm-none'>{problem.created_at.slice(0,10)}</td>
+         <td className={problem.fixed ==  "Čekající" ? "warn" : problem.fixed=="Probíhá" ? "" : "done"}>{problem.fixed}</td>
+         <td className='sm-none'>{problem.fix_time ? problem.fix_time : "0"}</td>
+         <td>{user.admin ==1 &&<Link to={`problem/${problem.id}`}><button title="Upravit" className='edit'><i className="fas fa-wrench"></i></button></Link>}</td>
+         <td  className={`${user.admin && "sm-none"}`} >{user.admin || user.id==problem.user.id ?<button title="Smazat" onClick={onDelete} className='edit'><i className="fas fa-trash"></i></button>: ""}</td>
          
          
       

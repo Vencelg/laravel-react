@@ -39,7 +39,7 @@ const UsersState = props => {
       try {
          
           const res = await api.post('/admin/users', values);
-            console.log(res.data.newUser)
+     
           dispatch({
               type: USER_CREATE,
               payload: res.data

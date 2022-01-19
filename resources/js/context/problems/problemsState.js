@@ -26,7 +26,7 @@ const ProblemsState = props => {
       try {
            
          const res = await api.get('/problems');
-
+       
          dispatch({
              type: LOAD_PROBLEMS,
              payload: res.data
@@ -44,11 +44,13 @@ const ProblemsState = props => {
       try {
            
          const res = await api.get(`/problem/${problemId}`);
-
+            
          dispatch({
              type: LOAD_PROBLEM,
              payload: res.data
          });
+
+         return res.data;
      } catch (error) {
          dispatch({
              type: PROBLEM_ERROR,
@@ -61,7 +63,7 @@ const ProblemsState = props => {
       try {
            
          const res = await api.post('/problems', values);
-        console.log(res);
+            
          dispatch({
              type: CREATE_PROBLEM,
              payload: res.data

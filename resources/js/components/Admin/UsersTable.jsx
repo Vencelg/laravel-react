@@ -22,10 +22,10 @@ const UsersTable = () => {
       <table className='problemTable'>
          <thead>
             <tr>
-               <td>Id</td>
-               <td>Jméno</td>
+               <td className='sm-none'>Id</td>
+               <td  className='sm-none'>Jméno</td>
                <td>Email</td>
-               <td>Oprávnění</td>
+               <td  className='sm-none'>Oprávnění</td>
                <td></td>
             </tr>
          </thead>

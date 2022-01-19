@@ -35,7 +35,6 @@ const App = () => {
                         <PrivateRoute exact path="/password-change" component={PasswordChange} />
                         
                         <PrivateRoute exact path="/profile" component={Profile}/>
-                        {/* <PrivateRoute exact path="/problem/:id" component={ProblemItem} /> */}
                         <AdminRoute exact path="/problem/:id" component={SingleProblem}/>
                         <AdminRoute exact path="/admin-users" component={Admin}/>
                         

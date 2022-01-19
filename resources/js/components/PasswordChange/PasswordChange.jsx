@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import UserContext from '../../context/user/userContext';
 import Header from '../Header/Header';
 import { useHistory } from "react-router-dom";
@@ -8,6 +8,8 @@ import api from '../../scripts/api';
 // /password/check
 
 const PasswordChange = () => {
+
+  const inputRef = useRef()
 
   useEffect(()=>{
 	
@@ -51,7 +53,7 @@ const PasswordChange = () => {
     
 
     const res = await api.post(`/password/check`, {password});
-    console.log(res.data.result)
+   
 
     if(res.data.result){
       setFormData({...formData, password:""})
@@ -60,6 +62,7 @@ const PasswordChange = () => {
     }
 
     setverify(res.data.result);
+    inputRef.current.focus();
   };
 
 
@@ -85,7 +88,7 @@ const PasswordChange = () => {
               </span>
               <input className="input100" type="password" 
                type="password"
-            
+              ref={inputRef}
                name="password"
                value={password}
                onChange={onChange}
