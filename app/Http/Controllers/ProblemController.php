@@ -22,7 +22,6 @@ class ProblemController extends Controller
             'name' => 'string|required',
             'description' => 'string|required',
             'room' => 'string|required',
-            'fixed' => 'string'
         ]);
 
 
@@ -30,7 +29,7 @@ class ProblemController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'room' => $request->room,
-            'fixed' => $request->fixed
+            'fixed' => 'Čekající'
         ]);
 
 
@@ -101,14 +100,14 @@ class ProblemController extends Controller
 
         if (!$problem) {
             return response()->json([
-                'message' => 'problem neexistuje'
+                'message' => 'Problem neexistuje'
             ], 400);
         }
 
         $problem->delete();
 
         return response()->json([
-            'message' => 'Deleted'
+            'message' => 'Problem smazán'
         ], 200);
     }
 }

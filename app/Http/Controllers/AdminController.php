@@ -30,14 +30,14 @@ class AdminController extends Controller
 
         if(!$user) {
             return response()->json([
-                'message' => 'user neexistuje'
+                'message' => 'Uživatel neexistuje'
             ], 400);
         }
 
         $user->delete();
 
         return response()->json([
-            'message' => 'deleted user'
+            'message' => 'Uživatel smazán'
         ], 200);
     }
 
@@ -57,7 +57,7 @@ class AdminController extends Controller
 
         if($emailValidation->fails()) {
             return response()->json([
-                'error' => 'email je již používán'
+                'error' => 'Email je již používán'
             ], 400);
         }
 
@@ -73,7 +73,7 @@ class AdminController extends Controller
         Notification::send($user, new UserRegistered($user->email, $pswdDefault));
 
         return response()->json([
-            'message' => 'user vytvořen',
+            'message' => 'Uživatel vytvořen',
             'raw heslo' => $pswdDefault,
             'newUser' => $user
         ], 200);
