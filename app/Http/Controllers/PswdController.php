@@ -21,13 +21,13 @@ class PswdController extends Controller
         }
 
         $user = $request->user();
-
         $user->password = Hash::make($request->password);
         $user->pswdChanged = true;
         $user->save();
 
         return response()->json([
             'message' => 'Heslo bylo změněno'
+
         ], 200);
     }
 
