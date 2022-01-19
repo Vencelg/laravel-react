@@ -9,19 +9,25 @@ use Illuminate\Support\Facades\Hash;
 class PswdController extends Controller
 {
     public function store(Request $request) {
-        //dodělat pswd confirm
-        $this->validate($request, [
+
+        $validation = $this->validate($request, [
             'password' => 'string'
         ]);
 
-        $user = $request->user();
+        if(!$validation) {
+            return response()->json([
+                'message' => 'Chyba'
+            ], 400);
+        }
 
+        $user = $request->user();
         $user->password = Hash::make($request->password);
         $user->pswdChanged = true;
         $user->save();
 
         return response()->json([
-            'message' => 'Heslo bylo změněno'
+            'user' => $user
+
         ], 200);
     }
 
