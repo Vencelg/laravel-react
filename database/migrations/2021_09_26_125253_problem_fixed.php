@@ -14,7 +14,7 @@ class ProblemFixed extends Migration
     public function up()
     {
         Schema::table('problems', function (Blueprint $table) {
-            $table->boolean('fixed')->default(false)->change();
+            $table->string('fixed')->default("Čekající")->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ProblemFixed extends Migration
     public function down()
     {
         Schema::table('problems', function (Blueprint $table) {
-            $table->boolean('fixed')->default(null)->change();
+            $table->string('fixed')->default(null)->change();
         });
     }
 }

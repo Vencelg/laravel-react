@@ -14,7 +14,7 @@ class ProblemNewColumn extends Migration
     public function up()
     {
         Schema::table('problems', function (Blueprint $table) {
-            $table->boolean('fixed');
+            $table->integer('fixed');
             $table->string('fix_time')->nullable();
         });
     }
