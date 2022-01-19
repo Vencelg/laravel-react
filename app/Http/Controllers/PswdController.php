@@ -26,7 +26,7 @@ class PswdController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Heslo bylo změněno'
+            'user' => $user
 
         ], 200);
     }
