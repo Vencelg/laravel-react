@@ -101,7 +101,7 @@ class ProblemController extends Controller
         if (!$problem) {
             return response()->json([
                 'message' => 'problem neexistuje'
-            ], 200);
+            ], 400);
         }
 
         $problem->delete();

@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\Hash;
 class PswdController extends Controller
 {
     public function store(Request $request) {
-        //dodělat pswd confirm
-        $this->validate($request, [
+
+        $validation = $this->validate($request, [
             'password' => 'string'
         ]);
+
+        if(!$validation) {
+            return response()->json([
+                'message' => 'Chyba'
+            ], 400);
+        }
 
         $user = $request->user();
 
