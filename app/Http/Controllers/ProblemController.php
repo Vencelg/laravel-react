@@ -21,7 +21,8 @@ class ProblemController extends Controller
         $this->validate($request, [
             'name' => 'string|required',
             'description' => 'string|required',
-            'room' => 'string|required'
+            'room' => 'string|required',
+            'fixed' => 'string'
         ]);
 
 
@@ -29,6 +30,7 @@ class ProblemController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'room' => $request->room,
+            'fixed' => $request->fixed
         ]);
 
 
@@ -37,8 +39,6 @@ class ProblemController extends Controller
         function problemWithUser($problem)
         {
             $user = $problem->user;
-            $fixed = $problem->fixed;
-
             return $problem;
         }
 
