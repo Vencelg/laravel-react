@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notification;
 class UserRegistered extends Notification
 {
     use Queueable;
-    
+
 
     /**
      * Create a new notification instance.
@@ -20,7 +20,8 @@ class UserRegistered extends Notification
 
     protected $email;
     protected $password;
-    public function __construct( $email, $password)
+
+    public function __construct($email, $password)
     {
         $this->email = $email;
         $this->password = $password;
@@ -29,7 +30,7 @@ class UserRegistered extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -40,24 +41,26 @@ class UserRegistered extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Byl jste zaregistrován adminem')
-                    ->line('Vaše údaje jsou')
-                    ->line('Email: '.$this->email)
-                    ->line('Heslo: '.$this->password)
-                    ->action('Přihlásit se můžete zde', url('/'))
-                    ->line('Po přihlášení budete moci své heslo změnit');
+            ->greeting('Uživateli,')
+            ->subject('Byl jste zaregistrován')
+            ->line('Byl jste zaregistrován adminem')
+            ->line('Vaše údaje jsou: ')
+            ->line('Email: ' . $this->email)
+            ->line('Heslo: ' . $this->password)
+            ->action('Přihlásit se můžete zde', url('/'))
+            ->line('Po přihlášení budete moci své heslo změnit');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
