@@ -37,7 +37,7 @@ const ProblemForm = ({
       })
     }
 
-    //onSubmit(values);
+    onSubmit(values);
 
   }
 
@@ -46,7 +46,7 @@ const ProblemForm = ({
   }, [initialValues])
 
   return (
-    <div>
+    <div className='sm-pad'>
       <form className="login100-form validate-form problem-form" onSubmit={handleSubmit}>
         <div className="wrap-input100 validate-input mg" data-validate="Zadejte učebnu">
           <span className="btn-show-pass">
