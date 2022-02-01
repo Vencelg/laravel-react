@@ -74,7 +74,6 @@ class AdminController extends Controller
 
         return response()->json([
             'message' => 'Uživatel vytvořen',
-            'raw heslo' => $pswdDefault,
             'newUser' => $user
         ], 200);
     }
